@@ -4,13 +4,10 @@
     xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd"
     id = "NeuroML2_file_exported_from_NEURON">
 
-  <notes> NeuroML 2 file generated from ModelView by: NEURON -- VERSION 7.7.2 7.7 (2b7985ba) 2019-06-20
+  <notes> NeuroML 2 file generated from ModelView by: NEURON -- VERSION 8.0.2 HEAD (f0ca7454) 2022-02-02
           Authors: Michael Hines, Sushil Kambampati and Padraig Gleeson,
           Yale University and UCL 
   </notes>
-  
-  
-    <include href="pas.channel.nml"/>
 
   <cell id="Cell0">
     <notes>Cell: Cell0 exported from NEURON ModelView</notes>
@@ -246,7 +243,7 @@
         <member segment = "27"/>
       </segmentGroup>
 
-      <segmentGroup id="all"> <!-- Replacing subset name ModelViewParmSubset_22 with all, as it contains all sections -->
+      <segmentGroup id="all"> <!-- Replacing subset name ModelViewParmSubset_0 with all, as it contains all sections -->
         <include segmentGroup = "soma"/>
         <include segmentGroup = "hillock"/>
         <include segmentGroup = "basal"/>
@@ -256,7 +253,7 @@
         <include segmentGroup = "axon"/>
       </segmentGroup>
 
-      <segmentGroup id="ModelViewParmSubset_23"> 
+      <segmentGroup id="ModelViewParmSubset_1"> 
         <include segmentGroup = "soma"/>
         <include segmentGroup = "hillock"/>
         <include segmentGroup = "apical"/>
@@ -264,105 +261,86 @@
         <include segmentGroup = "tuft"/>
       </segmentGroup>
 
-      <segmentGroup id="ModelViewParmSubset_24"> 
+      <segmentGroup id="ModelViewParmSubset_2"> 
         <include segmentGroup = "soma"/>
         <include segmentGroup = "apical"/>
         <include segmentGroup = "tuft"/>
       </segmentGroup>
 
-      <segmentGroup id="ModelViewParmSubset_25"> 
+      <segmentGroup id="ModelViewParmSubset_3"> 
         <include segmentGroup = "soma"/>
       </segmentGroup>
 
-      <segmentGroup id="ModelViewParmSubset_26"> 
+      <segmentGroup id="ModelViewParmSubset_4"> 
         <include segmentGroup = "tuft"/>
       </segmentGroup>
 
-      <segmentGroup id="ModelViewParmSubset_27"> 
+      <segmentGroup id="ModelViewParmSubset_5"> 
         <include segmentGroup = "basal"/>
         <include segmentGroup = "apical"/>
         <include segmentGroup = "tuft"/>
       </segmentGroup>
 
-      <segmentGroup id="ModelViewParmSubset_28"> 
+      <segmentGroup id="ModelViewParmSubset_6"> 
         <include segmentGroup = "soma"/>
         <include segmentGroup = "hillock"/>
-        <include segmentGroup = "iseg"/>
-        <include segmentGroup = "axon"/>
-      </segmentGroup>
-
-      <segmentGroup id="ModelViewParmSubset_29"> 
-        <include segmentGroup = "apical"/>
-        <include segmentGroup = "tuft"/>
-      </segmentGroup>
-
-      <segmentGroup id="ModelViewParmSubset_30"> 
-        <include segmentGroup = "soma"/>
-        <include segmentGroup = "hillock"/>
-        <include segmentGroup = "basal"/>
         <include segmentGroup = "iseg"/>
         <include segmentGroup = "axon"/>
       </segmentGroup>
 
-      <segmentGroup id="ModelViewParmSubset_31"> 
+      <segmentGroup id="ModelViewParmSubset_7"> 
+        <include segmentGroup = "apical"/>
+        <include segmentGroup = "tuft"/>
+      </segmentGroup>
+
+      <segmentGroup id="ModelViewParmSubset_8"> 
+        <include segmentGroup = "soma"/>
+        <include segmentGroup = "hillock"/>
+        <include segmentGroup = "basal"/>
+        <include segmentGroup = "iseg"/>
+        <include segmentGroup = "axon"/>
+      </segmentGroup>
+
+      <segmentGroup id="ModelViewParmSubset_9"> 
         <include segmentGroup = "soma"/>
         <include segmentGroup = "hillock"/>
         <include segmentGroup = "apical"/>
         <include segmentGroup = "tuft"/>
       </segmentGroup>
 
-      <segmentGroup id="OneSecGrp_SectionRef_61"> <!-- Creating a group containing a single section: apical... -->
+      <segmentGroup id="OneSecGrp_SectionRef_4"> <!-- Creating a group containing a single section: apical... -->
         <include segmentGroup = "apical"/>
       </segmentGroup>
 
-      <segmentGroup id="OneSecGrp_SectionRef_63"> <!-- Creating a group containing a single section: tuft... -->
+      <segmentGroup id="OneSecGrp_SectionRef_6"> <!-- Creating a group containing a single section: tuft... -->
         <include segmentGroup = "tuft"/>
       </segmentGroup>
 
-      <segmentGroup id="OneSecGrp_SectionRef_60"> <!-- Creating a group containing a single section: basal... -->
+      <segmentGroup id="OneSecGrp_SectionRef_3"> <!-- Creating a group containing a single section: basal... -->
         <include segmentGroup = "basal"/>
       </segmentGroup>
 
-      <segmentGroup id="OneSecGrp_SectionRef_58"> <!-- Creating a group containing a single section: soma... -->
+      <segmentGroup id="OneSecGrp_SectionRef_1"> <!-- Creating a group containing a single section: soma... -->
         <include segmentGroup = "soma"/>
       </segmentGroup>
 
-      <segmentGroup id="OneSecGrp_SectionRef_59"> <!-- Creating a group containing a single section: hillock... -->
+      <segmentGroup id="OneSecGrp_SectionRef_2"> <!-- Creating a group containing a single section: hillock... -->
         <include segmentGroup = "hillock"/>
       </segmentGroup>
 
-      <segmentGroup id="OneSecGrp_SectionRef_62"> <!-- Creating a group containing a single section: iseg... -->
+      <segmentGroup id="OneSecGrp_SectionRef_5"> <!-- Creating a group containing a single section: iseg... -->
         <include segmentGroup = "iseg"/>
       </segmentGroup>
 
     </morphology>
+  </cell> 
 
-    <!-- Biophysical properties -->
-
-        <biophysicalProperties id="biophys">
-
-            <membraneProperties>
-                
-                <channelDensity condDensity="0.1420051 mS_per_cm2" id="pas" ionChannel="pas" erev="-66.0 mV" ion="non_specific"/>
-                
-                <spikeThresh value="0 mV"/>
-
-                <specificCapacitance value="2.84 uF_per_cm2"/>
-
-                <initMembPotential value="-65.0 mV"/>
-
-            </membraneProperties>
-
-            <intracellularProperties>
-
-                <resistivity value="0.2 kohm_cm"/>
-
-            </intracellularProperties>
-
-        </biophysicalProperties>
-
-    </cell>
-    
+  <network id="network" type="networkWithTemperature" temperature="37 degC">
+    <population id="Pop_Cell0" component="Cell0" size="1" type="populationList">
+        <instance id="0">
+            <location x="0" y="0" z="0"/>
+        </instance>
+    </population>
+  </network>
+ 
 </neuroml>
-
-
