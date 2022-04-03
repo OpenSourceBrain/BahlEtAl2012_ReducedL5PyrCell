@@ -23,7 +23,7 @@ Channel information
             Kinetic rates based roughly on Sah et al. and Hamill et al. (1991)
 
             Author: Zach Mainen, Salk Institute, 1995, zach@salk.edu
-        </sup>
+
 </td>
 <td>
 <a href="kfast.inf.png"><img alt="kfast steady state" src="kfast.inf.png" height="220"/></a>
