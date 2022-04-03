@@ -6,7 +6,7 @@ Channel information
 <table>
     <tr>
 <td width="120px">
-            <sup><b>kfast</b><br/>
+            <b>kfast</b><br/>
             <a href="../kfast.channel.nml">kfast.channel.nml</a><br/>
             <b>Ion: k</b><br/>
             <i>g = gmax * n </i><br/>
@@ -25,12 +25,13 @@ Channel information
             Author: Zach Mainen, Salk Institute, 1995, zach@salk.edu
 
 </td>
+</tr>
+</table>
 <td>
 <a href="kfast.inf.png"><img alt="kfast steady state" src="kfast.inf.png" height="220"/></a>
 </td>
 <td>
 <a href="kfast.tau.png"><img alt="kfast time course" src="kfast.tau.png" height="220"/></a>
 </td>
-</tr>
-</table>
+
 
