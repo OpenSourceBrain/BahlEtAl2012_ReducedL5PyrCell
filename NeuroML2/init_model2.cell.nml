@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd"
+    id = "NeuroML2_file_exported_from_NEURON">
+
+  <notes> NeuroML 2 file generated from ModelView by: NEURON -- VERSION 8.0.2 HEAD (f0ca7454) 2022-02-02
+          Authors: Michael Hines, Sushil Kambampati and Padraig Gleeson,
+          Yale University and UCL 
+  </notes>
+
+  <cell id="Cell0">
+    <notes>Cell: Cell0 exported from NEURON ModelView</notes>
+    <morphology id="morphology">
+<!-- Section: soma (segmentGroup: soma) which has 0 3D points, so -1 segment(s)-->
+<!-- Section: hillock (segmentGroup: hillock) which has 0 3D points, so -1 segment(s)-->
+<!-- Section: basal (segmentGroup: basal) which has 0 3D points, so -1 segment(s)-->
+<!-- Section: apical (segmentGroup: apical) which has 0 3D points, so -1 segment(s)-->
+<!-- Section: iseg (segmentGroup: iseg) which has 0 3D points, so -1 segment(s)-->
+<!-- Section: tuft (segmentGroup: tuft) which has 0 3D points, so -1 segment(s)-->
+<!-- Section: axon (segmentGroup: axon) which has 0 3D points, so -1 segment(s)-->
+
+<!-- Section: soma (segmentGroup: soma) which has 0 3D points, so -1 segment(s)-->
+
+      <segmentGroup id = "soma"  neuroLexId="sao864921383">
+         <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+      </segmentGroup>
+
+
+<!-- Section: hillock (segmentGroup: hillock) which has 0 3D points, so -1 segment(s)-->
+
+      <segmentGroup id = "hillock"  neuroLexId="sao864921383">
+         <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+        <!-- This is currently inside (old convention) & outside (new convention) the <annotation> element, as some APIs have trouble reading what's inside <annotation> (<xs:any..> in Schema) -->
+        <property tag="numberInternalDivisions" value="5"/> <!-- Discretization of model at time of export from NEURON. Can be overridden by importing application -->
+        <annotation>
+          <property tag="numberInternalDivisions" value="5"/> <!-- Discretization of model at time of export from NEURON. Can be overridden by importing application -->
+        </annotation>
+      </segmentGroup>
+
+
+<!-- Section: basal (segmentGroup: basal) which has 0 3D points, so -1 segment(s)-->
+
+      <segmentGroup id = "basal"  neuroLexId="sao864921383">
+         <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+      </segmentGroup>
+
+
+<!-- Section: apical (segmentGroup: apical) which has 0 3D points, so -1 segment(s)-->
+
+      <segmentGroup id = "apical"  neuroLexId="sao864921383">
+         <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+        <!-- This is currently inside (old convention) & outside (new convention) the <annotation> element, as some APIs have trouble reading what's inside <annotation> (<xs:any..> in Schema) -->
+        <property tag="numberInternalDivisions" value="5"/> <!-- Discretization of model at time of export from NEURON. Can be overridden by importing application -->
+        <annotation>
+          <property tag="numberInternalDivisions" value="5"/> <!-- Discretization of model at time of export from NEURON. Can be overridden by importing application -->
+        </annotation>
+      </segmentGroup>
+
+
+<!-- Section: iseg (segmentGroup: iseg) which has 0 3D points, so -1 segment(s)-->
+
+      <segmentGroup id = "iseg"  neuroLexId="sao864921383">
+         <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+        <!-- This is currently inside (old convention) & outside (new convention) the <annotation> element, as some APIs have trouble reading what's inside <annotation> (<xs:any..> in Schema) -->
+        <property tag="numberInternalDivisions" value="5"/> <!-- Discretization of model at time of export from NEURON. Can be overridden by importing application -->
+        <annotation>
+          <property tag="numberInternalDivisions" value="5"/> <!-- Discretization of model at time of export from NEURON. Can be overridden by importing application -->
+        </annotation>
+      </segmentGroup>
+
+
+<!-- Section: tuft (segmentGroup: tuft) which has 0 3D points, so -1 segment(s)-->
+
+      <segmentGroup id = "tuft"  neuroLexId="sao864921383">
+         <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+        <!-- This is currently inside (old convention) & outside (new convention) the <annotation> element, as some APIs have trouble reading what's inside <annotation> (<xs:any..> in Schema) -->
+        <property tag="numberInternalDivisions" value="2"/> <!-- Discretization of model at time of export from NEURON. Can be overridden by importing application -->
+        <annotation>
+          <property tag="numberInternalDivisions" value="2"/> <!-- Discretization of model at time of export from NEURON. Can be overridden by importing application -->
+        </annotation>
+      </segmentGroup>
+
+
+<!-- Section: axon (segmentGroup: axon) which has 0 3D points, so -1 segment(s)-->
+
+      <segmentGroup id = "axon"  neuroLexId="sao864921383">
+         <notes>This group contains an unbranched set of segments, and all of the segmentGroups marked with
+             neuroLexId = sao864921383 form a non-overlapping set of all of the segments.
+             These segmentGroups correspond to the 'cables' of NeuroML v1.8.1, and map to/from NEURON sections.</notes>
+      </segmentGroup>
+
+      <segmentGroup id="all"> <!-- Replacing subset name ModelViewParmSubset_0 with all, as it contains all sections -->
+        <include segmentGroup = "soma"/>
+        <include segmentGroup = "hillock"/>
+        <include segmentGroup = "basal"/>
+        <include segmentGroup = "apical"/>
+        <include segmentGroup = "iseg"/>
+        <include segmentGroup = "tuft"/>
+        <include segmentGroup = "axon"/>
+      </segmentGroup>
+
+      <segmentGroup id="ModelViewParmSubset_1"> 
+        <include segmentGroup = "soma"/>
+        <include segmentGroup = "hillock"/>
+        <include segmentGroup = "apical"/>
+        <include segmentGroup = "iseg"/>
+        <include segmentGroup = "tuft"/>
+      </segmentGroup>
+
+      <segmentGroup id="ModelViewParmSubset_2"> 
+        <include segmentGroup = "soma"/>
+        <include segmentGroup = "apical"/>
+        <include segmentGroup = "tuft"/>
+      </segmentGroup>
+
+      <segmentGroup id="ModelViewParmSubset_3"> 
+        <include segmentGroup = "soma"/>
+      </segmentGroup>
+
+      <segmentGroup id="ModelViewParmSubset_4"> 
+        <include segmentGroup = "tuft"/>
+      </segmentGroup>
+
+      <segmentGroup id="ModelViewParmSubset_5"> 
+        <include segmentGroup = "basal"/>
+        <include segmentGroup = "apical"/>
+        <include segmentGroup = "tuft"/>
+      </segmentGroup>
+
+      <segmentGroup id="ModelViewParmSubset_6"> 
+        <include segmentGroup = "soma"/>
+        <include segmentGroup = "hillock"/>
+        <include segmentGroup = "iseg"/>
+        <include segmentGroup = "axon"/>
+      </segmentGroup>
+
+      <segmentGroup id="ModelViewParmSubset_7"> 
+        <include segmentGroup = "apical"/>
+        <include segmentGroup = "tuft"/>
+      </segmentGroup>
+
+      <segmentGroup id="ModelViewParmSubset_8"> 
+        <include segmentGroup = "soma"/>
+        <include segmentGroup = "hillock"/>
+        <include segmentGroup = "basal"/>
+        <include segmentGroup = "iseg"/>
+        <include segmentGroup = "axon"/>
+      </segmentGroup>
+
+      <segmentGroup id="ModelViewParmSubset_9"> 
+        <include segmentGroup = "soma"/>
+        <include segmentGroup = "hillock"/>
+        <include segmentGroup = "apical"/>
+        <include segmentGroup = "tuft"/>
+      </segmentGroup>
+
+      <segmentGroup id="OneSecGrp_SectionRef_4"> <!-- Creating a group containing a single section: apical... -->
+        <include segmentGroup = "apical"/>
+      </segmentGroup>
+
+      <segmentGroup id="OneSecGrp_SectionRef_6"> <!-- Creating a group containing a single section: tuft... -->
+        <include segmentGroup = "tuft"/>
+      </segmentGroup>
+
+      <segmentGroup id="OneSecGrp_SectionRef_3"> <!-- Creating a group containing a single section: basal... -->
+        <include segmentGroup = "basal"/>
+      </segmentGroup>
+
+      <segmentGroup id="OneSecGrp_SectionRef_1"> <!-- Creating a group containing a single section: soma... -->
+        <include segmentGroup = "soma"/>
+      </segmentGroup>
+
+      <segmentGroup id="OneSecGrp_SectionRef_2"> <!-- Creating a group containing a single section: hillock... -->
+        <include segmentGroup = "hillock"/>
+      </segmentGroup>
+
+      <segmentGroup id="OneSecGrp_SectionRef_5"> <!-- Creating a group containing a single section: iseg... -->
+        <include segmentGroup = "iseg"/>
+      </segmentGroup>
+
+    </morphology>
+  </cell> 
+
+  <network id="network" type="networkWithTemperature" temperature="37 degC">
+    <population id="Pop_Cell0" component="Cell0" size="1" type="populationList">
+        <instance id="0">
+            <location x="0" y="0" z="0"/>
+        </instance>
+    </population>
+  </network>
+ 
+</neuroml>
