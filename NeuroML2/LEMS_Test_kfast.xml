@@ -116,7 +116,7 @@
     </vClampedRampCell>
 
     
-    <network id="net1" type="networkWithTemperature" temperature = "6.3 degC">
+    <network id="net1" type="networkWithTemperature" temperature = "37.0 degC">
         
         <population id="holderCellPop_min100" component="holderCell_min100" size="1"/>
         <population id="holderCellPop_min80" component="holderCell_min80" size="1"/>
@@ -150,7 +150,7 @@
             <Line id="100mV" quantity="holderCellPop_100[0]/v" scale="1mV"  color="#ff0000" timeScale="1ms"/>
         </Display>
 
-        <Display id="d1" title="kfast: Fractional conductance at 6.3 degC"  timeScale="1ms" xmin="-10.0" xmax="110.00000000000001" ymin="-0.1" ymax="1.1">
+        <Display id="d1" title="kfast: Fractional conductance at 37.0 degC"  timeScale="1ms" xmin="-10.0" xmax="110.00000000000001" ymin="-0.1" ymax="1.1">
             <Line id="-100mV" quantity="holderCellPop_min100[0]/test/kfast/fopen" scale="1"  color="#ffff00" timeScale="1ms"/>
             <Line id="-80mV" quantity="holderCellPop_min80[0]/test/kfast/fopen" scale="1"  color="#ffe500" timeScale="1ms"/>
             <Line id="-60mV" quantity="holderCellPop_min60[0]/test/kfast/fopen" scale="1"  color="#ffcc00" timeScale="1ms"/>
@@ -164,7 +164,7 @@
             <Line id="100mV" quantity="holderCellPop_100[0]/test/kfast/fopen" scale="1"  color="#ff0000" timeScale="1ms"/>
         </Display>
         
-        <Display id="d7" title="kfast: Currents (nA) at different clamped potentials; 6.3 degC; rev potential: 0 mV"  timeScale="1ms" xmin="-10.0" xmax="110.00000000000001" ymin="-0.002" ymax="0.0014">
+        <Display id="d7" title="kfast: Currents (nA) at different clamped potentials; 37.0 degC; rev potential: 0 mV"  timeScale="1ms" xmin="-10.0" xmax="110.00000000000001" ymin="-0.002" ymax="0.0014">
             <Line id="-100mV" quantity="holderCellPop_min100[0]/test/i" scale="1nA"  color="#ffff00" timeScale="1ms"/>
             <Line id="-80mV" quantity="holderCellPop_min80[0]/test/i" scale="1nA"  color="#ffe500" timeScale="1ms"/>
             <Line id="-60mV" quantity="holderCellPop_min60[0]/test/i" scale="1nA"  color="#ffcc00" timeScale="1ms"/>
@@ -182,7 +182,7 @@
             <Line id="n_inf (x axis: -100mV to 100mV)" quantity="rampCellPop0[0]/test/kfast/n/inf" scale="1"  color="#000000" timeScale="1ms"/>
         </Display>
         
-        <Display id="n_tau" title="kfast: Gate n time course, n_tau (ms) at 6.3 degC"  timeScale="1ms" xmin="-10.0" xmax="110.00000000000001" ymin="-10" ymax="110">
+        <Display id="n_tau" title="kfast: Gate n time course, n_tau (ms) at 37.0 degC"  timeScale="1ms" xmin="-10.0" xmax="110.00000000000001" ymin="-10" ymax="110">
             <Line id="n_tau (x axis: -100mV to 100mV)" quantity="rampCellPop0[0]/test/kfast/n/tau" scale="1ms"  color="#000000" timeScale="1ms"/>
         </Display>
 
