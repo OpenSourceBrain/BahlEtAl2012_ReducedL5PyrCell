@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" 
+         id="kfast : neamed from kv (Armin, Jul 09)">
+
+    <notes>NeuroML file automatically generated from an NMODL file</notes>
+
+    <ionChannel id="kfast" conductance="10pS" type="ionChannelHH" species="k">
+        
+        <notes>Potassium channel, Hodgkin-Huxley style kinetics
+
+            Comments from original mod file:
+
+            26 Ago 2002 Modification of original channel to allow variable time step and to correct an initialization error.
+            Done by Michael Hines(michael.hines@yale.e) and Ruggero Scorcioni(rscorcio@gmu.edu) at EU Advance Course in Computational Neuroscience. Obidos, Portugal
+
+            kv.mod
+
+            Potassium channel, Hodgkin-Huxley style kinetics
+            Kinetic rates based roughly on Sah et al. and Hamill et al. (1991)
+
+            Author: Zach Mainen, Salk Institute, 1995, zach@salk.edu
+        </notes>
+        
+        <q10ConductanceScaling q10Factor="2.3" experimentalTemp="23degC"/>
+        <gate id="n" type="gateHHrates" instances="1">
+            <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="23degC"/>
+            <forwardRate type="HHExpLinearRate" rate="0.18per_ms" scale="9mV" midpoint="25mV"/>
+            <reverseRate type="HHExpLinearRate" rate="0.018per_ms" scale="-9mV" midpoint="25mV"/>  
+        </gate>
+        
+    </ionChannel>
+    
+</neuroml>
