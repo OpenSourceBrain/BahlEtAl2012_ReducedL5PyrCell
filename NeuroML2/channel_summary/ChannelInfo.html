@@ -6,6 +6,92 @@
         <table>
             <tr>
         <td width="130px">
+            <p style="font-size:80%;font-family:arial"><b>nat</b></p>
+            <p style="font-size:80%;font-family:arial"><a href="../nat.channel.nml">nat.channel.nml</a></p>
+            <p style="font-size:80%;background-color:#1E90FF;"><b>Ion: na</b></p>
+            <p style="font-size:80%;font-family:arial">g = gmax * m<sup>3</sup> * h </p><br/>
+            <p style="font-size:80%;font-family:arial">Sodium channel, Hodgkin-Huxley style kinetics.
+
+
+            Comments from original mod file:
+
+            26 Ago 2002 Modification of original channel to allow variable time step and to correct an initialization
+            error.
+            Done by Michael Hines(michael.hines@yale.e) and Ruggero Scorcioni(rscorcio@gmu.edu) at EU Advance Course in
+            Computational Neuroscience. Obidos, Portugal
+
+            na.mod
+
+            Sodium channel, Hodgkin-Huxley style kinetics.
+
+            Kinetics were fit to data from Huguenard et al. (1988) and Hamill et
+            al. (1991)
+
+            qi is not well constrained by the data, since there are no points
+            between -80 and -55. So this was fixed at 5 while the thi1,thi2,Rg,Rd
+            were optimized using a simplex least square proc
+
+            voltage dependencies are shifted approximately from the best
+            fit to give higher threshold
+
+            Author: Zach Mainen, Salk Institute, 1994, zach@salk.edu
+
+            May 2006: set the tha -28 mV, vshift 0 and thinf -55 mV to comply with measured
+            Somatic Na+ kinetics in neocortex. Kole, ANU, 2006
+        </p><br/>
+        </td>
+        <td>
+        <a href="nat.inf.png"><img alt="nat steady state" src="nat.inf.png" height="300"/></a>
+        </td>
+        <td>
+        <a href="nat.tau.png"><img alt="nat time course" src="nat.tau.png" height="300"/></a>
+        </td>
+        </tr>
+            <tr>
+        <td width="130px">
+            <p style="font-size:80%;font-family:arial"><b>nap</b></p>
+            <p style="font-size:80%;font-family:arial"><a href="../nap.channel.nml">nap.channel.nml</a></p>
+            <p style="font-size:80%;background-color:#1E90FF;"><b>Ion: na</b></p>
+            <p style="font-size:80%;font-family:arial">g = gmax * m </p><br/>
+            <p style="font-size:80%;font-family:arial">NeuroML2 file automatically generated from NMODL file: ./NEURON/channels/nap.mod</p><br/>
+        </td>
+        <td>
+        <a href="nap.inf.png"><img alt="nap steady state" src="nap.inf.png" height="300"/></a>
+        </td>
+        <td>
+        <a href="nap.tau.png"><img alt="nap time course" src="nap.tau.png" height="300"/></a>
+        </td>
+        </tr>
+            <tr>
+        <td width="130px">
+            <p style="font-size:80%;font-family:arial"><b>kfast</b></p>
+            <p style="font-size:80%;font-family:arial"><a href="../kfast.channel.nml">kfast.channel.nml</a></p>
+            <p style="font-size:80%;background-color:#CD5C5C;"><b>Ion: k</b></p>
+            <p style="font-size:80%;font-family:arial">g = gmax * n </p><br/>
+            <p style="font-size:80%;font-family:arial">Potassium channel, Hodgkin-Huxley style kinetics
+
+            Comments from original mod file:
+
+            26 Ago 2002 Modification of original channel to allow variable time step and to correct an initialization error.
+            Done by Michael Hines(michael.hines@yale.e) and Ruggero Scorcioni(rscorcio@gmu.edu) at EU Advance Course in Computational Neuroscience. Obidos, Portugal
+
+            kv.mod
+
+            Potassium channel, Hodgkin-Huxley style kinetics
+            Kinetic rates based roughly on Sah et al. and Hamill et al. (1991)
+
+            Author: Zach Mainen, Salk Institute, 1995, zach@salk.edu
+        </p><br/>
+        </td>
+        <td>
+        <a href="kfast.inf.png"><img alt="kfast steady state" src="kfast.inf.png" height="300"/></a>
+        </td>
+        <td>
+        <a href="kfast.tau.png"><img alt="kfast time course" src="kfast.tau.png" height="300"/></a>
+        </td>
+        </tr>
+            <tr>
+        <td width="130px">
             <p style="font-size:80%;font-family:arial"><b>km</b></p>
             <p style="font-size:80%;font-family:arial"><a href="../IKM.channel.nml">IKM.channel.nml</a></p>
             <p style="font-size:80%;background-color:#CD5C5C;"><b>Ion: k</b></p>
