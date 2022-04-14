@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" 
+         id="kslow">
+
+    <notes>NeuroML file automatically generated from an NMODL file</notes>
+
+    <ionChannel id="kslow" conductance="10pS" type="ionChannelHH" species="k">
+        
+        <notes>NeuroML2 file automatically generated from NMODL file: ./NEURON/channels/kslow.mod</notes>
+        
+        <q10ConductanceScaling q10Factor="2.3" experimentalTemp="21degC"/>
+
+        <gateHHrates id="a" instances="2">
+            <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="21degC"/> 
+            <forwardRate type="kslow_a_alpha_rate"/>
+            <reverseRate type="kslow_a_beta_rate"/>
+        </gateHHrates>
+
+        <gateFractional id="b" instances="1">
+            <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="21degC"/> 
+            <subGate id="bb" fractionalConductance="0.5">
+                <steadyState type="HHSigmoidVariable" rate="1per_ms" midpoint="-58mV" scale="-11mV"/>
+                <timeCourse type="kslow_b_tau"/>
+            </subGate>
+            <subGate id="bb1" fractionalConductance="0.5">
+                <steadyState type="HHSigmoidVariable" rate="1per_ms" midpoint="-58mV" scale="-11mV"/>
+                <timeCourse type="kslow_b1_tau"/>
+            </subGate>
+        </gateFractional>
+
+    </ionChannel>
+    <ComponentType name="kslow_a_alpha_rate" extends="baseVoltageDepRate">
+        <Constant name="TIME_SCALE" dimension="time" value="1ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1mV"/>
+        <Constant name="a0" dimension="none" value="0.0052"/>
+        <Constant name="a1" dimension="none" value="11.1"/>
+        <Constant name="a2" dimension="none" value="13.1"/>
+        <Constant name="a3" dimension="none" value="0.01938"/>
+        <Constant name="a4" dimension="none" value="-1.27"/>
+        <Constant name="a5" dimension="none" value="71"/>
+        <Constant name="a6" dimension="none" value="-0.0053"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="r" exposure="r" dimension="per_time" value="(a0*(V-a1)/(1-exp(-(V-a1)/a2))) / TIME_SCALE "/>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType name="kslow_a_beta_rate" extends="baseVoltageDepRate">
+        <Constant name="TIME_SCALE" dimension="time" value="1ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1mV"/>
+        <Constant name="a0" dimension="none" value="0.0052"/>
+        <Constant name="a1" dimension="none" value="11.1"/>
+        <Constant name="a2" dimension="none" value="13.1"/>
+        <Constant name="a3" dimension="none" value="0.01938"/>
+        <Constant name="a4" dimension="none" value="-1.27"/>
+        <Constant name="a5" dimension="none" value="71"/>
+        <Constant name="a6" dimension="none" value="-0.0053"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="r" exposure="r" dimension="per_time" value="(a3*exp(-(V-a4)/a5)+a6) / TIME_SCALE "/>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType name="kslow_b_tau" extends="baseVoltageDepTime">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <Constant name="v05b" dimension="none" value="-58"/>
+        <Constant name="b0" dimension="none" value="360"/>
+        <Constant name="b11" dimension="none" value="1010"/>
+        <Constant name="b2" dimension="none" value="-75"/>
+        <Constant name="b3" dimension="none" value="48"/>
+        <Constant name="b4" dimension="none" value="23.7"/>
+        <Constant name="b5" dimension="none" value="-54"/>
+        <Requirement name="rateScale" dimension="none"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="t" exposure="t" dimension="time" value="(b0+(b11+b4*(V-b5))*exp(-(V-b2)*(V-b2)/(b3*b3))) * TIME_SCALE "/>
+        </Dynamics>
+    </ComponentType>
+
+
+    <ComponentType name="kslow_b1_tau" extends="baseVoltageDepTime">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <Constant name="bb0" dimension="none" value="2350"/>
+        <Constant name="bb1" dimension="none" value="1380"/>
+        <Constant name="bb2" dimension="none" value="0.01118"/>
+        <Constant name="bb3" dimension="none" value="-210"/>
+        <Constant name="bb4" dimension="none" value="0.0306"/>
+
+        <Requirement name="rateScale" dimension="none"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="t" exposure="t" dimension="time" value="(bb0+bb1*exp(-bb2*V)+bb3*exp(-bb4*V)) * TIME_SCALE "/>
+        </Dynamics>
+
+    </ComponentType>
+</neuroml>
