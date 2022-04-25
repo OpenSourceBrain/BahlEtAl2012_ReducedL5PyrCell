@@ -6,6 +6,8 @@ A set of reduced models of layer 5 pyramidal neurons from: **Automated optimizat
 
 ## Conversion to NeuroML
 
+See https://github.com/OpenSourceBrain/Contribute/issues/15 for issue related to this.
+
 ### Channels
 
 At the moment only the transient sodium channel is converted. To compare the activation curves run 
