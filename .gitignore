@@ -1,3 +1,7 @@
 x86_64
+*.dat
 /NEURON/test/*.dat
+/NEURON/channels/*.dat
 /NeuroML2/L5_model2.cell.png
+*.ipynb
+

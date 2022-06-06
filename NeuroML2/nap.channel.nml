@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" 
+         id="nap">
+
+    <notes>NeuroML file automatically generated from an NMODL file</notes>
+
+    <ionChannel id="nap" conductance="10pS" type="ionChannelHH" species="na">
+        
+        <notes>NeuroML2 file automatically generated from NMODL file: ./NEURON/channels/nap.mod</notes>
+        
+
+        <gate id="m" type="gateHHtauInf" instances="1">
+            <q10Settings type="q10Fixed" fixedQ10="1"/>
+            <timeCourse type="BahlEtAl_Nap_taum"/>
+            <steadyState type="BahlEtAl_Nap_ssm"/>
+        </gate>
+        
+    </ionChannel>
+
+    <ComponentType name="BahlEtAl_Nap_taum"
+                   extends="baseVoltageDepTime"
+                   description="Tau parameter to describe Nap">
+
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="alpha" dimension="none" value="exp((V+40)/10)"/>
+            <DerivedVariable name="beta" dimension="none" value="exp(-(V+40)/10)"/>
+
+            <ConditionalDerivedVariable name="t" exposure="t" dimension="time">
+                <Case condition="(V) .lt. -40" value="( 0.025 + ( alpha * 0.14 ) ) * TIME_SCALE"/>
+                <Case value="( 0.02 + ( beta * 0.145 ) ) * TIME_SCALE"/>
+            </ConditionalDerivedVariable>
+        </Dynamics>
+    </ComponentType>
+
+    <ComponentType name="BahlEtAl_Nap_ssm"
+                   extends="baseVoltageDepVariable"
+                   description="Tau parameter to describe Nap">
+
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="x" exposure="x" dimension="none" value="1 / (1 + exp((-V-48)/10))"/>
+        </Dynamics>
+    </ComponentType>
+    
+</neuroml>
+

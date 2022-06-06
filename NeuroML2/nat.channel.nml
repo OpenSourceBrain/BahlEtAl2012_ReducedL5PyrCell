@@ -42,13 +42,16 @@
 
         <gate id="m" type="gateHHrates" instances="3">
             <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="23degC"/>
-            <forwardRate type="HHExpLinearRate" rate="0.182per_ms" scale="9mV" midpoint="-28mV"/>
-            <reverseRate type="HHExpLinearRate" rate="0.124per_ms" scale="-9mV" midpoint="-28mV"/>
+            <forwardRate type="HHExpLinearRate" rate="1.638per_ms" scale="9mV" midpoint="-28mV"/>
+            <reverseRate type="HHExpLinearRate" rate="1.116per_ms" scale="-9mV" midpoint="-28mV"/>
+        </gate>
+
+        <gate id="h" type="gateHHratesInf" instances="1">
+            <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="23degC"/>
+            <forwardRate type="HHExpLinearRate" rate="0.12per_ms" scale="5mV" midpoint="-50mV"/>
+            <reverseRate type="HHExpLinearRate" rate="0.0455per_ms" scale="-5mV" midpoint="-74mV"/>
+            <steadyState type="HHSigmoidVariable" rate="1" midpoint="-55mV" scale="-6.2mV"/>
         </gate>
 
     </ionChannel>
-
-
-
-
 </neuroml>
