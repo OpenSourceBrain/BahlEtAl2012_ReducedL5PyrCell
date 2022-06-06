@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" 
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-         xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" 
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2.2.xsd"
          id="kslow">
 
     <notes>NeuroML file automatically generated from an NMODL file</notes>
 
     <ionChannel id="kslow" conductance="10pS" type="ionChannelHH" species="k">
-        
+
         <notes>NeuroML2 file automatically generated from NMODL file: ./NEURON/channels/kslow.mod</notes>
-        
+
         <q10ConductanceScaling q10Factor="2.3" experimentalTemp="21degC"/>
 
-        <gateHHrates id="a" instances="2">
-            <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="21degC"/> 
+        <gate type="gateHHrates" id="a" instances="2">
+            <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="21degC"/>
             <forwardRate type="kslow_a_alpha_rate"/>
             <reverseRate type="kslow_a_beta_rate"/>
-        </gateHHrates>
+        </gate>
 
-        <gateFractional id="b" instances="1">
-            <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="21degC"/> 
+        <gate type="gateFractional" id="b" instances="1">
+            <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="21degC"/>
             <subGate id="bb" fractionalConductance="0.5">
-                <steadyState type="HHSigmoidVariable" rate="1per_ms" midpoint="-58mV" scale="-11mV"/>
+                <steadyState type="HHSigmoidVariable" rate="1" midpoint="-58mV" scale="-11mV"/>
                 <timeCourse type="kslow_b_tau"/>
             </subGate>
             <subGate id="bb1" fractionalConductance="0.5">
-                <steadyState type="HHSigmoidVariable" rate="1per_ms" midpoint="-58mV" scale="-11mV"/>
+                <steadyState type="HHSigmoidVariable" rate="1" midpoint="-58mV" scale="-11mV"/>
                 <timeCourse type="kslow_b1_tau"/>
             </subGate>
-        </gateFractional>
+        </gate>
 
     </ionChannel>
     <ComponentType name="kslow_a_alpha_rate" extends="baseVoltageDepRate">

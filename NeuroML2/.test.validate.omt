@@ -1,4 +1,4 @@
 # Script for running automated tests on OSB using Travis-CI, see https://github.com/OpenSourceBrain/osb-model-validation
 
-target: "IKM*.channel.nml kfast.channel.nml leak_chan.channel.nml nap.channel.nml nat.channel.nml pas.channel.nml"
+target: "*.nml"
 engine: jNeuroML_validate
