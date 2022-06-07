@@ -4,4 +4,4 @@ x86_64
 /NEURON/channels/*.dat
 /NeuroML2/L5_model2.cell.png
 *.ipynb
-
+*.xml
