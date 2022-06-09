@@ -17,11 +17,11 @@
                 Predominantly HCN1 / HCN2
         </notes>  
         
-        <gateHHtauInf id="qq" instances="1">
+        <gateHHrates id="qq" instances="1">
             <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="23degC"/> 
             <forwardRate type="HHExpLinearRate" rate="-0.00643per_ms" scale="11.9mV" midpoint="-154.9mV"/>
             <reverseRate type="HHExpRate" rate="0.193per_ms" scale="33.1mV" midpoint="0mV"/>
-        </gateHHtauInf>
+        </gateHHrates>
     </ionChannel>
 
 </neuroml>
