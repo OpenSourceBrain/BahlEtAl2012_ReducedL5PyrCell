@@ -1,3 +1,4 @@
+(The following is the original README taken from the NEURON version on [ModelDB](https://senselab.med.yale.edu/ModelDB/showModel?model=146026))
 
 These are the NEURON files for 10 different models of a reduced L5
 pyramidal neuron. The parameters were obtained by automatically
@@ -5,7 +6,7 @@ fitting the models to experimental data using a multi objective
 evolutionary search strategy. Details on the algorithm can be found at
 www.g-node.org/emoo and in Bahl et al. (2012).
 
-For testing: 
+For testing:
 
 - Compile the channels with nrnivmodl (this model was developed under
   linux). You might then have to correct the path in reduced_model.hoc
