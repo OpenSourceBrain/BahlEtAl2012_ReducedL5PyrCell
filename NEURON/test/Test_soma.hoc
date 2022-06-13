@@ -1,0 +1,146 @@
+usegui = 0
+
+{load_file("stdlib.hoc")}
+{load_file("stdgui.hoc")}
+
+
+create Soma
+access Soma
+
+celsius = 37
+
+Soma {pt3dclear() pt3dadd(0.0, 0.0, 0.0, 23.138652) pt3dadd(0.0, 0.0, 0.0, 23.138652)}
+define_shape()
+
+forall Ra = 100
+
+insert pas
+{ g_pas=1./15000 }
+{ e_pas=-70 }
+
+insert nat
+{ gnatbar_nat=0.0236 }
+{ ena = 55 }
+// { vshift_nat = 10 }
+
+insert kfast
+{ gkfastbar_kfast=0.00672 }
+{ ek = -80 }
+
+insert kslow
+{ gkslowbar_kslow=0.047582 }
+{ ek = -80 }
+
+insert nap
+{ gnapbar_nap=1.44e-04 }
+{ ena = 55 }
+
+insert km
+{ gkmbar_km=0.001046 }
+{ ek = -80 }
+
+proc initialiseValues0() {
+
+    forall  v = -65
+
+}
+
+objref fih0
+{fih0 = new FInitializeHandler(0, "initialiseValues0()")}
+
+objref stim1 
+
+Soma {
+    stim1 = new IClamp(0.5)
+    stim1.del = 100.0
+    stim1.dur = 500.0
+    stim1.amp = 0.4
+}
+
+tstop = 800
+dt = 0.01
+
+objref v_time
+objref f_time
+
+v_time = new Vector()
+{ v_time.record(&t) }
+f_time = new File()
+
+objref Soma_v
+{ Soma_v = new Vector() }
+{ Soma_v.record(&Soma.v(0.5))} 
+
+objref f_Soma_v
+
+objref GraphWin_0
+// objref GraphWin_1
+
+if (usegui==1) {
+
+    GraphWin_0 = new Graph(0)
+    {GraphWin_0.size(0, tstop,-110.0,50.0)}
+    {GraphWin_0.view(0, -110.0, tstop, 160.0, 80, 330, 330, 250)}
+    {
+        GraphWin_0.addexpr("Soma.v", "Soma.v(0.5)", 1, 1, 0.8, 0.9, 2)
+        //graphList[0].append(GraphWin_0)
+    }
+
+    // GraphWin_1 = new Graph(0)
+    // {GraphWin_1.size(0, tstop,-0.1,1.1)}
+    // {GraphWin_1.view(0, -0.1, tstop, 1.2, 80, 330, 330, 250)}
+    // {
+    //     GraphWin_1.addexpr("m_Ih", "m_Ih", 1, 1, 0.8, 0.9, 2)
+    //     GraphWin_1.addexpr("m_Im", "m_Im", 2, 1, 0.8, 0.9, 2)
+    //     GraphWin_1.addexpr("m_KdShu2007", "m_KdShu2007", 3, 1, 0.8, 0.9, 2)
+    //     GraphWin_1.addexpr("h_KdShu2007", "h_KdShu2007", 4, 1, 0.8, 0.9, 2)
+    //     GraphWin_1.addexpr("m_Ca", "m_Ca", 5, 1, 0.8, 0.9, 2)
+    //     GraphWin_1.addexpr("h_Ca", "h_Ca", 6, 1, 0.8, 0.9, 2)
+    //     //graphList[0].append(GraphWin_1)
+    // }
+}
+
+{run()}
+
+strdef timeFilename
+
+
+f_Soma_v = new File()
+strdef filename
+{sprint(filename, "Soma.dat")}
+f_Soma_v.wopen(filename)
+Soma_v.printf(f_Soma_v)
+f_Soma_v.close()
+
+{ sprint(timeFilename, "%s",  "time.dat")}
+{ f_time.wopen(timeFilename) }
+{ v_time.printf(f_time) }
+{ f_time.close() }
+
+objref f_Soma_si
+f_Soma_si = new File()
+{ f_Soma_si.wopen("Soma.si.dat") }
+for i=0, Soma_v.size()-1 {
+   f_Soma_si.printf("%f\t%f\n", v_time.x[i]/1000, Soma_v.x[i]/1000)
+}
+{ f_Soma_si.close() }
+
+if (usegui==1) {
+    //   This code pops up a simple Run Control
+
+    {
+    xpanel("RunControl", 0)
+    v_init = -90.0
+    xbutton("Init & Run","run()")
+    xbutton("Stop","stoprun=1")
+    t = 0
+    xvalue("t","t", 2 )
+    tstop = 800.0
+    xvalue("Tstop","tstop", 1,"tstop_changed()", 0, 1 )
+    dt = 0.01
+     xvalue("dt","dt", 1,"setdt()", 0, 1 )
+    xpanel(80,80)
+    }
+}
+
+forall psection()
