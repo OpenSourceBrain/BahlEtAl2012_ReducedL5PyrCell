@@ -6,11 +6,12 @@ usegui = 0
 
 create Soma
 access Soma
+{ L = diam = 23}
 
 celsius = 37
 
-Soma {pt3dclear() pt3dadd(0.0, 0.0, 0.0, 23.138652) pt3dadd(0.0, 0.0, 0.0, 23.138652)}
-define_shape()
+// Soma {pt3dclear() pt3dadd(0.0, 0.0, 0.0, 23.138652) pt3dadd(0.0, 0.0, 0.0, 23.138652)}
+// define_shape()
 
 forall Ra = 100
 
@@ -21,7 +22,7 @@ insert pas
 insert nat
 { gnatbar_nat=0.0236 }
 { ena = 55 }
-// { vshift_nat = 10 }
+{ vshift_nat = 10 }
 
 insert kfast
 { gkfastbar_kfast=0.00672 }
@@ -54,7 +55,7 @@ Soma {
     stim1 = new IClamp(0.5)
     stim1.del = 100.0
     stim1.dur = 500.0
-    stim1.amp = 0.4
+    stim1.amp = 0.1
 }
 
 tstop = 800
