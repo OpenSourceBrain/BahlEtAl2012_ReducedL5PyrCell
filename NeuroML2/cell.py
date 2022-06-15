@@ -32,7 +32,7 @@ def main():
     """
     # Simulation bits
     sim_id = "pyr_single_compartment_example_sim"
-    simulation = LEMSSimulation(sim_id=sim_id, duration=500, dt=0.01, simulation_seed=123)
+    simulation = LEMSSimulation(sim_id=sim_id, duration=700, dt=0.01, simulation_seed=123)
     # Include the NeuroML model file
     simulation.include_neuroml2_file(create_network())
     # Assign target for the simulation
@@ -40,7 +40,7 @@ def main():
 
     # Recording information from the simulation
     simulation.create_output_file(id="output0", file_name=sim_id + ".dat")
-    simulation.add_column_to_output_file("output0", column_id="pop0[0]/v", quantity="pop0[0]/v")
+    simulation.add_column_to_output_file("output0", column_id="pop0[0]_v", quantity="pop0[0]/v")
 
     # Save LEMS simulation to file
     sim_file = simulation.save_to_file()
@@ -68,12 +68,12 @@ def create_cell():
     pyr_cell_doc = NeuroMLDocument(id='cell', notes="Layer 5 Pyramidal cell")
     pyr_cell_fn = "pyr5_cell.nml"
     print(os.getcwd())
-    pyr_cell_doc.includes.append(IncludeType("kfast.channel.nml"))
-    # pyr_cell_doc.includes.append(IncludeType("pas.channel.nml"))
-    pyr_cell_doc.includes.append(IncludeType("kslow.channel.nml"))
-    pyr_cell_doc.includes.append(IncludeType("nat.channel.nml"))
+    #pyr_cell_doc.includes.append(IncludeType("kfast.channel.nml"))
+    pyr_cell_doc.includes.append(IncludeType("pas.channel.nml"))
     pyr_cell_doc.includes.append(IncludeType("nap.channel.nml"))
-    pyr_cell_doc.includes.append(IncludeType("IKM.channel.nml"))
+    '''pyr_cell_doc.includes.append(IncludeType("kslow.channel.nml"))
+    pyr_cell_doc.includes.append(IncludeType("nat.channel.nml"))
+    pyr_cell_doc.includes.append(IncludeType("IKM.channel.nml"))'''
 
     # Define a cell
     pyr_cell = Cell(id="pyr_cell", notes="A single compartment Layer 5 Pyramidal cell")
@@ -90,6 +90,10 @@ def create_cell():
     # Append to cell
     pyr_cell.biophysical_properties = bio_prop
 
+    pas_channel_density = ChannelDensity(id="pas_channels", cond_density="4.85726e-05 S_per_cm2", erev="-80.3987 mV", ion="non_specific", ion_channel="pas")
+    mem_prop.channel_densities.append(pas_channel_density)
+
+    '''
     # Channel density for kfast channel
     kfast_channel_density = ChannelDensity(id="kfast_channels", cond_density="67.2 S_per_m2", erev="-80.39 mV", ion="k", ion_channel="kfast")
     mem_prop.channel_densities.append(kfast_channel_density)
@@ -98,13 +102,13 @@ def create_cell():
     mem_prop.channel_densities.append(kslow_channel_density)
 
     nat_channel_density = ChannelDensity(id="nat_channels", cond_density="236.62 S_per_m2", erev="-80.39 mV", ion="na", ion_channel="nat")
-    mem_prop.channel_densities.append(nat_channel_density)
+    mem_prop.channel_densities.append(nat_channel_density)'''
 
     nap_channel_density = ChannelDensity(id="nap_channels", cond_density="1.44 S_per_m2", erev="-80.39 mV", ion="na", ion_channel="nap")
     mem_prop.channel_densities.append(nap_channel_density)
 
-    km_channel_density = ChannelDensity(id="km_channels", cond_density="475.82 S_per_m2", erev="-80.39 mV", ion="k", ion_channel="km")
-    mem_prop.channel_densities.append(km_channel_density)
+    '''km_channel_density = ChannelDensity(id="km_channels", cond_density="475.82 S_per_m2", erev="-80.39 mV", ion="k", ion_channel="km")
+    mem_prop.channel_densities.append(km_channel_density)'''
 
     # Other membrane properties
     mem_prop.spike_threshes.append(SpikeThresh(value="-20mV"))
@@ -155,7 +159,10 @@ def create_network():
 
     exp_input = ExplicitInput(target="pop0[0]", input="pg")
 
-    net = Network(id="single_pyr_cell_network", note="A network with a single population")
+    net = Network(id="single_pyr_cell_network",
+                  type="networkWithTemperature",
+                  temperature = "37 degC",
+                  note="A network with a single population")
     net_doc.pulse_generators.append(pulsegen)
     net.explicit_inputs.append(exp_input)
     net.populations.append(pop)
