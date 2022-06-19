@@ -1,0 +1,6 @@
+system: Testing a single compartment cell (soma)
+
+experiments:
+  Current clamp:
+    expected:
+      spike times: [100]

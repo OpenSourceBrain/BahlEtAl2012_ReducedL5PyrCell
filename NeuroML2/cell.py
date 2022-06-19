@@ -11,7 +11,6 @@ from neuroml import SpecificCapacitance
 from neuroml import InitMembPotential
 from neuroml import IntracellularProperties
 from neuroml import Resistivity
-from neuroml import Resistivity
 from neuroml import Morphology, Segment, Point3DWithDiam
 from neuroml import Network, Population
 from neuroml import PulseGenerator, ExplicitInput
@@ -90,21 +89,24 @@ def create_cell():
     # Append to cell
     pyr_cell.biophysical_properties = bio_prop
 
+    pas_channel_density = ChannelDensity(id="pas_channels", cond_density="0.67 S_per_m2", erev="-70 mV", ion="non_specific", ion_channel="pas")
+    mem_prop.channel_densities.append(pas_channel_density)
+
     # Channel density for kfast channel
-    kfast_channel_density = ChannelDensity(id="kfast_channels", cond_density="67.2 S_per_m2", erev="-80.39 mV", ion="k", ion_channel="kfast")
-    mem_prop.channel_densities.append(kfast_channel_density)
+    # kfast_channel_density = ChannelDensity(id="kfast_channels", cond_density="67.2 S_per_m2", erev="-80 mV", ion="k", ion_channel="kfast")
+    # mem_prop.channel_densities.append(kfast_channel_density)
 
-    kslow_channel_density = ChannelDensity(id="kslow_channels", cond_density="475.82 S_per_m2", erev="-80.39 mV", ion="k", ion_channel="kslow")
-    mem_prop.channel_densities.append(kslow_channel_density)
+    # kslow_channel_density = ChannelDensity(id="kslow_channels", cond_density="475.82 S_per_m2", erev="-80 mV", ion="k", ion_channel="kslow")
+    # mem_prop.channel_densities.append(kslow_channel_density)
 
-    nat_channel_density = ChannelDensity(id="nat_channels", cond_density="236.62 S_per_m2", erev="-80.39 mV", ion="na", ion_channel="nat")
-    mem_prop.channel_densities.append(nat_channel_density)
+    # nat_channel_density = ChannelDensity(id="nat_channels", cond_density="236.62 S_per_m2", erev="55 mV", ion="na", ion_channel="nat")
+    # mem_prop.channel_densities.append(nat_channel_density)
 
-    nap_channel_density = ChannelDensity(id="nap_channels", cond_density="1.44 S_per_m2", erev="-80.39 mV", ion="na", ion_channel="nap")
-    mem_prop.channel_densities.append(nap_channel_density)
+    # nap_channel_density = ChannelDensity(id="nap_channels", cond_density="1.44 S_per_m2", erev="55 mV", ion="na", ion_channel="nap")
+    # mem_prop.channel_densities.append(nap_channel_density)
 
-    km_channel_density = ChannelDensity(id="km_channels", cond_density="475.82 S_per_m2", erev="-80.39 mV", ion="k", ion_channel="km")
-    mem_prop.channel_densities.append(km_channel_density)
+    # km_channel_density = ChannelDensity(id="km_channels", cond_density="475.82 S_per_m2", erev="-80 mV", ion="k", ion_channel="km")
+    # mem_prop.channel_densities.append(km_channel_density)
 
     # Other membrane properties
     mem_prop.spike_threshes.append(SpikeThresh(value="-20mV"))
@@ -123,8 +125,9 @@ def create_cell():
     seg = Segment(id="0", name="soma", notes="Soma segment")
     # We want a diameter such that area is 1000 micro meter^2
     # surface area of a sphere is 4pi r^2 = 4pi diam^2
-    diam = math.sqrt(1682 / math.pi)
-    proximal = distal = Point3DWithDiam(x="0", y="0", z="0", diameter=str(diam))
+    # diam = math.sqrt(1682 / math.pi)
+    proximal = Point3DWithDiam(x="0", y="0", z="0", diameter=str(23))
+    distal = Point3DWithDiam(x="0", y="23", z="0", diameter=str(23))
     seg.proximal = proximal
     seg.distal = distal
     morph.segments.append(seg)
