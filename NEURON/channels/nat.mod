@@ -132,7 +132,7 @@ PROCEDURE rates(vm) {
 	a = trap0(vm,tha,Ra,qa)
 	b = trap0(-vm,-tha,Rb,qa)
 
-        tadj = q10^((celsius - temp)/10)
+    tadj = q10^((celsius - temp)/10)
 
 	mtau = 1/tadj/(a+b)
 	minf = a/(a+b)

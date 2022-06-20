@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" 
+         id="ih">
+
+    <notes>NeuroML file automatically generated from an NMODL file</notes>
+
+    <ionChannel id="ih" conductance="10pS" type="ionChannelHH" species="hcn">
+        
+        <notes>Deterministic model of kinetics and voltage-dependence of Ih-currents
+                in layer 5 pyramidal neuron, see Kole et al., 2006. Implemented by
+                Stefan Hallermann.
+
+                Added possibility to shift voltage activiation (vshift) and allowed access to gating variables, Armin Bahl 2009
+
+                Predominantly HCN1 / HCN2
+        </notes>  
+        
+        <gateHHrates id="qq" instances="1">
+            <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="23degC"/> 
+            <forwardRate type="HHExpLinearRate" rate="-0.00643per_ms" scale="11.9mV" midpoint="-154.9mV"/>
+            <reverseRate type="HHExpRate" rate="0.193per_ms" scale="33.1mV" midpoint="0mV"/>
+        </gateHHrates>
+    </ionChannel>
+
+</neuroml>
