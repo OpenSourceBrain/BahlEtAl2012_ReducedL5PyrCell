@@ -17,10 +17,6 @@ from neuroml import PulseGenerator, ExplicitInput
 from pyneuroml import pynml
 import numpy as np
 from pyneuroml.lems import LEMSSimulation
-import os
-
-# %%
-print(os.getcwd())
 
 # %%
 def main():
@@ -30,8 +26,10 @@ def main():
     data.
     """
     # Simulation bits
+
     sim_id = "pyr_single_comp"
     simulation = LEMSSimulation(sim_id=sim_id, duration=700, dt=0.01, simulation_seed=123)
+
     # Include the NeuroML model file
     simulation.include_neuroml2_file(create_network())
     # Assign target for the simulation
@@ -67,12 +65,13 @@ def create_cell():
     pyr_cell_doc = NeuroMLDocument(id='cell', notes="Layer 5 Pyramidal cell")
     pyr_cell_fn = "pyr5_cell.nml"
     print(os.getcwd())
-    #pyr_cell_doc.includes.append(IncludeType("kfast.channel.nml"))
+
     pyr_cell_doc.includes.append(IncludeType("pas.channel.nml"))
-    pyr_cell_doc.includes.append(IncludeType("nap.channel.nml"))
-    '''pyr_cell_doc.includes.append(IncludeType("kslow.channel.nml"))
+    pyr_cell_doc.includes.append(IncludeType("kfast.channel.nml"))
+    pyr_cell_doc.includes.append(IncludeType("pas.channel.nml"))
+    pyr_cell_doc.includes.append(IncludeType("kslow.channel.nml"))
     pyr_cell_doc.includes.append(IncludeType("nat.channel.nml"))
-    pyr_cell_doc.includes.append(IncludeType("IKM.channel.nml"))'''
+    pyr_cell_doc.includes.append(IncludeType("nap.channel.nml"))
 
     # Define a cell
     pyr_cell = Cell(id="pyr_cell", notes="A single compartment Layer 5 Pyramidal cell")
@@ -89,24 +88,25 @@ def create_cell():
     # Append to cell
     pyr_cell.biophysical_properties = bio_prop
 
+
     pas_channel_density = ChannelDensity(id="pas_channels", cond_density="0.485726 S_per_m2", erev="-80.3987 mV", ion="non_specific", ion_channel="pas")
     mem_prop.channel_densities.append(pas_channel_density)
 
     # Channel density for kfast channel
-    # kfast_channel_density = ChannelDensity(id="kfast_channels", cond_density="67.2 S_per_m2", erev="-80 mV", ion="k", ion_channel="kfast")
-    # mem_prop.channel_densities.append(kfast_channel_density)
+    kfast_channel_density = ChannelDensity(id="kfast_channels", cond_density="67.2 S_per_m2", erev="-80 mV", ion="k", ion_channel="kfast")
+    mem_prop.channel_densities.append(kfast_channel_density)
 
-    # kslow_channel_density = ChannelDensity(id="kslow_channels", cond_density="475.82 S_per_m2", erev="-80 mV", ion="k", ion_channel="kslow")
-    # mem_prop.channel_densities.append(kslow_channel_density)
+    kslow_channel_density = ChannelDensity(id="kslow_channels", cond_density="475.82 S_per_m2", erev="-80 mV", ion="k", ion_channel="kslow")
+    mem_prop.channel_densities.append(kslow_channel_density)
 
-    # nat_channel_density = ChannelDensity(id="nat_channels", cond_density="236.62 S_per_m2", erev="55 mV", ion="na", ion_channel="nat")
-    # mem_prop.channel_densities.append(nat_channel_density)
+    nat_channel_density = ChannelDensity(id="nat_channels", cond_density="236.62 S_per_m2", erev="55 mV", ion="na", ion_channel="nat")
+    mem_prop.channel_densities.append(nat_channel_density)
 
-    # nap_channel_density = ChannelDensity(id="nap_channels", cond_density="1.44 S_per_m2", erev="55 mV", ion="na", ion_channel="nap")
-    # mem_prop.channel_densities.append(nap_channel_density)
+    nap_channel_density = ChannelDensity(id="nap_channels", cond_density="1.44 S_per_m2", erev="55 mV", ion="na", ion_channel="nap")
+    mem_prop.channel_densities.append(nap_channel_density)
 
-    # km_channel_density = ChannelDensity(id="km_channels", cond_density="475.82 S_per_m2", erev="-80 mV", ion="k", ion_channel="km")
-    # mem_prop.channel_densities.append(km_channel_density)
+    km_channel_density = ChannelDensity(id="km_channels", cond_density="10.459916 S_per_m2", erev="-80 mV", ion="k", ion_channel="km")
+    mem_prop.channel_densities.append(km_channel_density)
 
     # Other membrane properties
     mem_prop.spike_threshes.append(SpikeThresh(value="-20mV"))
@@ -137,8 +137,6 @@ def create_cell():
     pynml.write_neuroml2_file(nml2_doc=pyr_cell_doc, nml2_file_name=pyr_cell_fn, validate=True)
     return pyr_cell_fn
 
-
-# %%
 create_cell()
 
 # %%

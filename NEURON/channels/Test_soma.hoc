@@ -13,12 +13,14 @@ celsius = 37
 // Soma L=23 diam=23
 // define_shape()
 
+
 forall Ra = 82
 forall cm = 2.23041
 
 insert pas
 { g_pas= 4.85726e-05 }
 { e_pas= -80.3987 }
+
 
 // insert nat
 // { gbar_nat=236.616175 }
