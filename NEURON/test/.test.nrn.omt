@@ -8,11 +8,11 @@ experiments:
   Current clamp:
     observables:
       spike times:
-        file: 
+        file:
           path: ../channels/Soma.si.dat
           columns: [0,1]
           scaling: [1000, 1000]
-        spike detection: 
+        spike detection:
           method: threshold
           threshold: -30
-        tolerance: 0.1
+        tolerance: 0
