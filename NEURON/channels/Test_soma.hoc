@@ -6,19 +6,21 @@ usegui = 1
 
 create Soma
 access Soma
-{ L = diam = 23}
+{ L = diam = 23.1453}
 celsius = 37
 
 // Soma {pt3dclear() pt3dadd(0.0, 0.0, 0.0, 23.138652)}
 // Soma L=23 diam=23
 // define_shape()
 
-forall Ra = 100
-forall cm = 2.23
+
+forall Ra = 82
+forall cm = 2.23041
 
 insert pas
-{ g_pas=1./20588 }
-{ e_pas=-80 } 
+{ g_pas= 4.85726e-05 }
+{ e_pas= -80.3987 }
+
 
 // insert nat
 // { gbar_nat=236.616175 }
@@ -50,7 +52,7 @@ proc initialiseValues0() {
 objref fih0
 {fih0 = new FInitializeHandler(0, "initialiseValues0()")}
 
-objref stim1 
+objref stim1
 
 Soma {
     stim1 = new IClamp(0.5)
@@ -59,7 +61,7 @@ Soma {
     stim1.amp = 0.4
 }
 
-tstop = 800
+tstop = 700
 dt = 0.01
 
 objref v_time
@@ -71,7 +73,7 @@ f_time = new File()
 
 objref Soma_v
 { Soma_v = new Vector() }
-{ Soma_v.record(&Soma.v(0.5))} 
+{ Soma_v.record(&Soma.v(0.5))}
 
 objref f_Soma_v
 

@@ -26,8 +26,10 @@ def main():
     data.
     """
     # Simulation bits
-    sim_id = "pyr_single_compartment_example_sim"
-    simulation = LEMSSimulation(sim_id=sim_id, duration=800, dt=0.01, simulation_seed=123)
+
+    sim_id = "pyr_single_comp"
+    simulation = LEMSSimulation(sim_id=sim_id, duration=700, dt=0.01, simulation_seed=123)
+
     # Include the NeuroML model file
     simulation.include_neuroml2_file(create_network())
     # Assign target for the simulation
@@ -63,12 +65,13 @@ def create_cell():
     pyr_cell_doc = NeuroMLDocument(id='cell', notes="Layer 5 Pyramidal cell")
     pyr_cell_fn = "pyr5_cell.nml"
     print(os.getcwd())
+
+    pyr_cell_doc.includes.append(IncludeType("pas.channel.nml"))
     pyr_cell_doc.includes.append(IncludeType("kfast.channel.nml"))
     pyr_cell_doc.includes.append(IncludeType("pas.channel.nml"))
     pyr_cell_doc.includes.append(IncludeType("kslow.channel.nml"))
     pyr_cell_doc.includes.append(IncludeType("nat.channel.nml"))
     pyr_cell_doc.includes.append(IncludeType("nap.channel.nml"))
-    pyr_cell_doc.includes.append(IncludeType("IKM.channel.nml"))
 
     # Define a cell
     pyr_cell = Cell(id="pyr_cell", notes="A single compartment Layer 5 Pyramidal cell")
@@ -85,7 +88,8 @@ def create_cell():
     # Append to cell
     pyr_cell.biophysical_properties = bio_prop
 
-    pas_channel_density = ChannelDensity(id="pas_channels", cond_density="4.85726e-05 S_per_cm2", erev="-80.3987 mV", ion="non_specific", ion_channel="pas")
+
+    pas_channel_density = ChannelDensity(id="pas_channels", cond_density="0.485726 S_per_m2", erev="-80.3987 mV", ion="non_specific", ion_channel="pas")
     mem_prop.channel_densities.append(pas_channel_density)
 
     # Channel density for kfast channel
@@ -106,11 +110,11 @@ def create_cell():
 
     # Other membrane properties
     mem_prop.spike_threshes.append(SpikeThresh(value="-20mV"))
-    mem_prop.specific_capacitances.append(SpecificCapacitance(value="2.23 uF_per_cm2"))
+    mem_prop.specific_capacitances.append(SpecificCapacitance(value="2.23041 uF_per_cm2"))
     mem_prop.init_memb_potentials.append(InitMembPotential(value="-65mV"))
 
     intra_prop = IntracellularProperties()
-    intra_prop.resistivities.append(Resistivity(value="0.1 kohm_cm"))
+    intra_prop.resistivities.append(Resistivity(value="0.082 kohm_cm"))
 
     # Add to biological properties
     bio_prop.intracellular_properties = intra_prop
@@ -122,8 +126,8 @@ def create_cell():
     # We want a diameter such that area is 1000 micro meter^2
     # surface area of a sphere is 4pi r^2 = 4pi diam^2
     # diam = math.sqrt(1682 / math.pi)
-    proximal = Point3DWithDiam(x="0", y="0", z="0", diameter=str(23))
-    distal = Point3DWithDiam(x="0", y="23", z="0", diameter=str(23))
+    proximal = Point3DWithDiam(x="0", y="0", z="0", diameter=str(23.1453))
+    distal = Point3DWithDiam(x="0", y="23.1453", z="0", diameter=str(23.1453))
     seg.proximal = proximal
     seg.distal = distal
     morph.segments.append(seg)
@@ -153,9 +157,9 @@ def create_network():
     exp_input = ExplicitInput(target="pop0[0]", input="pg")
 
     net = Network(id="single_pyr_cell_network",
-                type="networkWithTemperature",
-                temperature = "37 degC",
-                note="A network with a single population")
+                  type="networkWithTemperature",
+                  temperature = "37 degC",
+                  note="A network with a single population")
     net_doc.pulse_generators.append(pulsegen)
     net.explicit_inputs.append(exp_input)
     net.populations.append(pop)
@@ -167,5 +171,3 @@ def create_network():
 # %%
 if __name__ == "__main__":
     main()
-
-
