@@ -6,14 +6,13 @@
         <notes>A single compartment Layer 5 Pyramidal cell</notes>
         <morphology id="pyr_cell_morph">
             <segment id="0" name="soma">
-                <proximal x="0.0" y="0.0" z="0.0" diameter="23.138652263283095"/>
-                <distal x="0.0" y="0.0" z="0.0" diameter="23.138652263283095"/>
+                <proximal x="0.0" y="0.0" z="0.0" diameter="23.0"/>
+                <distal x="0.0" y="23.0" z="0.0" diameter="23.0"/>
             </segment>
         </morphology>
         <biophysicalProperties id="pyr_b_prop">
             <membraneProperties>
-                <channelDensity id="pas_channels" ionChannel="pas" condDensity="4.85726e-05 S_per_cm2" erev="-80.3987 mV" ion="non_specific"/>
-                <channelDensity id="nap_channels" ionChannel="nap" condDensity="1.44 S_per_m2" erev="-80.39 mV" ion="na"/>
+                <channelDensity id="pas_channels" ionChannel="pas" condDensity="0.67 S_per_m2" erev="-70 mV" ion="non_specific"/>
                 <spikeThresh value="-20mV"/>
                 <specificCapacitance value="2.23 uF_per_cm2"/>
                 <initMembPotential value="-65mV"/>
