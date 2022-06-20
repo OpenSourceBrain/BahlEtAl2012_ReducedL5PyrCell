@@ -30,7 +30,7 @@ def main():
     data.
     """
     # Simulation bits
-    sim_id = "pyr_single_compartment_example_sim"
+    sim_id = "pyr_single_comp"
     simulation = LEMSSimulation(sim_id=sim_id, duration=700, dt=0.01, simulation_seed=123)
     # Include the NeuroML model file
     simulation.include_neuroml2_file(create_network())
@@ -89,7 +89,7 @@ def create_cell():
     # Append to cell
     pyr_cell.biophysical_properties = bio_prop
 
-    pas_channel_density = ChannelDensity(id="pas_channels", cond_density="0.67 S_per_m2", erev="-70 mV", ion="non_specific", ion_channel="pas")
+    pas_channel_density = ChannelDensity(id="pas_channels", cond_density="0.485726 S_per_m2", erev="-80.3987 mV", ion="non_specific", ion_channel="pas")
     mem_prop.channel_densities.append(pas_channel_density)
 
     # Channel density for kfast channel
@@ -110,11 +110,11 @@ def create_cell():
 
     # Other membrane properties
     mem_prop.spike_threshes.append(SpikeThresh(value="-20mV"))
-    mem_prop.specific_capacitances.append(SpecificCapacitance(value="2.23 uF_per_cm2"))
+    mem_prop.specific_capacitances.append(SpecificCapacitance(value="2.23041 uF_per_cm2"))
     mem_prop.init_memb_potentials.append(InitMembPotential(value="-65mV"))
 
     intra_prop = IntracellularProperties()
-    intra_prop.resistivities.append(Resistivity(value="0.1 kohm_cm"))
+    intra_prop.resistivities.append(Resistivity(value="0.082 kohm_cm"))
 
     # Add to biological properties
     bio_prop.intracellular_properties = intra_prop
@@ -126,8 +126,8 @@ def create_cell():
     # We want a diameter such that area is 1000 micro meter^2
     # surface area of a sphere is 4pi r^2 = 4pi diam^2
     # diam = math.sqrt(1682 / math.pi)
-    proximal = Point3DWithDiam(x="0", y="0", z="0", diameter=str(23))
-    distal = Point3DWithDiam(x="0", y="23", z="0", diameter=str(23))
+    proximal = Point3DWithDiam(x="0", y="0", z="0", diameter=str(23.1453))
+    distal = Point3DWithDiam(x="0", y="23.1453", z="0", diameter=str(23.1453))
     seg.proximal = proximal
     seg.distal = distal
     morph.segments.append(seg)
