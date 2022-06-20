@@ -22,7 +22,7 @@ INDEPENDENT {t FROM 0 TO 1 WITH 1 (ms)}
 NEURON {
 	SUFFIX km : renamend (Armin Jul 09)
 	USEION k READ ek WRITE ik
-    RANGE gkbar, m_inf, tau_m, gk, m, vshift
+    RANGE gbar, m_inf, tau_m, gk, m, vshift
 	GLOBAL taumax
 
 }
@@ -76,7 +76,7 @@ INITIAL {
 :
 :  The Q10 value is assumed to be 2.3
 :
-        tadj = 2.3 ^ ((celsius-36)/10)
+	tadj = 2.3 ^ ((celsius-36)/10)
 	tau_peak = taumax / tadj
 }
 
