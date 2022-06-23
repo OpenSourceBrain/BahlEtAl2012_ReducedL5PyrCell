@@ -22,10 +22,10 @@ insert pas
 { e_pas= -80.3987 }
 
 
-insert nat
-{ gbar_nat=236.616175 }
-{ ena = 55 }
-{ vshift_nat = 10 }
+// insert nat
+// { gbar_nat=236.616175 }
+// { ena = 55 }
+// { vshift_nat = 10 }
 
 // insert kfast
 // { gbar_kfast=67.197508 }
