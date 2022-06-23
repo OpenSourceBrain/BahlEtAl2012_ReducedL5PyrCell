@@ -62,7 +62,7 @@ def plot_data(sim_id):
 def create_cell():
     pyr_cell_doc = NeuroMLDocument(id='cell', notes="Layer 5 Pyramidal cell")
     pyr_cell_fn = "pyr5_cell.nml"
-    print(os.getcwd())
+    # print(os.getcwd())
     pyr_cell_doc.includes.append(IncludeType("kfast.channel.nml"))
     pyr_cell_doc.includes.append(IncludeType("pas.channel.nml"))
     pyr_cell_doc.includes.append(IncludeType("kslow.channel.nml"))
