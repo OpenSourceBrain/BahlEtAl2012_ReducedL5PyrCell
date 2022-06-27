@@ -8,31 +8,20 @@
     <ionChannel id="nat" conductance="10 pS" type="ionChannelHH" species="na">
 
         <notes>Sodium channel, Hodgkin-Huxley style kinetics.
-
-
             Comments from original mod file:
-
             26 Ago 2002 Modification of original channel to allow variable time step and to correct an initialization
             error.
             Done by Michael Hines(michael.hines@yale.e) and Ruggero Scorcioni(rscorcio@gmu.edu) at EU Advance Course in
             Computational Neuroscience. Obidos, Portugal
-
-            na.mod
-
             Sodium channel, Hodgkin-Huxley style kinetics.
-
             Kinetics were fit to data from Huguenard et al. (1988) and Hamill et
             al. (1991)
-
             qi is not well constrained by the data, since there are no points
             between -80 and -55. So this was fixed at 5 while the thi1,thi2,Rg,Rd
-            were optimized using a simplex least square proc
-
-            voltage dependencies are shifted approximately from the best
+            were optimized using a simplex least square proc.
+            Voltage dependencies are shifted approximately from the best
             fit to give higher threshold
-
             Author: Zach Mainen, Salk Institute, 1994, zach@salk.edu
-
             May 2006: set the tha -28 mV, vshift 0 and thinf -55 mV to comply with measured
             Somatic Na+ kinetics in neocortex. Kole, ANU, 2006
         </notes>

@@ -9,17 +9,11 @@
     <ionChannel id="kfast" conductance="10pS" type="ionChannelHH" species="k">
         
         <notes>Potassium channel, Hodgkin-Huxley style kinetics
-
             Comments from original mod file:
-
             26 Ago 2002 Modification of original channel to allow variable time step and to correct an initialization error.
             Done by Michael Hines(michael.hines@yale.e) and Ruggero Scorcioni(rscorcio@gmu.edu) at EU Advance Course in Computational Neuroscience. Obidos, Portugal
-
-            kv.mod
-
             Potassium channel, Hodgkin-Huxley style kinetics
             Kinetic rates based roughly on Sah et al. and Hamill et al. (1991)
-
             Author: Zach Mainen, Salk Institute, 1995, zach@salk.edu
         </notes>
         
