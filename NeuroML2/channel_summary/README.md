@@ -5,7 +5,7 @@ Channel information
 
 <table>
     <tr>
-<td style="max-width: 120px;">
+<td style="width:10%;">
             <sup><b>nap</b><br/>
             <a href="../nap.channel.nml">nap.channel.nml</a><br/>
             <b>Ion: na</b><br/>
@@ -22,7 +22,7 @@ Channel information
 </td>
 </tr>
     <tr>
-<td style="max-width: 120px;">
+<td style="width:10%;">
             <sup><b>nat</b><br/>
             <a href="../nat.channel.nml">nat.channel.nml</a><br/>
             <b>Ion: na</b><br/>
@@ -56,7 +56,7 @@ Channel information
 </td>
 </tr>
     <tr>
-<td style="max-width: 120px;">
+<td style="width:10%;">
             <sup><b>kfast</b><br/>
             <a href="../kfast.channel.nml">kfast.channel.nml</a><br/>
             <b>Ion: k</b><br/>
@@ -80,7 +80,7 @@ Channel information
 </td>
 </tr>
     <tr>
-<td style="max-width: 120px;">
+<td style="width:10%;">
             <sup><b>km</b><br/>
             <a href="../IKM.channel.nml">IKM.channel.nml</a><br/>
             <b>Ion: k</b><br/>
