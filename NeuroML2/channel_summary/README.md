@@ -73,10 +73,10 @@ Channel information
         </div></sup>
 </td>
 <td>
-<a href="kfast.inf.png"><img alt="kfast steady state" src="kfast.inf.png" height="220"/></a>
+<a href="kfast.inf.png"><img alt="kfast steady state" src="kfast.inf.png" height="220" width="500"/></a>
 </td>
 <td>
-<a href="kfast.tau.png"><img alt="kfast time course" src="kfast.tau.png" height="220"/></a>
+<a href="kfast.tau.png"><img alt="kfast time course" src="kfast.tau.png" height="220" width="500"/></a>
 </td>
 </tr>
     <tr>
