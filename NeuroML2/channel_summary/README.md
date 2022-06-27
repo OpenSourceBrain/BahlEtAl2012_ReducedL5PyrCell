@@ -56,7 +56,7 @@ Channel information
 </td>
 </tr>
     <tr>
-<td style="width:10%;">
+<td style="width:200px;">
             <sup><b>kfast</b><br/>
             <a href="../kfast.channel.nml">kfast.channel.nml</a><br/>
             <b>Ion: k</b><br/>
