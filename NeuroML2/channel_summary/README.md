@@ -5,7 +5,7 @@ Channel information
 
 <table>
     <tr>
-<td style="width:10%;">
+<td width="120px">
             <sup><b>nap</b><br/>
             <a href="../nap.channel.nml">nap.channel.nml</a><br/>
             <b>Ion: na</b><br/>
@@ -22,7 +22,7 @@ Channel information
 </td>
 </tr>
     <tr>
-<td style="width:10%;">
+<td width="120px">
             <sup><b>nat</b><br/>
             <a href="../nat.channel.nml">nat.channel.nml</a><br/>
             <b>Ion: na</b><br/>
@@ -56,7 +56,7 @@ Channel information
 </td>
 </tr>
     <tr>
-<td style="width:10%;">
+<td width="120px">
             <sup><b>kfast</b><br/>
             <a href="../kfast.channel.nml">kfast.channel.nml</a><br/>
             <b>Ion: k</b><br/>
@@ -73,14 +73,14 @@ Channel information
         </div></sup>
 </td>
 <td>
-<a href="kfast.inf.png"><img alt="kfast steady state" src="kfast.inf.png" height="220" width="500"/></a>
+<a href="kfast.inf.png"><img alt="kfast steady state" src="kfast.inf.png" height="220"/></a>
 </td>
 <td>
-<a href="kfast.tau.png"><img alt="kfast time course" src="kfast.tau.png" height="220" width="500"/></a>
+<a href="kfast.tau.png"><img alt="kfast time course" src="kfast.tau.png" height="220"/></a>
 </td>
 </tr>
     <tr>
-<td style="width:10%;">
+<td width="120px">
             <sup><b>km</b><br/>
             <a href="../IKM.channel.nml">IKM.channel.nml</a><br/>
             <b>Ion: k</b><br/>
