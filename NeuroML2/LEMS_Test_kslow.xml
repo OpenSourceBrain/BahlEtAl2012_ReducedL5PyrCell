@@ -178,18 +178,23 @@
             <Line id="100mV" quantity="holderCellPop_100[0]/test/i" scale="1nA"  color="#ff0000" timeScale="1ms"/>
         </Display>
 
-        <Display id="a_inf" title="kslow: Gate a steady state, a_inf"  timeScale="1ms" xmin="-10.0" xmax="110.00000000000001" ymin="-0.1" ymax="1.1">
-            <Line id="a_inf (x axis: -100mV to 100mV)" quantity="rampCellPop0[0]/test/kslow/a/inf" scale="1"  color="#000000" timeScale="1ms"/>
+        <Display id="a_inf" title="kslow: Gate: a, b steady state plots at 37.0 degC"  timeScale="1ms" xmin="-10.0" xmax="110.00000000000001" ymin="-0.1" ymax="1.1">
+            <Line id="a_inf (x axis: -100mV to 100mV)" quantity="rampCellPop0[0]/test/kslow/a/inf" scale="1"  color="#0000FF" timeScale="1ms"/>
+            <Line id="bb_inf (x axis: -100mV to 100mV)" quantity="rampCellPop0[0]/test/kslow/b/bb/inf" scale="1"  color="#FF0000" timeScale="1ms"/>
+            <Line id="bb1_inf (x axis: -100mV to 100mV)" quantity="rampCellPop0[0]/test/kslow/b/bb1/inf" scale="1"  color="#00FF00" timeScale="1ms"/>
+
         </Display>
         
-        <Display id="a_tau" title="kslow: Gate a time course, a_tau (ms) at 37.0 degC"  timeScale="1ms" xmin="-10.0" xmax="110.00000000000001" ymin="-10" ymax="110">
-            <Line id="a_tau (x axis: -100mV to 100mV)" quantity="rampCellPop0[0]/test/kslow/a/tau" scale="1ms"  color="#000000" timeScale="1ms"/>
+        <Display id="a_tau" title="kslow: Gate: a,b time courses at 37.0 degC"  timeScale="1ms" xmin="-10.0" xmax="110.00000000000001" ymin="-10" ymax="110">
+            <Line id="a_tau (x axis: -100mV to 100mV)" quantity="rampCellPop0[0]/test/kslow/a/tau" scale="1ms"  color="#0000FF" timeScale="1ms"/>
+            <Line id="bb_tau (x axis: -100mV to 100mV)" quantity="rampCellPop0[0]/test/kslow/b/bb/tau" scale="1ms"  color="#FF0000" timeScale="1ms"/>
+            <Line id="bb1_tau (x axis: -100mV to 100mV)" quantity="rampCellPop0[0]/test/kslow/b/bb1/tau" scale="1ms"  color="#00FF00" timeScale="1ms"/>
         </Display>
-        <Display id="bb_inf" title="kslow: Gate b steady state, bb_inf"  timeScale="1ms" xmin="-10.0" xmax="110.00000000000001" ymin="-0.1" ymax="1.1">
+        <!-- <Display id="bb_inf" title="kslow: Gate b steady state, bb_inf"  timeScale="1ms" xmin="-10.0" xmax="110.00000000000001" ymin="-0.1" ymax="1.1">
             <Line id="bb_inf (x axis: -100mV to 100mV)" quantity="rampCellPop0[0]/test/kslow/b/bb/inf" scale="1"  color="#000000" timeScale="1ms"/>
-        </Display>
+        </Display> -->
         
-        <Display id="bb_tau" title="kslow: Gate b time course, bb_tau (ms) at 37.0 degC"  timeScale="1ms" xmin="-10.0" xmax="110.00000000000001" ymin="-10" ymax="110">
+        <!-- <Display id="bb_tau" title="kslow: Gate b time course, bb_tau (ms) at 37.0 degC"  timeScale="1ms" xmin="-10.0" xmax="110.00000000000001" ymin="-10" ymax="110">
             <Line id="bb_tau (x axis: -100mV to 100mV)" quantity="rampCellPop0[0]/test/kslow/b/bb/tau" scale="1ms"  color="#000000" timeScale="1ms"/>
         </Display>
 
@@ -199,7 +204,7 @@
         
         <Display id="bb1_tau" title="kslow: Gate b time course, bb1_tau (ms) at 37.0 degC"  timeScale="1ms" xmin="-10.0" xmax="110.00000000000001" ymin="-10" ymax="110">
             <Line id="bb1_tau (x axis: -100mV to 100mV)" quantity="rampCellPop0[0]/test/kslow/b/bb1/tau" scale="1ms"  color="#000000" timeScale="1ms"/>
-        </Display>
+        </Display> -->
 
         <OutputFile id="a_inf_of1" fileName="kslow.a.inf.lems.dat">
             <OutputColumn id="a" quantity="rampCellPop0[0]/test/kslow/a/inf"/> 
