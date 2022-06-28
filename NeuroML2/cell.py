@@ -70,6 +70,7 @@ def create_cell():
     pyr_cell_doc.includes.append(IncludeType("kslow.channel.nml"))
     pyr_cell_doc.includes.append(IncludeType("nat.channel.nml"))
     pyr_cell_doc.includes.append(IncludeType("nap.channel.nml"))
+    pyr_cell_doc.includes.append(IncludeType("IKM.channel.nml"))
 
     # Define a cell
     pyr_cell = Cell(id="pyr_cell", notes="A single compartment Layer 5 Pyramidal cell")

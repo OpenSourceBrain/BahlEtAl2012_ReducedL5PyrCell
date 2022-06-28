@@ -5,6 +5,7 @@
     <include href="kslow.channel.nml"/>
     <include href="nat.channel.nml"/>
     <include href="nap.channel.nml"/>
+    <include href="IKM.channel.nml"/>
     <cell id="pyr_cell">
         <notes>A single compartment Layer 5 Pyramidal cell</notes>
         <morphology id="pyr_cell_morph">
