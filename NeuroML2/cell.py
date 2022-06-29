@@ -39,6 +39,10 @@ def main():
     simulation.create_output_file(id="output0", file_name=sim_id + ".dat")
     simulation.add_column_to_output_file("output0", column_id="pop0[0]_v", quantity="pop0[0]/v")
 
+    # Recording information from the simulation
+    simulation.create_output_file(id="na_m", file_name=sim_id + ".na_m.dat")
+    simulation.add_column_to_output_file("na_m", column_id="pop0[0]_na_m", quantity="pop0[0]/pyr_b_prop/membraneProperties/nat_channels/nat/m/q")
+
     # Save LEMS simulation to file
     sim_file = simulation.save_to_file()
 
