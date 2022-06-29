@@ -71,8 +71,6 @@
 */
 
 load_file("subiter.hoc")
-{load_file("stdlib.hoc")}
-{load_file("stdgui.hoc")}
 
 begintemplate pyr_cell
 
@@ -212,7 +210,7 @@ proc position() { local i
     x = $1  y = $2  z = $3
 }
 
-forall psection()
+
 endtemplate pyr_cell
 
 
