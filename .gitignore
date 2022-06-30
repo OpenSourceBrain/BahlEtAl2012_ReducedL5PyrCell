@@ -6,5 +6,7 @@ x86_64
 /NeuroML2/*.mod
 /NeuroML2/*.hoc
 /NeuroML2/pyr_single_compartment_example_sim-v.png
+/NeuroML2/*.dat
+/NeuroML2/*png
 /NeuroML2/pyr_single_comp-v.png
 # *.ipynb

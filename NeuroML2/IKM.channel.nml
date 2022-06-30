@@ -9,9 +9,8 @@
     <ionChannel id="km" conductance="10pS" type="ionChannelHH" species="k">
         
         <notes>NeuroML2 file automatically generated from NMODL file: ./NEURON/channels/IKM.mod</notes>
-        
         <gateHHtauInf id="m" instances="1">
-            <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="36degC"/> 
+            <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="23degC"/> 
             <timeCourse type="ikm_m_tau"/>
             <steadyState type="ikm_m_ss"/>
         </gateHHtauInf>
@@ -26,7 +25,13 @@
 
     <Dynamics>
         <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
-        <DerivedVariable name="x" exposure="x" dimension="none" value="(1 / (1+exp(-(V+35)/10)))"/>
+        <!-- <DerivedVariable name="x" exposure="x" dimension="none" value="(1 / (1+exp(-(V+35)/10)))"/> -->
+
+        <ConditionalDerivedVariable name="x" exposure="x" dimension="none">
+            <Case condition="215 .lt. (V)" value="1"/>
+            <Case condition="(V) .lt. -285" value="1"/>
+            <Case value="(1 / (1+exp(-(V+35)/10))) "/>
+        </ConditionalDerivedVariable>
     </Dynamics>
     </ComponentType>
 
@@ -39,6 +44,12 @@
     <Dynamics>
         <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
         <DerivedVariable name="t" exposure="t" dimension="time" value="(taumax /  ((a1*exp((V+35)/20)+exp(-(V+35)/20)))) * TIME_SCALE "/>
+
+        <!-- <ConditionalDerivedVariable name="t" exposure="t" dimension="time">
+            <Case condition="215 .lt. (V)" value="(taumax / 0 ) * TIME_SCALE"/>
+            <Case condition="(V) .lt. -285" value="(taumax / 0 ) * TIME_SCALE"/>
+            <Case value="(taumax /  ((a1*exp((V+35)/20)+exp(-(V+35)/20)))) * TIME_SCALE "/>
+        </ConditionalDerivedVariable> -->
     </Dynamics>
     </ComponentType>
     

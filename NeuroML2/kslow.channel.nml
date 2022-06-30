@@ -13,7 +13,6 @@
         <q10ConductanceScaling q10Factor="2.3" experimentalTemp="21degC"/>
 
         <gate type="gateHHrates" id="a" instances="2">
-            <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="21degC"/>
             <forwardRate type="kslow_a_alpha_rate"/>
             <reverseRate type="kslow_a_beta_rate"/>
         </gate>

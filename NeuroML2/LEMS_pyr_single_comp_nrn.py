@@ -5,15 +5,7 @@ Components:
     null (Type: notes)
     null (Type: notes)
     null (Type: notes)
-    kfast (Type: ionChannelHH:  conductance=1.0E-11 (SI conductance))
-    null (Type: notes)
     pas (Type: ionChannelPassive:  conductance=1.0E-11 (SI conductance))
-    null (Type: notes)
-    kslow (Type: ionChannelHH:  conductance=1.0E-11 (SI conductance))
-    null (Type: notes)
-    nat (Type: ionChannelHH:  conductance=1.0E-11 (SI conductance))
-    null (Type: notes)
-    nap (Type: ionChannelHH:  conductance=1.0E-11 (SI conductance))
     null (Type: notes)
     km (Type: ionChannelHH:  conductance=1.0E-11 (SI conductance))
     pyr_cell (Type: cell)
@@ -37,9 +29,7 @@ import sys
 
 import hashlib
 h = neuron.h
-h.load_file("stdlib.hoc")
-
-h.load_file("stdgui.hoc")
+h.load_file("nrngui.hoc")
 
 h("objref p")
 h("p = new PythonObject()")
@@ -102,12 +92,12 @@ class NeuronSimulation():
 
 
 
-        # ######################   File to save: pyr_single_comp.na_m.dat (na_m)
-        # Column: pop0[0]/pyr_b_prop/membraneProperties/nat_channels/nat/m/q
-        h(' objectvar v_pop0_0__na_m_na_m ')
-        h(' { v_pop0_0__na_m_na_m = new Vector() } ')
-        h(' { v_pop0_0__na_m_na_m.record(&a_pop0[0].soma.m_q_nat(0.5)) } ')
-        h.v_pop0_0__na_m_na_m.resize((h.tstop * h.steps_per_ms) + 1)
+        # ######################   File to save: pyr_single_comp.ikm_m.dat (ikm_m)
+        # Column: pop0[0]/pyr_b_prop/membraneProperties/km_channels/km/m/q
+        h(' objectvar v_pop0_0__ikm_m_ikm_m ')
+        h(' { v_pop0_0__ikm_m_ikm_m = new Vector() } ')
+        h(' { v_pop0_0__ikm_m_ikm_m.record(&a_pop0[0].soma.m_q_km(0.5)) } ')
+        h.v_pop0_0__ikm_m_ikm_m.resize((h.tstop * h.steps_per_ms) + 1)
 
         # ######################   File to save: time.dat (time)
         # Column: time
@@ -131,6 +121,9 @@ class NeuronSimulation():
         self.setup_time = setup_end - self.setup_start
         print("Setting up the network to simulate took %f seconds"%(self.setup_time))
 
+        h.nrncontrolmenu()
+
+
     def run(self):
 
         self.initialized = True
@@ -141,7 +134,7 @@ class NeuronSimulation():
             h.run()
         except Exception as e:
             print("Exception running NEURON: %s" % (e))
-            quit()
+            return
 
 
         self.sim_end = time.time()
@@ -152,7 +145,7 @@ class NeuronSimulation():
             self.save_results()
         except Exception as e:
             print("Exception saving results of NEURON simulation: %s" % (e))
-            quit()
+            return
 
 
     def advance(self):
@@ -199,16 +192,16 @@ class NeuronSimulation():
         f_time_f2.close()
         print("Saved data to: time.dat")
 
-        # ######################   File to save: pyr_single_comp.na_m.dat (na_m)
-        py_v_pop0_0__na_m_na_m = [ float(x ) for x in h.v_pop0_0__na_m_na_m.to_python() ]  # Convert to Python list for speed, variable has dim: none
+        # ######################   File to save: pyr_single_comp.ikm_m.dat (ikm_m)
+        py_v_pop0_0__ikm_m_ikm_m = [ float(x ) for x in h.v_pop0_0__ikm_m_ikm_m.to_python() ]  # Convert to Python list for speed, variable has dim: none
 
-        f_na_m_f2 = open('pyr_single_comp.na_m.dat', 'w')
+        f_ikm_m_f2 = open('pyr_single_comp.ikm_m.dat', 'w')
         num_points = len(py_v_time)  # Simulation may have been stopped before tstop...
 
         for i in range(num_points):
-            f_na_m_f2.write('%e\t%e\t\n' % (py_v_time[i], py_v_pop0_0__na_m_na_m[i], ))
-        f_na_m_f2.close()
-        print("Saved data to: pyr_single_comp.na_m.dat")
+            f_ikm_m_f2.write('%e\t%e\t\n' % (py_v_time[i], py_v_pop0_0__ikm_m_ikm_m[i], ))
+        f_ikm_m_f2.close()
+        print("Saved data to: pyr_single_comp.ikm_m.dat")
 
         # ######################   File to save: pyr_single_comp.dat (output0)
         py_v_pop0_0__v_output0 = [ float(x  / 1000.0) for x in h.v_pop0_0__v_output0.to_python() ]  # Convert to Python list for speed, variable has dim: voltage
@@ -226,9 +219,6 @@ class NeuronSimulation():
         print("Finished saving results in %f seconds"%(save_time))
 
         print("Done")
-
-        quit()
-
 
 if __name__ == '__main__':
 
