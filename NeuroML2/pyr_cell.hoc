@@ -31,11 +31,39 @@
     "condDens" : "4.8572598E-5",
     "erev" : "-80.398705"
   }, {
+    "id" : "kfast_channels",
+    "ionChannel" : "kfast",
+    "ion" : "k",
+    "group" : "all",
+    "condDens" : "0.006719751",
+    "erev" : "-80.0"
+  }, {
+    "id" : "kslow_channels",
+    "ionChannel" : "kslow",
+    "ion" : "k",
+    "group" : "all",
+    "condDens" : "0.047582",
+    "erev" : "-80.0"
+  }, {
+    "id" : "nat_channels",
+    "ionChannel" : "nat",
+    "ion" : "na",
+    "group" : "all",
+    "condDens" : "0.023661617",
+    "erev" : "55.0"
+  }, {
+    "id" : "nap_channels",
+    "ionChannel" : "nap",
+    "ion" : "na",
+    "group" : "all",
+    "condDens" : "1.44E-4",
+    "erev" : "55.0"
+  }, {
     "id" : "km_channels",
     "ionChannel" : "km",
     "ion" : "k",
     "group" : "all",
-    "condDens" : "0.0",
+    "condDens" : "0.0010459916",
     "erev" : "-80.0"
   } ],
   "species" : [ ]
@@ -130,8 +158,28 @@ proc biophys() {
         e_pas_nml2 = -80.398705  // units: mV
     }
     forsec all {
+        insert kfast
+        gmax_kfast = 0.006719751  // units: S cm-2
+        ek = -80.0  // units: mV
+    }
+    forsec all {
+        insert kslow
+        gmax_kslow = 0.047582  // units: S cm-2
+        ek = -80.0  // units: mV
+    }
+    forsec all {
+        insert nat
+        gmax_nat = 0.023661617  // units: S cm-2
+        ena = 55.0  // units: mV
+    }
+    forsec all {
+        insert nap
+        gmax_nap = 1.44E-4  // units: S cm-2
+        ena = 55.0  // units: mV
+    }
+    forsec all {
         insert km
-        gmax_km = 0.0  // units: S cm-2
+        gmax_km = 0.0010459916  // units: S cm-2
         ek = -80.0  // units: mV
     }
 

@@ -5,7 +5,15 @@ Components:
     null (Type: notes)
     null (Type: notes)
     null (Type: notes)
+    kfast (Type: ionChannelHH:  conductance=1.0E-11 (SI conductance))
+    null (Type: notes)
     pas (Type: ionChannelPassive:  conductance=1.0E-11 (SI conductance))
+    null (Type: notes)
+    kslow (Type: ionChannelHH:  conductance=1.0E-11 (SI conductance))
+    null (Type: notes)
+    nat (Type: ionChannelHH:  conductance=1.0E-11 (SI conductance))
+    null (Type: notes)
+    nap (Type: ionChannelHH:  conductance=1.0E-11 (SI conductance))
     null (Type: notes)
     km (Type: ionChannelHH:  conductance=1.0E-11 (SI conductance))
     pyr_cell (Type: cell)
@@ -92,12 +100,47 @@ class NeuronSimulation():
 
 
 
+        # ######################   File to save: pyr_single_comp.kfast_n.dat (kfast_n)
+        # Column: pop0[0]/pyr_b_prop/membraneProperties/kfast_channels/kfast/n/q
+        h(' objectvar v_pop0_0__kfast_n_kfast_n ')
+        h(' { v_pop0_0__kfast_n_kfast_n = new Vector() } ')
+        h(' { v_pop0_0__kfast_n_kfast_n.record(&a_pop0[0].soma.n_q_kfast(0.5)) } ')
+        h.v_pop0_0__kfast_n_kfast_n.resize((h.tstop * h.steps_per_ms) + 1)
+
+        # ######################   File to save: pyr_single_comp.nap_m.dat (nap_m)
+        # Column: pop0[0]/pyr_b_prop/membraneProperties/nap_channels/nap/m/q
+        h(' objectvar v_pop0_0__nap_m_nap_m ')
+        h(' { v_pop0_0__nap_m_nap_m = new Vector() } ')
+        h(' { v_pop0_0__nap_m_nap_m.record(&a_pop0[0].soma.m_q_nap(0.5)) } ')
+        h.v_pop0_0__nap_m_nap_m.resize((h.tstop * h.steps_per_ms) + 1)
+
+        # ######################   File to save: pyr_single_comp.kslow_a.dat (kslow_a)
+        # Column: pop0[0]/pyr_b_prop/membraneProperties/kslow_channels/kslow/a/q
+        h(' objectvar v_pop0_0__kslow_a_kslow_a ')
+        h(' { v_pop0_0__kslow_a_kslow_a = new Vector() } ')
+        h(' { v_pop0_0__kslow_a_kslow_a.record(&a_pop0[0].soma.a_q_kslow(0.5)) } ')
+        h.v_pop0_0__kslow_a_kslow_a.resize((h.tstop * h.steps_per_ms) + 1)
+
         # ######################   File to save: pyr_single_comp.ikm_m.dat (ikm_m)
         # Column: pop0[0]/pyr_b_prop/membraneProperties/km_channels/km/m/q
         h(' objectvar v_pop0_0__ikm_m_ikm_m ')
         h(' { v_pop0_0__ikm_m_ikm_m = new Vector() } ')
         h(' { v_pop0_0__ikm_m_ikm_m.record(&a_pop0[0].soma.m_q_km(0.5)) } ')
         h.v_pop0_0__ikm_m_ikm_m.resize((h.tstop * h.steps_per_ms) + 1)
+
+        # ######################   File to save: pyr_single_comp.kslow_b.dat (kslow_b)
+        # Column: pop0[0]/pyr_b_prop/membraneProperties/kslow_channels/kslow/b/q
+        h(' objectvar v_pop0_0__kslow_b_kslow_b ')
+        h(' { v_pop0_0__kslow_b_kslow_b = new Vector() } ')
+        h(' { v_pop0_0__kslow_b_kslow_b.record(&a_pop0[0].soma.b_q_kslow(0.5)) } ')
+        h.v_pop0_0__kslow_b_kslow_b.resize((h.tstop * h.steps_per_ms) + 1)
+
+        # ######################   File to save: pyr_single_comp.na_m.dat (na_m)
+        # Column: pop0[0]/pyr_b_prop/membraneProperties/nat_channels/nat/m/q
+        h(' objectvar v_pop0_0__na_m_na_m ')
+        h(' { v_pop0_0__na_m_na_m = new Vector() } ')
+        h(' { v_pop0_0__na_m_na_m.record(&a_pop0[0].soma.m_q_nat(0.5)) } ')
+        h.v_pop0_0__na_m_na_m.resize((h.tstop * h.steps_per_ms) + 1)
 
         # ######################   File to save: time.dat (time)
         # Column: time
@@ -112,6 +155,13 @@ class NeuronSimulation():
         h(' { v_pop0_0__v_output0 = new Vector() } ')
         h(' { v_pop0_0__v_output0.record(&a_pop0[0].soma.v(0.5)) } ')
         h.v_pop0_0__v_output0.resize((h.tstop * h.steps_per_ms) + 1)
+
+        # ######################   File to save: pyr_single_comp.na_h.dat (na_h)
+        # Column: pop0[0]/pyr_b_prop/membraneProperties/nat_channels/nat/h/q
+        h(' objectvar v_pop0_0__na_h_na_h ')
+        h(' { v_pop0_0__na_h_na_h = new Vector() } ')
+        h(' { v_pop0_0__na_h_na_h.record(&a_pop0[0].soma.h_q_nat(0.5)) } ')
+        h.v_pop0_0__na_h_na_h.resize((h.tstop * h.steps_per_ms) + 1)
 
         self.initialized = False
 
@@ -192,6 +242,39 @@ class NeuronSimulation():
         f_time_f2.close()
         print("Saved data to: time.dat")
 
+        # ######################   File to save: pyr_single_comp.kfast_n.dat (kfast_n)
+        py_v_pop0_0__kfast_n_kfast_n = [ float(x ) for x in h.v_pop0_0__kfast_n_kfast_n.to_python() ]  # Convert to Python list for speed, variable has dim: none
+
+        f_kfast_n_f2 = open('pyr_single_comp.kfast_n.dat', 'w')
+        num_points = len(py_v_time)  # Simulation may have been stopped before tstop...
+
+        for i in range(num_points):
+            f_kfast_n_f2.write('%e\t%e\t\n' % (py_v_time[i], py_v_pop0_0__kfast_n_kfast_n[i], ))
+        f_kfast_n_f2.close()
+        print("Saved data to: pyr_single_comp.kfast_n.dat")
+
+        # ######################   File to save: pyr_single_comp.nap_m.dat (nap_m)
+        py_v_pop0_0__nap_m_nap_m = [ float(x ) for x in h.v_pop0_0__nap_m_nap_m.to_python() ]  # Convert to Python list for speed, variable has dim: none
+
+        f_nap_m_f2 = open('pyr_single_comp.nap_m.dat', 'w')
+        num_points = len(py_v_time)  # Simulation may have been stopped before tstop...
+
+        for i in range(num_points):
+            f_nap_m_f2.write('%e\t%e\t\n' % (py_v_time[i], py_v_pop0_0__nap_m_nap_m[i], ))
+        f_nap_m_f2.close()
+        print("Saved data to: pyr_single_comp.nap_m.dat")
+
+        # ######################   File to save: pyr_single_comp.kslow_a.dat (kslow_a)
+        py_v_pop0_0__kslow_a_kslow_a = [ float(x ) for x in h.v_pop0_0__kslow_a_kslow_a.to_python() ]  # Convert to Python list for speed, variable has dim: none
+
+        f_kslow_a_f2 = open('pyr_single_comp.kslow_a.dat', 'w')
+        num_points = len(py_v_time)  # Simulation may have been stopped before tstop...
+
+        for i in range(num_points):
+            f_kslow_a_f2.write('%e\t%e\t\n' % (py_v_time[i], py_v_pop0_0__kslow_a_kslow_a[i], ))
+        f_kslow_a_f2.close()
+        print("Saved data to: pyr_single_comp.kslow_a.dat")
+
         # ######################   File to save: pyr_single_comp.ikm_m.dat (ikm_m)
         py_v_pop0_0__ikm_m_ikm_m = [ float(x ) for x in h.v_pop0_0__ikm_m_ikm_m.to_python() ]  # Convert to Python list for speed, variable has dim: none
 
@@ -203,6 +286,28 @@ class NeuronSimulation():
         f_ikm_m_f2.close()
         print("Saved data to: pyr_single_comp.ikm_m.dat")
 
+        # ######################   File to save: pyr_single_comp.kslow_b.dat (kslow_b)
+        py_v_pop0_0__kslow_b_kslow_b = [ float(x ) for x in h.v_pop0_0__kslow_b_kslow_b.to_python() ]  # Convert to Python list for speed, variable has dim: none
+
+        f_kslow_b_f2 = open('pyr_single_comp.kslow_b.dat', 'w')
+        num_points = len(py_v_time)  # Simulation may have been stopped before tstop...
+
+        for i in range(num_points):
+            f_kslow_b_f2.write('%e\t%e\t\n' % (py_v_time[i], py_v_pop0_0__kslow_b_kslow_b[i], ))
+        f_kslow_b_f2.close()
+        print("Saved data to: pyr_single_comp.kslow_b.dat")
+
+        # ######################   File to save: pyr_single_comp.na_m.dat (na_m)
+        py_v_pop0_0__na_m_na_m = [ float(x ) for x in h.v_pop0_0__na_m_na_m.to_python() ]  # Convert to Python list for speed, variable has dim: none
+
+        f_na_m_f2 = open('pyr_single_comp.na_m.dat', 'w')
+        num_points = len(py_v_time)  # Simulation may have been stopped before tstop...
+
+        for i in range(num_points):
+            f_na_m_f2.write('%e\t%e\t\n' % (py_v_time[i], py_v_pop0_0__na_m_na_m[i], ))
+        f_na_m_f2.close()
+        print("Saved data to: pyr_single_comp.na_m.dat")
+
         # ######################   File to save: pyr_single_comp.dat (output0)
         py_v_pop0_0__v_output0 = [ float(x  / 1000.0) for x in h.v_pop0_0__v_output0.to_python() ]  # Convert to Python list for speed, variable has dim: voltage
 
@@ -213,6 +318,17 @@ class NeuronSimulation():
             f_output0_f2.write('%e\t%e\t\n' % (py_v_time[i], py_v_pop0_0__v_output0[i], ))
         f_output0_f2.close()
         print("Saved data to: pyr_single_comp.dat")
+
+        # ######################   File to save: pyr_single_comp.na_h.dat (na_h)
+        py_v_pop0_0__na_h_na_h = [ float(x ) for x in h.v_pop0_0__na_h_na_h.to_python() ]  # Convert to Python list for speed, variable has dim: none
+
+        f_na_h_f2 = open('pyr_single_comp.na_h.dat', 'w')
+        num_points = len(py_v_time)  # Simulation may have been stopped before tstop...
+
+        for i in range(num_points):
+            f_na_h_f2.write('%e\t%e\t\n' % (py_v_time[i], py_v_pop0_0__na_h_na_h[i], ))
+        f_na_h_f2.close()
+        print("Saved data to: pyr_single_comp.na_h.dat")
 
         save_end = time.time()
         save_time = save_end - self.sim_end
