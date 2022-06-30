@@ -102,7 +102,7 @@ Channel information
             <a href="../kslow.channel.nml">IKM.channel.nml</a><br/>
             <b>Ion: k</b><br/>
             <b>
-            <i>g = gmax * m </i><br/>
+            <i>g = gmax * a<sup>2</sup> * (0.5*b+0.5*b1)</i><br/>
             </b>
             <div style="background-color:#eee">NeuroML2 file automatically generated from NMODL file: ./NEURON/channels/kslow.mod. Example of a fractional gate. Steady state plots for bb and bb1 fractional gates overlap.</div></sup>
 </td>
