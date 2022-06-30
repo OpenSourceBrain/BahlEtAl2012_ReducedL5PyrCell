@@ -10,7 +10,7 @@
         
         <notes>NeuroML2 file automatically generated from NMODL file: ./NEURON/channels/IKM.mod</notes>
         <gateHHtauInf id="m" instances="1">
-            <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="23degC"/> 
+            <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="36degC"/> 
             <timeCourse type="ikm_m_tau"/>
             <steadyState type="ikm_m_ss"/>
         </gateHHtauInf>
