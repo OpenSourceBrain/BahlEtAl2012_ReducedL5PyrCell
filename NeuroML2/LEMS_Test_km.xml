@@ -1,0 +1,416 @@
+<Lems>
+
+    <!-- Specify which component to run -->
+    <Target component="sim1"/>
+
+    <!-- Include core NeuroML2 ComponentType definitions -->
+    <Include file="Cells.xml"/>
+    <Include file="Networks.xml"/>
+    <Include file="Simulation.xml"/>
+
+    <Include file="IKM.channel.nml"/>
+    
+    <!-- These may eventually be moved to core NeuroML definition files -->
+    
+    <ComponentType name="vClampedCell" extends="baseCellMembPot" description="A 'cell' which can be clamped to a specific voltage for a certain duration to examine ion channel behaviour."> 
+
+        <Parameter name="delay" dimension="time"/>
+        <Parameter name="duration" dimension="time"/>
+        <Parameter name="baseVoltage" dimension="voltage"/>
+        <Parameter name="targetVoltage" dimension="voltage"/>
+        
+        <Parameter name="caConc" dimension="concentration"/>
+
+        <Children name="channelPopulation" type="channelPopulation"/>
+
+        <Dynamics>
+
+            <StateVariable name="v" exposure="v" dimension="voltage"/>
+
+            <OnStart>
+                <StateAssignment variable="v" value="baseVoltage"/>
+            </OnStart>
+
+            <OnCondition test="t .geq. delay .and. t .leq. duration+delay">
+                <StateAssignment variable="v" value="targetVoltage"/>
+            </OnCondition>
+
+            <OnCondition test="t .gt. duration+delay">
+                <StateAssignment variable="v" value="baseVoltage"/>
+            </OnCondition>
+
+        </Dynamics>
+
+    </ComponentType>
+    
+    <ComponentType name="vClampedRampCell" extends="baseCellMembPot" description="A 'cell' which can be clamped to a steadily changing voltage for a certain duration to examine ion channel behaviour."> 
+
+        <Parameter name="delay" dimension="time"/>
+        <Parameter name="duration" dimension="time"/>
+        <Parameter name="baseVoltage" dimension="voltage"/>
+        <Parameter name="targetVoltage0" dimension="voltage"/>
+        <Parameter name="targetVoltage1" dimension="voltage"/>
+        
+        <Parameter name="caConc" dimension="concentration"/>
+        
+        <Child name="channelPopulation" type="channelPopulation"/>
+
+        <Dynamics>
+
+            <StateVariable name="v" exposure="v" dimension="voltage"/>
+            
+            <OnStart>
+                <StateAssignment variable="v" value="baseVoltage"/>
+            </OnStart>
+
+            <OnCondition test="t .geq. delay .and. t .leq. duration+delay">
+                <StateAssignment variable="v" value="targetVoltage0 + (targetVoltage1-targetVoltage0)*(t-delay)/(duration)"/>
+            </OnCondition>
+
+            <OnCondition test="t .gt. duration+delay">
+                <StateAssignment variable="v" value="baseVoltage"/>
+            </OnCondition>
+
+        </Dynamics>
+
+    </ComponentType>
+    
+
+    <vClampedCell id="holderCell_min100" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="-100mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_min95.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="-95.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_min90.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="-90.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_min85.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="-85.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_min80.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="-80.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_min75.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="-75.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_min70.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="-70.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_min65.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="-65.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_min60.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="-60.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_min55.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="-55.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_min50.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="-50.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_min45.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="-45.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_min40.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="-40.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_min35.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="-35.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_min30.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="-30.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_min25.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="-25.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_min20.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="-20.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_min15.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="-15.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_min10.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="-10.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_min5.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="-5.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_0.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="0.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_5.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="5.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_10.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="10.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_15.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="15.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_20.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="20.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_25.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="25.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_30.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="30.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_35.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="35.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_40.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="40.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_45.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="45.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_50.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="50.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_55.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="55.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_60.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="60.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_65.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="65.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_70.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="70.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_75.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="75.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_80.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="80.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_85.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="85.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_90.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="90.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_95.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="95.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    <vClampedCell id="holderCell_100.0" delay="10ms" duration="80ms" baseVoltage="-70mV" targetVoltage="100.0mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedCell>
+    
+    <!-- Using twice duration & scaled up max_target_voltage to avoid problem at t = delay+duration -->
+    <vClampedRampCell id="rampCell0" delay="0ms" duration="200ms" baseVoltage="-100mV" targetVoltage0="-100mV" targetVoltage1="300mV" caConc="5e-05mM">
+        <channelPopulation id="test" ionChannel="km" number="1" erev="0mV"/>
+    </vClampedRampCell>
+
+    
+    <network id="net1" type="networkWithTemperature" temperature = "37.0 degC">
+        
+        <population id="holderCellPop_min100" component="holderCell_min100" size="1"/>
+        <population id="holderCellPop_min95.0" component="holderCell_min95.0" size="1"/>
+        <population id="holderCellPop_min90.0" component="holderCell_min90.0" size="1"/>
+        <population id="holderCellPop_min85.0" component="holderCell_min85.0" size="1"/>
+        <population id="holderCellPop_min80.0" component="holderCell_min80.0" size="1"/>
+        <population id="holderCellPop_min75.0" component="holderCell_min75.0" size="1"/>
+        <population id="holderCellPop_min70.0" component="holderCell_min70.0" size="1"/>
+        <population id="holderCellPop_min65.0" component="holderCell_min65.0" size="1"/>
+        <population id="holderCellPop_min60.0" component="holderCell_min60.0" size="1"/>
+        <population id="holderCellPop_min55.0" component="holderCell_min55.0" size="1"/>
+        <population id="holderCellPop_min50.0" component="holderCell_min50.0" size="1"/>
+        <population id="holderCellPop_min45.0" component="holderCell_min45.0" size="1"/>
+        <population id="holderCellPop_min40.0" component="holderCell_min40.0" size="1"/>
+        <population id="holderCellPop_min35.0" component="holderCell_min35.0" size="1"/>
+        <population id="holderCellPop_min30.0" component="holderCell_min30.0" size="1"/>
+        <population id="holderCellPop_min25.0" component="holderCell_min25.0" size="1"/>
+        <population id="holderCellPop_min20.0" component="holderCell_min20.0" size="1"/>
+        <population id="holderCellPop_min15.0" component="holderCell_min15.0" size="1"/>
+        <population id="holderCellPop_min10.0" component="holderCell_min10.0" size="1"/>
+        <population id="holderCellPop_min5.0" component="holderCell_min5.0" size="1"/>
+        <population id="holderCellPop_0.0" component="holderCell_0.0" size="1"/>
+        <population id="holderCellPop_5.0" component="holderCell_5.0" size="1"/>
+        <population id="holderCellPop_10.0" component="holderCell_10.0" size="1"/>
+        <population id="holderCellPop_15.0" component="holderCell_15.0" size="1"/>
+        <population id="holderCellPop_20.0" component="holderCell_20.0" size="1"/>
+        <population id="holderCellPop_25.0" component="holderCell_25.0" size="1"/>
+        <population id="holderCellPop_30.0" component="holderCell_30.0" size="1"/>
+        <population id="holderCellPop_35.0" component="holderCell_35.0" size="1"/>
+        <population id="holderCellPop_40.0" component="holderCell_40.0" size="1"/>
+        <population id="holderCellPop_45.0" component="holderCell_45.0" size="1"/>
+        <population id="holderCellPop_50.0" component="holderCell_50.0" size="1"/>
+        <population id="holderCellPop_55.0" component="holderCell_55.0" size="1"/>
+        <population id="holderCellPop_60.0" component="holderCell_60.0" size="1"/>
+        <population id="holderCellPop_65.0" component="holderCell_65.0" size="1"/>
+        <population id="holderCellPop_70.0" component="holderCell_70.0" size="1"/>
+        <population id="holderCellPop_75.0" component="holderCell_75.0" size="1"/>
+        <population id="holderCellPop_80.0" component="holderCell_80.0" size="1"/>
+        <population id="holderCellPop_85.0" component="holderCell_85.0" size="1"/>
+        <population id="holderCellPop_90.0" component="holderCell_90.0" size="1"/>
+        <population id="holderCellPop_95.0" component="holderCell_95.0" size="1"/>
+        <population id="holderCellPop_100.0" component="holderCell_100.0" size="1"/>
+        
+        <population id="rampCellPop0" component="rampCell0" size="1"/>
+    </network>
+
+
+    <Simulation id="sim1" length="100ms" step="0.0025ms" target="net1">
+        
+        <Display id="d0" title="km: Clamp voltages (mV)"  timeScale="1ms" xmin="-10.0" xmax="110.00000000000001" ymin="-120.0" ymax="120.0">
+            <Line id="-100mV" quantity="holderCellPop_min100[0]/v" scale="1mV"  color="#ffff00" timeScale="1ms"/>
+            <Line id="-95.0mV" quantity="holderCellPop_min95.0[0]/v" scale="1mV"  color="#fff800" timeScale="1ms"/>
+            <Line id="-90.0mV" quantity="holderCellPop_min90.0[0]/v" scale="1mV"  color="#fff200" timeScale="1ms"/>
+            <Line id="-85.0mV" quantity="holderCellPop_min85.0[0]/v" scale="1mV"  color="#ffeb00" timeScale="1ms"/>
+            <Line id="-80.0mV" quantity="holderCellPop_min80.0[0]/v" scale="1mV"  color="#ffe500" timeScale="1ms"/>
+            <Line id="-75.0mV" quantity="holderCellPop_min75.0[0]/v" scale="1mV"  color="#ffdf00" timeScale="1ms"/>
+            <Line id="-70.0mV" quantity="holderCellPop_min70.0[0]/v" scale="1mV"  color="#ffd800" timeScale="1ms"/>
+            <Line id="-65.0mV" quantity="holderCellPop_min65.0[0]/v" scale="1mV"  color="#ffd200" timeScale="1ms"/>
+            <Line id="-60.0mV" quantity="holderCellPop_min60.0[0]/v" scale="1mV"  color="#ffcc00" timeScale="1ms"/>
+            <Line id="-55.0mV" quantity="holderCellPop_min55.0[0]/v" scale="1mV"  color="#ffc500" timeScale="1ms"/>
+            <Line id="-50.0mV" quantity="holderCellPop_min50.0[0]/v" scale="1mV"  color="#ffbf00" timeScale="1ms"/>
+            <Line id="-45.0mV" quantity="holderCellPop_min45.0[0]/v" scale="1mV"  color="#ffb800" timeScale="1ms"/>
+            <Line id="-40.0mV" quantity="holderCellPop_min40.0[0]/v" scale="1mV"  color="#ffb200" timeScale="1ms"/>
+            <Line id="-35.0mV" quantity="holderCellPop_min35.0[0]/v" scale="1mV"  color="#ffac00" timeScale="1ms"/>
+            <Line id="-30.0mV" quantity="holderCellPop_min30.0[0]/v" scale="1mV"  color="#ffa500" timeScale="1ms"/>
+            <Line id="-25.0mV" quantity="holderCellPop_min25.0[0]/v" scale="1mV"  color="#ff9f00" timeScale="1ms"/>
+            <Line id="-20.0mV" quantity="holderCellPop_min20.0[0]/v" scale="1mV"  color="#ff9900" timeScale="1ms"/>
+            <Line id="-15.0mV" quantity="holderCellPop_min15.0[0]/v" scale="1mV"  color="#ff9200" timeScale="1ms"/>
+            <Line id="-10.0mV" quantity="holderCellPop_min10.0[0]/v" scale="1mV"  color="#ff8c00" timeScale="1ms"/>
+            <Line id="-5.0mV" quantity="holderCellPop_min5.0[0]/v" scale="1mV"  color="#ff8500" timeScale="1ms"/>
+            <Line id="0.0mV" quantity="holderCellPop_0.0[0]/v" scale="1mV"  color="#ff7f00" timeScale="1ms"/>
+            <Line id="5.0mV" quantity="holderCellPop_5.0[0]/v" scale="1mV"  color="#ff7900" timeScale="1ms"/>
+            <Line id="10.0mV" quantity="holderCellPop_10.0[0]/v" scale="1mV"  color="#ff7200" timeScale="1ms"/>
+            <Line id="15.0mV" quantity="holderCellPop_15.0[0]/v" scale="1mV"  color="#ff6c00" timeScale="1ms"/>
+            <Line id="20.0mV" quantity="holderCellPop_20.0[0]/v" scale="1mV"  color="#ff6600" timeScale="1ms"/>
+            <Line id="25.0mV" quantity="holderCellPop_25.0[0]/v" scale="1mV"  color="#ff5f00" timeScale="1ms"/>
+            <Line id="30.0mV" quantity="holderCellPop_30.0[0]/v" scale="1mV"  color="#ff5900" timeScale="1ms"/>
+            <Line id="35.0mV" quantity="holderCellPop_35.0[0]/v" scale="1mV"  color="#ff5200" timeScale="1ms"/>
+            <Line id="40.0mV" quantity="holderCellPop_40.0[0]/v" scale="1mV"  color="#ff4c00" timeScale="1ms"/>
+            <Line id="45.0mV" quantity="holderCellPop_45.0[0]/v" scale="1mV"  color="#ff4600" timeScale="1ms"/>
+            <Line id="50.0mV" quantity="holderCellPop_50.0[0]/v" scale="1mV"  color="#ff3f00" timeScale="1ms"/>
+            <Line id="55.0mV" quantity="holderCellPop_55.0[0]/v" scale="1mV"  color="#ff3900" timeScale="1ms"/>
+            <Line id="60.0mV" quantity="holderCellPop_60.0[0]/v" scale="1mV"  color="#ff3300" timeScale="1ms"/>
+            <Line id="65.0mV" quantity="holderCellPop_65.0[0]/v" scale="1mV"  color="#ff2c00" timeScale="1ms"/>
+            <Line id="70.0mV" quantity="holderCellPop_70.0[0]/v" scale="1mV"  color="#ff2600" timeScale="1ms"/>
+            <Line id="75.0mV" quantity="holderCellPop_75.0[0]/v" scale="1mV"  color="#ff1f00" timeScale="1ms"/>
+            <Line id="80.0mV" quantity="holderCellPop_80.0[0]/v" scale="1mV"  color="#ff1900" timeScale="1ms"/>
+            <Line id="85.0mV" quantity="holderCellPop_85.0[0]/v" scale="1mV"  color="#ff1300" timeScale="1ms"/>
+            <Line id="90.0mV" quantity="holderCellPop_90.0[0]/v" scale="1mV"  color="#ff0000" timeScale="1ms"/>
+            <Line id="95.0mV" quantity="holderCellPop_95.0[0]/v" scale="1mV"  color="#ff0000" timeScale="1ms"/>
+            <Line id="100.0mV" quantity="holderCellPop_100.0[0]/v" scale="1mV"  color="#ff0000" timeScale="1ms"/>
+        </Display>
+
+        <Display id="d1" title="km: Fractional conductance at 37.0 degC"  timeScale="1ms" xmin="-10.0" xmax="110.00000000000001" ymin="-0.1" ymax="1.1">
+            <Line id="-100mV" quantity="holderCellPop_min100[0]/test/km/fopen" scale="1"  color="#ffff00" timeScale="1ms"/>
+            <Line id="-95.0mV" quantity="holderCellPop_min95.0[0]/test/km/fopen" scale="1"  color="#fff800" timeScale="1ms"/>
+            <Line id="-90.0mV" quantity="holderCellPop_min90.0[0]/test/km/fopen" scale="1"  color="#fff200" timeScale="1ms"/>
+            <Line id="-85.0mV" quantity="holderCellPop_min85.0[0]/test/km/fopen" scale="1"  color="#ffeb00" timeScale="1ms"/>
+            <Line id="-80.0mV" quantity="holderCellPop_min80.0[0]/test/km/fopen" scale="1"  color="#ffe500" timeScale="1ms"/>
+            <Line id="-75.0mV" quantity="holderCellPop_min75.0[0]/test/km/fopen" scale="1"  color="#ffdf00" timeScale="1ms"/>
+            <Line id="-70.0mV" quantity="holderCellPop_min70.0[0]/test/km/fopen" scale="1"  color="#ffd800" timeScale="1ms"/>
+            <Line id="-65.0mV" quantity="holderCellPop_min65.0[0]/test/km/fopen" scale="1"  color="#ffd200" timeScale="1ms"/>
+            <Line id="-60.0mV" quantity="holderCellPop_min60.0[0]/test/km/fopen" scale="1"  color="#ffcc00" timeScale="1ms"/>
+            <Line id="-55.0mV" quantity="holderCellPop_min55.0[0]/test/km/fopen" scale="1"  color="#ffc500" timeScale="1ms"/>
+            <Line id="-50.0mV" quantity="holderCellPop_min50.0[0]/test/km/fopen" scale="1"  color="#ffbf00" timeScale="1ms"/>
+            <Line id="-45.0mV" quantity="holderCellPop_min45.0[0]/test/km/fopen" scale="1"  color="#ffb800" timeScale="1ms"/>
+            <Line id="-40.0mV" quantity="holderCellPop_min40.0[0]/test/km/fopen" scale="1"  color="#ffb200" timeScale="1ms"/>
+            <Line id="-35.0mV" quantity="holderCellPop_min35.0[0]/test/km/fopen" scale="1"  color="#ffac00" timeScale="1ms"/>
+            <Line id="-30.0mV" quantity="holderCellPop_min30.0[0]/test/km/fopen" scale="1"  color="#ffa500" timeScale="1ms"/>
+            <Line id="-25.0mV" quantity="holderCellPop_min25.0[0]/test/km/fopen" scale="1"  color="#ff9f00" timeScale="1ms"/>
+            <Line id="-20.0mV" quantity="holderCellPop_min20.0[0]/test/km/fopen" scale="1"  color="#ff9900" timeScale="1ms"/>
+            <Line id="-15.0mV" quantity="holderCellPop_min15.0[0]/test/km/fopen" scale="1"  color="#ff9200" timeScale="1ms"/>
+            <Line id="-10.0mV" quantity="holderCellPop_min10.0[0]/test/km/fopen" scale="1"  color="#ff8c00" timeScale="1ms"/>
+            <Line id="-5.0mV" quantity="holderCellPop_min5.0[0]/test/km/fopen" scale="1"  color="#ff8500" timeScale="1ms"/>
+            <Line id="0.0mV" quantity="holderCellPop_0.0[0]/test/km/fopen" scale="1"  color="#ff7f00" timeScale="1ms"/>
+            <Line id="5.0mV" quantity="holderCellPop_5.0[0]/test/km/fopen" scale="1"  color="#ff7900" timeScale="1ms"/>
+            <Line id="10.0mV" quantity="holderCellPop_10.0[0]/test/km/fopen" scale="1"  color="#ff7200" timeScale="1ms"/>
+            <Line id="15.0mV" quantity="holderCellPop_15.0[0]/test/km/fopen" scale="1"  color="#ff6c00" timeScale="1ms"/>
+            <Line id="20.0mV" quantity="holderCellPop_20.0[0]/test/km/fopen" scale="1"  color="#ff6600" timeScale="1ms"/>
+            <Line id="25.0mV" quantity="holderCellPop_25.0[0]/test/km/fopen" scale="1"  color="#ff5f00" timeScale="1ms"/>
+            <Line id="30.0mV" quantity="holderCellPop_30.0[0]/test/km/fopen" scale="1"  color="#ff5900" timeScale="1ms"/>
+            <Line id="35.0mV" quantity="holderCellPop_35.0[0]/test/km/fopen" scale="1"  color="#ff5200" timeScale="1ms"/>
+            <Line id="40.0mV" quantity="holderCellPop_40.0[0]/test/km/fopen" scale="1"  color="#ff4c00" timeScale="1ms"/>
+            <Line id="45.0mV" quantity="holderCellPop_45.0[0]/test/km/fopen" scale="1"  color="#ff4600" timeScale="1ms"/>
+            <Line id="50.0mV" quantity="holderCellPop_50.0[0]/test/km/fopen" scale="1"  color="#ff3f00" timeScale="1ms"/>
+            <Line id="55.0mV" quantity="holderCellPop_55.0[0]/test/km/fopen" scale="1"  color="#ff3900" timeScale="1ms"/>
+            <Line id="60.0mV" quantity="holderCellPop_60.0[0]/test/km/fopen" scale="1"  color="#ff3300" timeScale="1ms"/>
+            <Line id="65.0mV" quantity="holderCellPop_65.0[0]/test/km/fopen" scale="1"  color="#ff2c00" timeScale="1ms"/>
+            <Line id="70.0mV" quantity="holderCellPop_70.0[0]/test/km/fopen" scale="1"  color="#ff2600" timeScale="1ms"/>
+            <Line id="75.0mV" quantity="holderCellPop_75.0[0]/test/km/fopen" scale="1"  color="#ff1f00" timeScale="1ms"/>
+            <Line id="80.0mV" quantity="holderCellPop_80.0[0]/test/km/fopen" scale="1"  color="#ff1900" timeScale="1ms"/>
+            <Line id="85.0mV" quantity="holderCellPop_85.0[0]/test/km/fopen" scale="1"  color="#ff1300" timeScale="1ms"/>
+            <Line id="90.0mV" quantity="holderCellPop_90.0[0]/test/km/fopen" scale="1"  color="#ff0000" timeScale="1ms"/>
+            <Line id="95.0mV" quantity="holderCellPop_95.0[0]/test/km/fopen" scale="1"  color="#ff0000" timeScale="1ms"/>
+            <Line id="100.0mV" quantity="holderCellPop_100.0[0]/test/km/fopen" scale="1"  color="#ff0000" timeScale="1ms"/>
+        </Display>
+        
+        <Display id="d7" title="km: Currents (nA) at different clamped potentials; 37.0 degC; rev potential: 0 mV"  timeScale="1ms" xmin="-10.0" xmax="110.00000000000001" ymin="-0.002" ymax="0.0014">
+            <Line id="-100mV" quantity="holderCellPop_min100[0]/test/i" scale="1nA"  color="#ffff00" timeScale="1ms"/>
+            <Line id="-95.0mV" quantity="holderCellPop_min95.0[0]/test/i" scale="1nA"  color="#fff800" timeScale="1ms"/>
+            <Line id="-90.0mV" quantity="holderCellPop_min90.0[0]/test/i" scale="1nA"  color="#fff200" timeScale="1ms"/>
+            <Line id="-85.0mV" quantity="holderCellPop_min85.0[0]/test/i" scale="1nA"  color="#ffeb00" timeScale="1ms"/>
+            <Line id="-80.0mV" quantity="holderCellPop_min80.0[0]/test/i" scale="1nA"  color="#ffe500" timeScale="1ms"/>
+            <Line id="-75.0mV" quantity="holderCellPop_min75.0[0]/test/i" scale="1nA"  color="#ffdf00" timeScale="1ms"/>
+            <Line id="-70.0mV" quantity="holderCellPop_min70.0[0]/test/i" scale="1nA"  color="#ffd800" timeScale="1ms"/>
+            <Line id="-65.0mV" quantity="holderCellPop_min65.0[0]/test/i" scale="1nA"  color="#ffd200" timeScale="1ms"/>
+            <Line id="-60.0mV" quantity="holderCellPop_min60.0[0]/test/i" scale="1nA"  color="#ffcc00" timeScale="1ms"/>
+            <Line id="-55.0mV" quantity="holderCellPop_min55.0[0]/test/i" scale="1nA"  color="#ffc500" timeScale="1ms"/>
+            <Line id="-50.0mV" quantity="holderCellPop_min50.0[0]/test/i" scale="1nA"  color="#ffbf00" timeScale="1ms"/>
+            <Line id="-45.0mV" quantity="holderCellPop_min45.0[0]/test/i" scale="1nA"  color="#ffb800" timeScale="1ms"/>
+            <Line id="-40.0mV" quantity="holderCellPop_min40.0[0]/test/i" scale="1nA"  color="#ffb200" timeScale="1ms"/>
+            <Line id="-35.0mV" quantity="holderCellPop_min35.0[0]/test/i" scale="1nA"  color="#ffac00" timeScale="1ms"/>
+            <Line id="-30.0mV" quantity="holderCellPop_min30.0[0]/test/i" scale="1nA"  color="#ffa500" timeScale="1ms"/>
+            <Line id="-25.0mV" quantity="holderCellPop_min25.0[0]/test/i" scale="1nA"  color="#ff9f00" timeScale="1ms"/>
+            <Line id="-20.0mV" quantity="holderCellPop_min20.0[0]/test/i" scale="1nA"  color="#ff9900" timeScale="1ms"/>
+            <Line id="-15.0mV" quantity="holderCellPop_min15.0[0]/test/i" scale="1nA"  color="#ff9200" timeScale="1ms"/>
+            <Line id="-10.0mV" quantity="holderCellPop_min10.0[0]/test/i" scale="1nA"  color="#ff8c00" timeScale="1ms"/>
+            <Line id="-5.0mV" quantity="holderCellPop_min5.0[0]/test/i" scale="1nA"  color="#ff8500" timeScale="1ms"/>
+            <Line id="0.0mV" quantity="holderCellPop_0.0[0]/test/i" scale="1nA"  color="#ff7f00" timeScale="1ms"/>
+            <Line id="5.0mV" quantity="holderCellPop_5.0[0]/test/i" scale="1nA"  color="#ff7900" timeScale="1ms"/>
+            <Line id="10.0mV" quantity="holderCellPop_10.0[0]/test/i" scale="1nA"  color="#ff7200" timeScale="1ms"/>
+            <Line id="15.0mV" quantity="holderCellPop_15.0[0]/test/i" scale="1nA"  color="#ff6c00" timeScale="1ms"/>
+            <Line id="20.0mV" quantity="holderCellPop_20.0[0]/test/i" scale="1nA"  color="#ff6600" timeScale="1ms"/>
+            <Line id="25.0mV" quantity="holderCellPop_25.0[0]/test/i" scale="1nA"  color="#ff5f00" timeScale="1ms"/>
+            <Line id="30.0mV" quantity="holderCellPop_30.0[0]/test/i" scale="1nA"  color="#ff5900" timeScale="1ms"/>
+            <Line id="35.0mV" quantity="holderCellPop_35.0[0]/test/i" scale="1nA"  color="#ff5200" timeScale="1ms"/>
+            <Line id="40.0mV" quantity="holderCellPop_40.0[0]/test/i" scale="1nA"  color="#ff4c00" timeScale="1ms"/>
+            <Line id="45.0mV" quantity="holderCellPop_45.0[0]/test/i" scale="1nA"  color="#ff4600" timeScale="1ms"/>
+            <Line id="50.0mV" quantity="holderCellPop_50.0[0]/test/i" scale="1nA"  color="#ff3f00" timeScale="1ms"/>
+            <Line id="55.0mV" quantity="holderCellPop_55.0[0]/test/i" scale="1nA"  color="#ff3900" timeScale="1ms"/>
+            <Line id="60.0mV" quantity="holderCellPop_60.0[0]/test/i" scale="1nA"  color="#ff3300" timeScale="1ms"/>
+            <Line id="65.0mV" quantity="holderCellPop_65.0[0]/test/i" scale="1nA"  color="#ff2c00" timeScale="1ms"/>
+            <Line id="70.0mV" quantity="holderCellPop_70.0[0]/test/i" scale="1nA"  color="#ff2600" timeScale="1ms"/>
+            <Line id="75.0mV" quantity="holderCellPop_75.0[0]/test/i" scale="1nA"  color="#ff1f00" timeScale="1ms"/>
+            <Line id="80.0mV" quantity="holderCellPop_80.0[0]/test/i" scale="1nA"  color="#ff1900" timeScale="1ms"/>
+            <Line id="85.0mV" quantity="holderCellPop_85.0[0]/test/i" scale="1nA"  color="#ff1300" timeScale="1ms"/>
+            <Line id="90.0mV" quantity="holderCellPop_90.0[0]/test/i" scale="1nA"  color="#ff0000" timeScale="1ms"/>
+            <Line id="95.0mV" quantity="holderCellPop_95.0[0]/test/i" scale="1nA"  color="#ff0000" timeScale="1ms"/>
+            <Line id="100.0mV" quantity="holderCellPop_100.0[0]/test/i" scale="1nA"  color="#ff0000" timeScale="1ms"/>
+        </Display>
+
+        <Display id="m_inf" title="km: Gate m steady state, m_inf"  timeScale="1ms" xmin="-10.0" xmax="110.00000000000001" ymin="-0.1" ymax="1.1">
+            <Line id="m_inf (x axis: -100mV to 100mV)" quantity="rampCellPop0[0]/test/km/m/inf" scale="1"  color="#000000" timeScale="1ms"/>
+        </Display>
+        
+        <Display id="m_tau" title="km: Gate m time course, m_tau (ms) at 37.0 degC"  timeScale="1ms" xmin="-10.0" xmax="110.00000000000001" ymin="-10" ymax="110">
+            <Line id="m_tau (x axis: -100mV to 100mV)" quantity="rampCellPop0[0]/test/km/m/tau" scale="1ms"  color="#000000" timeScale="1ms"/>
+        </Display>
+
+        <OutputFile id="m_inf_of1" fileName="km.m.inf.lems.dat">
+            <OutputColumn id="m" quantity="rampCellPop0[0]/test/km/m/inf"/> 
+        </OutputFile>
+        <OutputFile id="m_tau_of1" fileName="km.m.tau.lems.dat">
+            <OutputColumn id="m" quantity="rampCellPop0[0]/test/km/m/tau"/> 
+        </OutputFile>
+
+
+        <OutputFile id="rampCellV" fileName="km.rampV.lems.dat">
+            <OutputColumn id="v" quantity="rampCellPop0[0]/v"/> 
+        </OutputFile>
+
+
+
+    </Simulation>
+
+
+</Lems>
