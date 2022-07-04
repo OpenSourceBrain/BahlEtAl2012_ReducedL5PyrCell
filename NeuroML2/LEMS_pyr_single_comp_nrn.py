@@ -37,7 +37,9 @@ import sys
 
 import hashlib
 h = neuron.h
-h.load_file("nrngui.hoc")
+h.load_file("stdlib.hoc")
+
+h.load_file("stdgui.hoc")
 
 h("objref p")
 h("p = new PythonObject()")
@@ -171,9 +173,6 @@ class NeuronSimulation():
         self.setup_time = setup_end - self.setup_start
         print("Setting up the network to simulate took %f seconds"%(self.setup_time))
 
-        h.nrncontrolmenu()
-
-
     def run(self):
 
         self.initialized = True
@@ -184,7 +183,7 @@ class NeuronSimulation():
             h.run()
         except Exception as e:
             print("Exception running NEURON: %s" % (e))
-            return
+            quit()
 
 
         self.sim_end = time.time()
@@ -195,7 +194,7 @@ class NeuronSimulation():
             self.save_results()
         except Exception as e:
             print("Exception saving results of NEURON simulation: %s" % (e))
-            return
+            quit()
 
 
     def advance(self):
@@ -335,6 +334,9 @@ class NeuronSimulation():
         print("Finished saving results in %f seconds"%(save_time))
 
         print("Done")
+
+        quit()
+
 
 if __name__ == '__main__':
 
