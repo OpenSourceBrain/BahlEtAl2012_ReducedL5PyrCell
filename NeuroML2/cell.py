@@ -39,6 +39,28 @@ def main():
     simulation.create_output_file(id="output0", file_name=sim_id + ".dat")
     simulation.add_column_to_output_file("output0", column_id="pop0[0]_v", quantity="pop0[0]/v")
 
+    # Recording information from the simulation
+    simulation.create_output_file(id="na_m", file_name=sim_id + ".na_m.dat")
+    simulation.add_column_to_output_file("na_m", column_id="pop0[0]_na_m", quantity="pop0[0]/pyr_b_prop/membraneProperties/nat_channels/nat/m/q")
+
+    simulation.create_output_file(id="na_h", file_name=sim_id + ".na_h.dat")
+    simulation.add_column_to_output_file("na_h", column_id="pop0[0]_na_h", quantity="pop0[0]/pyr_b_prop/membraneProperties/nat_channels/nat/h/q")
+
+    simulation.create_output_file(id="kfast_n", file_name=sim_id + ".kfast_n.dat")
+    simulation.add_column_to_output_file("kfast_n", column_id="pop0[0]_kfast_n", quantity="pop0[0]/pyr_b_prop/membraneProperties/kfast_channels/kfast/n/q")
+
+    simulation.create_output_file(id="nap_m", file_name=sim_id + ".nap_m.dat")
+    simulation.add_column_to_output_file("nap_m", column_id="pop0[0]_nap_m", quantity="pop0[0]/pyr_b_prop/membraneProperties/nap_channels/nap/m/q")
+
+    simulation.create_output_file(id="kslow_a", file_name=sim_id + ".kslow_a.dat")
+    simulation.add_column_to_output_file("kslow_a", column_id="pop0[0]_kslow_a", quantity="pop0[0]/pyr_b_prop/membraneProperties/kslow_channels/kslow/a/q")
+
+    simulation.create_output_file(id="kslow_b", file_name=sim_id + ".kslow_b.dat")
+    simulation.add_column_to_output_file("kslow_b", column_id="pop0[0]_kslow_b", quantity="pop0[0]/pyr_b_prop/membraneProperties/kslow_channels/kslow/b/q")
+
+    simulation.create_output_file(id="ikm_m", file_name=sim_id + ".ikm_m.dat")
+    simulation.add_column_to_output_file("ikm_m", column_id="pop0[0]_ikm_m", quantity="pop0[0]/pyr_b_prop/membraneProperties/km_channels/km/m/q")
+
     # Save LEMS simulation to file
     sim_file = simulation.save_to_file()
 
@@ -60,6 +82,26 @@ def plot_data(sim_id):
     data_array = np.loadtxt(sim_id + ".dat")
     pynml.generate_plot([data_array[:, 0]], [data_array[:, 1]], "Membrane potential", show_plot_already=False, save_figure_to=sim_id + "-v.png", xaxis="time (s)", yaxis="membrane potential (V)")
 
+    data_array_na_m = np.loadtxt(sim_id + ".na_m.dat")
+    pynml.generate_plot([data_array_na_m[:, 0]], [data_array_na_m[:, 1]], "Nat m gate", show_plot_already=False, save_figure_to=sim_id + "-na_m.png", xaxis="time (s)", yaxis="q")
+
+    data_array_na_h = np.loadtxt(sim_id + ".na_h.dat")
+    pynml.generate_plot([data_array_na_h[:, 0]], [data_array_na_h[:, 1]], "Nat h gate", show_plot_already=False, save_figure_to=sim_id + "-na_h.png", xaxis="time (s)", yaxis="q")
+
+    data_array_kfast_n = np.loadtxt(sim_id + ".kfast_n.dat")
+    pynml.generate_plot([data_array_kfast_n[:, 0]], [data_array_kfast_n[:, 1]], "Kfast n gate", show_plot_already=False, save_figure_to=sim_id + "-kfast_n.png", xaxis="time (s)", yaxis="q")
+
+    data_array_nap_m = np.loadtxt(sim_id + ".nap_m.dat")
+    pynml.generate_plot([data_array_nap_m[:, 0]], [data_array_nap_m[:, 1]], "Nap m gate", show_plot_already=False, save_figure_to=sim_id + "-nap_m.png", xaxis="time (s)", yaxis="q")
+
+    data_array_kslow_a = np.loadtxt(sim_id + ".kslow_a.dat")
+    pynml.generate_plot([data_array_kslow_a[:, 0]], [data_array_kslow_a[:, 1]], "Kslow a gate", show_plot_already=False, save_figure_to=sim_id + "-kslow_a.png", xaxis="time (s)", yaxis="q")
+
+    data_array_kslow_b = np.loadtxt(sim_id + ".kslow_b.dat")
+    pynml.generate_plot([data_array_kslow_b[:, 0]], [data_array_kslow_b[:, 1]], "Kslow b gate", show_plot_already=False, save_figure_to=sim_id + "-kslow_b.png", xaxis="time (s)", yaxis="q")
+
+    data_array_ikm_m = np.loadtxt(sim_id + ".ikm_m.dat")
+    pynml.generate_plot([data_array_ikm_m[:, 0]], [data_array_ikm_m[:, 1]], "IKM m gate", show_plot_already=False, save_figure_to=sim_id + "-ikm_m.png", xaxis="time (s)", yaxis="q")
 # %%
 def create_cell():
     pyr_cell_doc = NeuroMLDocument(id='cell', notes="Layer 5 Pyramidal cell")
@@ -92,13 +134,13 @@ def create_cell():
     mem_prop.channel_densities.append(pas_channel_density)
 
     # Channel density for kfast channel
-    kfast_channel_density = ChannelDensity(id="kfast_channels", cond_density="67.2 S_per_m2", erev="-80 mV", ion="k", ion_channel="kfast")
+    kfast_channel_density = ChannelDensity(id="kfast_channels", cond_density="67.197508 S_per_m2", erev="-80 mV", ion="k", ion_channel="kfast")
     mem_prop.channel_densities.append(kfast_channel_density)
 
     kslow_channel_density = ChannelDensity(id="kslow_channels", cond_density="475.82 S_per_m2", erev="-80 mV", ion="k", ion_channel="kslow")
     mem_prop.channel_densities.append(kslow_channel_density)
 
-    nat_channel_density = ChannelDensity(id="nat_channels", cond_density="236.62 S_per_m2", erev="55 mV", ion="na", ion_channel="nat")
+    nat_channel_density = ChannelDensity(id="nat_channels", cond_density="236.616175 S_per_m2", erev="55 mV", ion="na", ion_channel="nat")
     mem_prop.channel_densities.append(nat_channel_density)
 
     nap_channel_density = ChannelDensity(id="nap_channels", cond_density="1.44 S_per_m2", erev="55 mV", ion="na", ion_channel="nap")

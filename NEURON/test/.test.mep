@@ -3,4 +3,4 @@ system: Testing a single compartment cell (soma)
 experiments:
   Current clamp:
     expected:
-      spike times: [ 104.837 ]
+      spike times: [102.087, 112.487, 131.837]

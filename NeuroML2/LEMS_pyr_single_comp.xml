@@ -1,0 +1,62 @@
+<Lems>
+    
+    <!-- 
+
+        This LEMS file has been automatically generated using PyNeuroML v0.5.20 (libNeuroML v0.3.1)
+
+     -->
+    
+    <!-- Specify which component to run -->
+    <Target component="pyr_single_comp"/>
+
+    <!-- Include core NeuroML2 ComponentType definitions -->
+    <Include file="Cells.xml"/>
+    <Include file="Networks.xml"/>
+    <Include file="Simulation.xml"/>
+    
+    <Include file="pyr_example_net.nml"/>
+    <Include file="pyr5_cell.nml"/>
+    <Include file="kfast.channel.nml"/>
+    <Include file="pas.channel.nml"/>
+    <Include file="kslow.channel.nml"/>
+    <Include file="nat.channel.nml"/>
+    <Include file="nap.channel.nml"/>
+    <Include file="IKM.channel.nml"/>
+   
+    <Simulation id="pyr_single_comp" length="700ms" step="0.01ms" target="single_pyr_cell_network" seed="123">  <!-- Note seed: ensures same random numbers used every run -->
+        
+        <OutputFile id="output0" fileName="pyr_single_comp.dat">
+            <OutputColumn id="pop0[0]_v" quantity="pop0[0]/v"/> 
+        </OutputFile>
+        
+        <OutputFile id="na_m" fileName="pyr_single_comp.na_m.dat">
+            <OutputColumn id="pop0[0]_na_m" quantity="pop0[0]/pyr_b_prop/membraneProperties/nat_channels/nat/m/q"/> 
+        </OutputFile>
+        
+        <OutputFile id="na_h" fileName="pyr_single_comp.na_h.dat">
+            <OutputColumn id="pop0[0]_na_h" quantity="pop0[0]/pyr_b_prop/membraneProperties/nat_channels/nat/h/q"/> 
+        </OutputFile>
+        
+        <OutputFile id="kfast_n" fileName="pyr_single_comp.kfast_n.dat">
+            <OutputColumn id="pop0[0]_kfast_n" quantity="pop0[0]/pyr_b_prop/membraneProperties/kfast_channels/kfast/n/q"/> 
+        </OutputFile>
+        
+        <OutputFile id="nap_m" fileName="pyr_single_comp.nap_m.dat">
+            <OutputColumn id="pop0[0]_nap_m" quantity="pop0[0]/pyr_b_prop/membraneProperties/nap_channels/nap/m/q"/> 
+        </OutputFile>
+        
+        <OutputFile id="kslow_a" fileName="pyr_single_comp.kslow_a.dat">
+            <OutputColumn id="pop0[0]_kslow_a" quantity="pop0[0]/pyr_b_prop/membraneProperties/kslow_channels/kslow/a/q"/> 
+        </OutputFile>
+        
+        <OutputFile id="kslow_b" fileName="pyr_single_comp.kslow_b.dat">
+            <OutputColumn id="pop0[0]_kslow_b" quantity="pop0[0]/pyr_b_prop/membraneProperties/kslow_channels/kslow/b/q"/> 
+        </OutputFile>
+        
+        <OutputFile id="ikm_m" fileName="pyr_single_comp.ikm_m.dat">
+            <OutputColumn id="pop0[0]_ikm_m" quantity="pop0[0]/pyr_b_prop/membraneProperties/km_channels/km/m/q"/> 
+        </OutputFile>
+        
+    </Simulation>
+
+</Lems>
