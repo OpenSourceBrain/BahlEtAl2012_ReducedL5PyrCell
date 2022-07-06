@@ -13,13 +13,11 @@
         <q10ConductanceScaling q10Factor="2.3" experimentalTemp="21degC"/>
 
         <gate type="gateHHrates" id="a" instances="2">
-            <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="21degC"/>
             <forwardRate type="kslow_a_alpha_rate"/>
             <reverseRate type="kslow_a_beta_rate"/>
         </gate>
 
         <gate type="gateFractional" id="b" instances="1">
-            <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="21degC"/>
             <subGate id="bb" fractionalConductance="0.5">
                 <steadyState type="HHSigmoidVariable" rate="1" midpoint="-58mV" scale="-11mV"/>
                 <timeCourse type="kslow_b_tau"/>
