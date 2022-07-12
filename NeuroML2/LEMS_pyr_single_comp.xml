@@ -23,7 +23,7 @@
     <Include file="nap.channel.nml"/>
     <Include file="IKM.channel.nml"/>
    
-    <Simulation id="pyr_single_comp" length="700ms" step="0.01ms" target="single_pyr_cell_network" seed="123">  <!-- Note seed: ensures same random numbers used every run -->
+    <Simulation id="pyr_single_comp" length="700ms" step="0.005ms" target="single_pyr_cell_network" seed="123">  <!-- Note seed: ensures same random numbers used every run -->
         
         <OutputFile id="output0" fileName="pyr_single_comp.dat">
             <OutputColumn id="pop0[0]_v" quantity="pop0[0]/v"/> 

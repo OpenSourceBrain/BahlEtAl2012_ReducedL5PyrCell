@@ -28,7 +28,7 @@ def main():
     # Simulation bits
 
     sim_id = "pyr_single_comp"
-    simulation = LEMSSimulation(sim_id=sim_id, duration=700, dt=0.01, simulation_seed=123)
+    simulation = LEMSSimulation(sim_id=sim_id, duration=700, dt=0.005, simulation_seed=123)
 
     # Include the NeuroML model file
     simulation.include_neuroml2_file(create_network())
