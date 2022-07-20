@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" 
+         id="sca">
+
+    <notes>NeuroML file automatically generated from an NMODL file</notes>
+
+    <ionChannel id="sca" conductance="10pS" type="ionChannelHH" species="ca">
+        
+        <notes>NeuroML2 file automatically generated from NMODL file: ./NEURON/channels/SlowCa.mod</notes>
+        
+
+        <gate id="m" type="gateHHrates" instances="2">
+            <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="23degC"/>
+            <forwardRate type="HHExpLinearRate" rate="0.209per_ms" scale="9mV" midpoint="-27mV"/>
+            <reverseRate type="HHExpRate" rate="0.94per_ms" scale="-17mV" midpoint="-75mV"/>
+        </gate>
+
+        <gate id="h" type="gateHHrates" instances="1">
+            <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="23degC"/>
+            <forwardRate type="HHExpRate" rate="0.000152per_ms" scale="-50mV" midpoint="-13mV"/>
+            <reverseRate type="HHSigmoidRate" rate="0.0195per_ms" scale="28mV" midpoint="-15mV"/>
+        </gate>
+        
+    </ionChannel>
+    
+</neuroml>
