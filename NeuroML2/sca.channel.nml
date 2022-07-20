@@ -19,8 +19,8 @@
 
         <gate id="h" type="gateHHrates" instances="1">
             <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="23degC"/>
-            <forwardRate type="HHExpRate" rate="0.000152per_ms" scale="-50mV" midpoint="-13mV"/>
-            <reverseRate type="HHSigmoidRate" rate="0.0195per_ms" scale="28mV" midpoint="-15mV"/>
+            <forwardRate type="HHExpRate" rate="0.0001524per_ms" scale="-50mV" midpoint="-13mV"/>
+            <reverseRate type="HHSigmoidRate" rate="0.00217per_ms" scale="28mV" midpoint="-15mV"/>
         </gate>
         
     </ionChannel>
