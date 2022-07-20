@@ -5,7 +5,7 @@ import sys
 import airspeed
 
 
-chans = ['nat', 'nap', 'kfast', 'kslow', 'km', 'ih']
+chans = ['nat', 'nap', 'kfast', 'kslow', 'km', 'ih', 'sca']
 
 problematic = []
 

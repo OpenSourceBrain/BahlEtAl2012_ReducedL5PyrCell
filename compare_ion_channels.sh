@@ -8,3 +8,4 @@ pynml-modchananalysis -temperature 37 -modFile IKM.mod km
 echo "Simulating using .nml file"
 cd ../../NeuroML2
 pynml-channelanalysis IKM.channel.nml -step 5 -temperature 37
+#  pynml-channelanalysis sca.channel.nml -temperature 37 -scaleDt 0.25 -caConc 5e-05

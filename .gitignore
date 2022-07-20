@@ -9,4 +9,6 @@ x86_64
 /NeuroML2/*.dat
 /NeuroML2/*png
 /NeuroML2/pyr_single_comp-v.png
+/NeuroML2/init_model2.cell.nml
+/NeuroML2/pyr.cell.nml
 # *.ipynb
