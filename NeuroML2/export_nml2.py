@@ -8,5 +8,5 @@ sys.path.append(".")
 
 export_to_neuroml2("init_model2.hoc", 
                    "../../NeuroML2/init_model2.cell.nml", 
-                   includeBiophysicalProperties=False,
+                   includeBiophysicalProperties=True,
                    known_rev_potentials={"na":60,"k":-90,"ca":140})
