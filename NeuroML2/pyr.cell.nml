@@ -168,6 +168,7 @@
                 <member segment="1"/>
             </segmentGroup>
             <segmentGroup neuroLexId="sao864921383" id="hillock">
+                <property tag="numberInternalDivisions" value="5"/>
                 <member segment="2"/>
                 <member segment="3"/>
                 <member segment="4"/>
@@ -180,6 +181,7 @@
                 <member segment="9"/>
             </segmentGroup>
             <segmentGroup neuroLexId="sao864921383" id="apical">
+                <property tag="numberInternalDivisions" value="5"/>
                 <member segment="10"/>
                 <member segment="11"/>
                 <member segment="12"/>
@@ -191,6 +193,7 @@
                 </inhomogeneousParameter>
             </segmentGroup>
             <segmentGroup neuroLexId="sao864921383" id="iseg">
+                <property tag="numberInternalDivisions" value="5"/>
                 <member segment="16"/>
                 <member segment="17"/>
                 <member segment="18"/>
@@ -199,6 +202,7 @@
                 <member segment="21"/>
             </segmentGroup>
             <segmentGroup neuroLexId="sao864921383" id="tuft">
+                <property tag="numberInternalDivisions" value="2"/>
                 <member segment="22"/>
                 <member segment="23"/>
                 <member segment="24"/>
