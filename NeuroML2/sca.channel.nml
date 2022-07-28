@@ -13,7 +13,7 @@
 
         <gate id="m" type="gateHHrates" instances="2">
             <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="23degC"/>
-            <forwardRate type="HHExpLinearRate" rate="0.209per_ms" scale="9mV" midpoint="-27mV"/>
+            <forwardRate type="HHExpLinearRate" rate="0.209per_ms" scale="3.8mV" midpoint="-27mV"/>
             <reverseRate type="HHExpRate" rate="0.94per_ms" scale="-17mV" midpoint="-75mV"/>
         </gate>
 

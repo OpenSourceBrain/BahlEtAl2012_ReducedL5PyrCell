@@ -10,5 +10,6 @@ x86_64
 /NeuroML2/*png
 /NeuroML2/pyr_single_comp-v.png
 /NeuroML2/init_model2.cell.nml
+/NeuroML2/LEMS_test_sca.xml
 /NeuroML2/pyr.cell.nml
 # *.ipynb
