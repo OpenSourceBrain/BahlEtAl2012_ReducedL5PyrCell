@@ -1,7 +1,7 @@
 Channel information
 ===================
     
-<p style="font-family:arial">Channel information at: T = 37 degC, </p>
+<p style="font-family:arial">Channel information at: T = 37 degC </p>
 
 <div style="border:solid 2px white; padding-left:10px">
 <div>
@@ -41,5 +41,21 @@ Channel information
 </div>
 <div><a href="km.inf.png"><img alt="km steady state" src="km.inf.png" height="250" width="300" style="padding:10px 35px 10px 0px"/></a>
 <a href="km.tau.png"><img alt="km time course" src="km.tau.png" height="250" width="300" style="padding:10px 10px 10px 0px"/></a>
+</div>
+</div>
+<div style="border:solid 2px white; padding-left:10px">
+<div>
+<b>ih</b><br/>
+</div>
+<div><a href="ih.inf.png"><img alt="ih steady state" src="ih.inf.png" height="250" width="300" style="padding:10px 35px 10px 0px"/></a>
+<a href="ih.tau.png"><img alt="ih time course" src="ih.tau.png" height="250" width="300" style="padding:10px 10px 10px 0px"/></a>
+</div>
+</div>
+<div style="border:solid 2px white; padding-left:10px">
+<div>
+<b>sca</b><br/>
+</div>
+<div><a href="sca.inf.png"><img alt="sca steady state" src="sca.inf.png" height="250" width="300" style="padding:10px 35px 10px 0px"/></a>
+<a href="sca.tau.png"><img alt="sca time course" src="sca.tau.png" height="250" width="300" style="padding:10px 10px 10px 0px"/></a>
 </div>
 </div>

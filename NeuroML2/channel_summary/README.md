@@ -109,4 +109,27 @@ Channel information
 <a href="kslow.tau.png"><img alt="kslow time course" src="kslow.tau.png" height="250" width="300" style="padding:10px 10px 10px 0px"/></a>
 </div>
 </div>
+<div style="border:solid 2px white; padding-left:10px">
+<div>
+<b>ih</b><br/>
+<a href="../ih.channel.nml">ih.channel.nml</a>
+     <br/>
+        <b>Ion: hcn</b><br/>
+        <b>
+        <i><code>g = gmax * qq </code></i><br/>
+        </b>
+        </div>
+
+        Deterministic model of kinetics and voltage-dependence of Ih-currents
+                in layer 5 pyramidal neuron, see Kole et al., 2006. Implemented by
+                Stefan Hallermann.
+
+                Added possibility to shift voltage activiation (vshift) and allowed access to gating variables, Armin Bahl 2009
+
+                Predominantly HCN1 / HCN2
+        
+<div><a href="ih.inf.png"><img alt="ih steady state" src="ih.inf.png" height="250" width="300" style="padding:10px 35px 10px 0px"/></a>
+<a href="ih.tau.png"><img alt="ih time course" src="ih.tau.png" height="250" width="300" style="padding:10px 10px 10px 0px"/></a>
+</div>
+</div>
 

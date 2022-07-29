@@ -5,11 +5,11 @@ import sys
 import airspeed
 
 
-chans = ['nat', 'nap', 'kfast', 'kslow', 'km']
+chans = ['nat', 'nap', 'kfast', 'kslow', 'km', 'ih', 'sca']
 
 problematic = []
 
-gates = ['m', 'h', 'n', 'a', 'b', 'b1']
+gates = ['m', 'h', 'n', 'a', 'b', 'b1', 'qq']
 
 temperatures = [37]
 
