@@ -1,0 +1,101 @@
+usegui = 1
+
+{load_file("stdlib.hoc")}
+{load_file("stdgui.hoc")}
+
+
+create Soma
+access Soma
+{ L = diam = 23.1453}
+celsius = 37
+
+
+forall Ra = 82
+forall cm = 2.23041
+
+insert pas
+{ g_pas= 4.85726e-05 }
+{ e_pas= -80.3987 }
+
+insert cad
+// insert sca
+// insert kca
+
+// eca = 140
+// ion_style("ca_ion",0,1,0,0,0)
+
+proc initialiseValues0() {
+
+    forall  v = -65
+
+}
+
+objref fih0
+{fih0 = new FInitializeHandler(0, "initialiseValues0()")}
+
+objref stim1
+
+Soma {
+    stim1 = new IClamp(0.5)
+    stim1.del = 100.0
+    stim1.dur = 500.0
+    stim1.amp = 0.4
+}
+
+tstop = 700
+dt = 0.01
+
+objref v_time
+objref f_time
+
+v_time = new Vector()
+{ v_time.record(&t) }
+//{ v_time.resize(70001) } // false
+f_time = new File()
+
+
+objref Soma_v
+{ Soma_v = new Vector() }
+{ Soma_v.record(&Soma.v(0.5))} 
+objref Soma_ca
+{ Soma_ca = new Vector() }
+{ Soma_ca.record(&Soma.cai(0.5))} 
+
+objref GraphWin_2
+objref GraphWin_3
+
+if (usegui==1) {
+    GraphWin_2 = new Graph(0)
+    {GraphWin_2.size(0, tstop,0,0.005)}
+    {GraphWin_2.view(0, 0, tstop, 0.005, 80, 330, 330, 250)}
+    {
+        GraphWin_2.addexpr("cai", "cai", 1, 1, 0.8, 0.9, 2)
+        graphList[0].append(GraphWin_2)
+    }
+
+    GraphWin_3 = new Graph(0)
+    {GraphWin_3.size(0, tstop,-100,100)}
+    {GraphWin_3.view(0, 70, tstop, 60, 80, 330, 330, 250)}
+    {
+        GraphWin_3.addexpr("eca", "eca", 1, 1, 0.8, 0.9, 2)
+        graphList[0].append(GraphWin_3)
+    }
+}
+
+{run()}
+
+if (usegui==1) {
+    //   This code pops up a simple Run Control
+
+    {
+    xpanel("RunControl", 0)
+    v_init = -60.0
+    xbutton("Init & Run","run()")
+    xbutton("Stop","stoprun=1")
+    t = 0
+    xvalue("t","t", 2 )
+    xvalue("Tstop","tstop", 1,"tstop_changed()", 0, 1 )
+     xvalue("dt","dt", 1,"setdt()", 0, 1 )
+    xpanel(80,80)
+    }
+}
