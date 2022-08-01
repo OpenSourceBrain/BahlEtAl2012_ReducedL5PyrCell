@@ -262,6 +262,7 @@
                 <initMembPotential value="-67mV"/>
             </membraneProperties>
             <intracellularProperties>
+                <species id="ca" concentrationModel="cad" ion="ca" initialConcentration="100e-6 mM" initialExtConcentration="2.5 mM" segmentGroup="tuft"/>
                 <resistivity value="0.082 kohm_cm"/>
             </intracellularProperties>
         </biophysicalProperties>
