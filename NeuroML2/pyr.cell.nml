@@ -2,6 +2,7 @@
     <notes>Layer 5 Pyramidal cell</notes>
     <include href="kca.channel.nml"/>
     <include href="sca.channel.nml"/>
+    <include href="cad.nml"/>
     <include href="pas.channel.nml"/>
     <include href="nat.channel.nml"/>
     <include href="kfast.channel.nml"/>

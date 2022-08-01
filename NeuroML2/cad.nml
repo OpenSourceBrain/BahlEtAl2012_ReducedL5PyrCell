@@ -5,22 +5,6 @@
          id="cad">
 
     <notes>NeuroML 2 implementation of the Ca Pool mechanism
-
-        Differential equations.
-        Simple model of ATPase pump with 3 kinetic constants (Destexhe 92)
-            Cai + P <-> CaP -> Cao + P  (k1,k2,k3)
-        A Michaelis-Menten approximation is assumed, which reduces the complexity of the system to 2 parameters: 
-            kt = <tot enzyme concentration> * k3  -> TIME CONSTANT OF THE PUMP
-            kd = k2/k1 (dissociation constant)    -> EQUILIBRIUM CALCIUM VALUE
-        The values of these parameters are chosen assuming a high affinity of 
-        the pump to calcium and a low transport capacity (cfr. Blaustein, TINS, 11: 438, 1988, and references therein).  
-    
-        Units checked using "modlunit" -> factor 10000 needed in ca entry
-
-        VERSION OF PUMP + DECAY (decay can be viewed as simplified buffering)
-        
-        All variables are range variables
-
         This mechanism was published in:  Destexhe, A. Babloyantz, A. and 
         Sejnowski, TJ.  Ionic mechanisms for intrinsic slow oscillations in
         thalamic relay neurons. Biophys. J. 65: 1538-1552, 1993)
@@ -54,7 +38,7 @@
             <DerivedVariable name="currDensCa" dimension="currentDensity" value="iCa / surfaceArea"/>
             <DerivedVariable name="drive_channel" dimension="none" value="(-currDensCa/(2*Faraday*depth))*(TIME/CONCENTRATION)"/>
 
-            <ConditionalDerivedVariable name="dc" exposure="dc" dimension="none">
+            <ConditionalDerivedVariable name="dc" dimension="none">
                 <Case condition="(drive_channel) .gt. 0" value="drive_channel"/>
                 <Case value="0"/>
             </ConditionalDerivedVariable>
@@ -67,7 +51,7 @@
             </OnStart>
 
         </Dynamics>
-
+        
     </ComponentType>
 
 
