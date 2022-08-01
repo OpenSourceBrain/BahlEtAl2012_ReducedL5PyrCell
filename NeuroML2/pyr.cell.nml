@@ -245,8 +245,8 @@
                 <channelDensity id="nap_soma" ionChannel="nap" condDensity="1.44 S_per_m2" erev="55mV" segmentGroup="soma" ion="na"/>
                 <channelDensity id="km_soma" ionChannel="km" condDensity="10.459916 S_per_m2" erev="-80mV" segmentGroup="soma" ion="k"/>
                 <channelDensity id="ih_basal" ionChannel="ih" condDensity="11.04 S_per_m2" erev="-80mV" segmentGroup="basal" ion="hcn"/>
-                <channelDensityNernst id="tuft_sca" ionChannel="sca" condDensity="0.45423528 S_per_m2" segmentGroup="tuft" ion="ca"/>
-                <channelDensityNernst id="tuft_kca" ionChannel="kca" condDensity="6.15058501 S_per_m2" segmentGroup="tuft" ion="ca"/>
+                <channelDensityNernst id="tuft_kca" ionChannel="kca" condDensity="6.15058501 S_per_m2" segmentGroup="tuft" ion="k"/>
+                <channelDensityGHK2 id="tuft_sca" ionChannel="sca" condDensity="0.45423528 S_per_m2" segmentGroup="tuft" ion="ca"/>
                 <channelDensityNonUniform id="apicaltree_g_kfast" ionChannel="kfast" erev="-80 mV" ion="k">
                     <variableParameter parameter="condDensity" segmentGroup="apicaltree_list">
                         <inhomogeneousValue inhomogeneousParameter="PathLengthOver_apicaltree_list" value="67.197508*exp(-p/20.075497)"/>
