@@ -16,15 +16,19 @@
     
     <Include file="pyr_example_ca_net.nml"/>
     <Include file="pyr_ca_cell.nml"/>
-    <Include file="pas.channel.nml"/>
-    <Include file="cad.nml"/>
-    <Include file="sca.channel.nml"/>
-    <Include file="kca.channel.nml"/>
+    <Include file="../pas.channel.nml"/>
+    <Include file="../cad.nml"/>
+    <Include file="../sca.channel.nml"/>
+    <Include file="../kca.channel.nml"/>
    
     <Simulation id="pyr_single_comp_ca" length="700ms" step="0.005ms" target="single_pyr_cell_network" seed="123">  <!-- Note seed: ensures same random numbers used every run -->
         
         <OutputFile id="output0" fileName="pyr_single_comp_ca.dat">
             <OutputColumn id="pop0[0]_v" quantity="pop0[0]/v"/> 
+        </OutputFile>
+        
+        <OutputFile id="cai" fileName="pyr_single_comp_ca.cai.dat">
+            <OutputColumn id="pop0[0]_cai" quantity="pop0[0]/cai"/> 
         </OutputFile>
         
         <OutputFile id="sca_m" fileName="pyr_single_comp_ca.sca_m.dat">
@@ -33,6 +37,10 @@
         
         <OutputFile id="sca_h" fileName="pyr_single_comp_ca.sca_h.dat">
             <OutputColumn id="pop0[0]_sca_h" quantity="pop0[0]/pyr_b_prop/membraneProperties/soma_sca/sca/h/q"/> 
+        </OutputFile>
+        
+        <OutputFile id="kca_n" fileName="pyr_single_comp_ca.kca_n.dat">
+            <OutputColumn id="pop0[0]_kca_n" quantity="pop0[0]/pyr_b_prop/membraneProperties/soma_kca/kca/n/q"/> 
         </OutputFile>
         
     </Simulation>
