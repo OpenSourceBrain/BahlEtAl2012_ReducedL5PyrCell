@@ -36,7 +36,7 @@
             <StateVariable name="extConcentration" exposure="extConcentration" dimension="concentration"/>
 
             <DerivedVariable name="currDensCa" dimension="currentDensity" value="iCa / surfaceArea"/>
-            <DerivedVariable name="drive_channel" dimension="none" value="(currDensCa/(2*Faraday*depth))*(TIME/CONCENTRATION)"/>
+            <DerivedVariable name="drive_channel" dimension="none" value="-(currDensCa/(2*Faraday*depth))*(TIME/CONCENTRATION)"/>
 
             <!-- <ConditionalDerivedVariable name="dc" dimension="none">
                 <Case condition="(drive_channel) .gt. 0" value="drive_channel"/>
@@ -47,7 +47,7 @@
                 <DerivedVariable variable="drive_channel" value="0"/>
             </OnCondition>
 
-            <TimeDerivative variable="concentration" value="-(drive_channel*(CONCENTRATION/TIME)) + ((concentration - minCai) / decay)"/>
+            <TimeDerivative variable="concentration" value="-(drive_channel*(CONCENTRATION/TIME)) - ((concentration - minCai) / decay)"/>
 
             <OnStart>
                 <StateAssignment variable="concentration" value="initialConcentration"/>

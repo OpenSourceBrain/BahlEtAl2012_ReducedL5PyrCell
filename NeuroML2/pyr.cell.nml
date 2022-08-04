@@ -274,6 +274,12 @@
             </membraneProperties>
             <intracellularProperties>
                 <species id="ca" concentrationModel="cad" ion="ca" initialConcentration="100e-6 mM" initialExtConcentration="2 mM" segmentGroup="tuft"/>
+                <resistivity value="0.082 kohm_cm" segmentGroup="soma"/>
+                <resistivity value="0.082 kohm_cm" segmentGroup="hillock"/>
+                <resistivity value="0.082 kohm_cm" segmentGroup="iseg"/>
+                <resistivity value="0.082 kohm_cm" segmentGroup="axon"/>
+                <resistivity value="0.734 kohm_cm" segmentGroup="basal"/>
+                <resistivity value="0.527 kohm_cm" segmentGroup="tuft"/>
                 <resistivity value="0.3822 kohm_cm" segmentGroup="apical"/>
             </intracellularProperties>
         </biophysicalProperties>

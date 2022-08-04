@@ -15,14 +15,14 @@
         <biophysicalProperties id="pyr_b_prop">
             <membraneProperties>
                 <channelDensity id="pas_channels" ionChannel="pas" condDensity="0.485726 S_per_m2" erev="-80.3987 mV" ion="non_specific"/>
-                <channelDensityGHK2 id="soma_kca" ionChannel="kca" condDensity="6.15058501 S_per_m2" ion="k"/>
-                <channelDensityGHK2 id="soma_sca" ionChannel="sca" condDensity="0.454235280 S_per_m2" ion="ca"/>
+                <channelDensityNernst id="soma_sca" ionChannel="sca" condDensity="0.454235280 S_per_m2" ion="ca"/>
+                <channelDensityNernst id="soma_kca" ionChannel="kca" condDensity="6.15058501 S_per_m2" ion="k"/>
                 <spikeThresh value="-20mV"/>
                 <specificCapacitance value="2.23041 uF_per_cm2"/>
                 <initMembPotential value="-65mV"/>
             </membraneProperties>
             <intracellularProperties>
-                <species id="ca" concentrationModel="cad" ion="ca" initialConcentration="100e-6 mM" initialExtConcentration="2 mM"/>
+                <species id="ca" concentrationModel="cad" ion="ca" initialConcentration="1e-4 mM" initialExtConcentration="2 mM"/>
                 <resistivity value="0.082 kohm_cm"/>
             </intracellularProperties>
         </biophysicalProperties>

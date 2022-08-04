@@ -183,7 +183,7 @@ def set_resistivity(cell, resistivity, group="all"):
     :param group: segment group to modify
     :type group: str
     """
-    cell.biophysical_properties.intracellular_properties.resistivities = [Resistivity(value=resistivity, segment_groups=group)]
+    cell.biophysical_properties.intracellular_properties.resistivities.append(Resistivity(value=resistivity, segment_groups=group))
 
 
 def set_specific_capacitance(cell, spec_cap, group="all"):

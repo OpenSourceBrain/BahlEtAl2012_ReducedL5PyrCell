@@ -23,8 +23,8 @@ insert cad
 insert sca
 { gbar_sca = 0.45423528 } 
 
-// insert kca
-// { gbar_kca = 6.15058501 }
+insert kca
+{ gbar_kca = 6.15058501 }
 // { ek = -80 }
 
 // eca = 140
@@ -117,7 +117,7 @@ objref f_cai
 f_cai = new File()
 { f_cai.wopen("cai.dat") }
 for i=0, Soma_ca.size()-1 {
-   f_cai.printf("%f\t%f\n", v_time.x[i]/1000, Soma_ca.x[i]/1000)
+   f_cai.printf("%f\t%f\n", v_time.x[i]/1000, Soma_ca.x[i])
 }
 { f_cai.close() }
 
@@ -125,7 +125,7 @@ objref f_cao
 f_cao = new File()
 { f_cao.wopen("cao.dat") }
 for i=0, Soma_cao.size()-1 {
-   f_cao.printf("%f\t%f\n", v_time.x[i]/1000, Soma_cao.x[i]/1000)
+   f_cao.printf("%f\t%f\n", v_time.x[i]/1000, Soma_cao.x[i])
 }
 { f_cao.close() }
 

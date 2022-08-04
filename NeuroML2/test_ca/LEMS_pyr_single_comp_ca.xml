@@ -28,7 +28,7 @@
         </OutputFile>
         
         <OutputFile id="cai" fileName="pyr_single_comp_ca.cai.dat">
-            <OutputColumn id="pop0[0]_cai" quantity="pop0[0]/cai"/> 
+            <OutputColumn id="pop0[0]_cai" quantity="pop0[0]/caConc"/> 
         </OutputFile>
         
         <OutputFile id="sca_m" fileName="pyr_single_comp_ca.sca_m.dat">
