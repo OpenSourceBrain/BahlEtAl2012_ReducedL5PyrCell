@@ -245,7 +245,7 @@
                 <channelDensity id="kslow_soma" ionChannel="kslow" condDensity="475.82 S_per_m2" erev="-80mV" segmentGroup="soma" ion="k"/>
                 <channelDensity id="nap_soma" ionChannel="nap" condDensity="1.44 S_per_m2" erev="55mV" segmentGroup="soma" ion="na"/>
                 <channelDensity id="km_soma" ionChannel="km" condDensity="10.459916 S_per_m2" erev="-80mV" segmentGroup="soma" ion="k"/>
-                <channelDensity id="ih_basal" ionChannel="ih" condDensity="11.04 S_per_m2" erev="-80mV" segmentGroup="basal" ion="hcn"/>
+                <channelDensity id="ih_basal" ionChannel="ih" condDensity="11.04 S_per_m2" erev="-47mV" segmentGroup="basal" ion="hcn"/>
                 <channelDensityNernst id="tuft_kca" ionChannel="kca" condDensity="6.15058501 S_per_m2" segmentGroup="tuft" ion="k"/>
                 <channelDensityGHK2 id="tuft_sca" ionChannel="sca" condDensity="0.45423528 S_per_m2" segmentGroup="tuft" ion="ca"/>
                 <channelDensityNonUniform id="apicaltree_g_kfast" ionChannel="kfast" erev="-80 mV" ion="k">
@@ -258,13 +258,23 @@
                         <inhomogeneousValue inhomogeneousParameter="PathLengthOver_apicaltree_list" value="475.820646*exp(-p/37.711817)"/>
                     </variableParameter>
                 </channelDensityNonUniform>
+                <channelDensityNonUniform id="apical_g_nat" ionChannel="nat" erev="55 mV" ion="na">
+                    <variableParameter parameter="condDensity" segmentGroup="apical">
+                        <inhomogeneousValue inhomogeneousParameter="PathLengthOver_apical" value="47.34461*p+236.616175"/>
+                    </variableParameter>
+                </channelDensityNonUniform>
+                <channelDensityNonUniform id="apical_g_ih" ionChannel="ih" erev="-47 mV" ion="hcn">
+                    <variableParameter parameter="condDensity" segmentGroup="apical">
+                        <inhomogeneousValue inhomogeneousParameter="PathLengthOver_apical" value="0.0323896*p"/>
+                    </variableParameter>
+                </channelDensityNonUniform>
                 <specificCapacitance value="2.23041 uF_per_cm2" segmentGroup="axosomatic_list"/>
                 <specificCapacitance value="1.750419 uF_per_cm2" segmentGroup="apicaltree_list"/>
                 <initMembPotential value="-67mV"/>
             </membraneProperties>
             <intracellularProperties>
-                <species id="ca" concentrationModel="cad" ion="ca" initialConcentration="100e-6 mM" initialExtConcentration="2.5 mM" segmentGroup="tuft"/>
-                <resistivity value="0.082 kohm_cm"/>
+                <species id="ca" concentrationModel="cad" ion="ca" initialConcentration="100e-6 mM" initialExtConcentration="2 mM" segmentGroup="tuft"/>
+                <resistivity value="0.3822 kohm_cm" segmentGroup="apical"/>
             </intracellularProperties>
         </biophysicalProperties>
     </cell>
