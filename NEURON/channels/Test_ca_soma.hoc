@@ -21,10 +21,10 @@ insert cad
 // { eca = 140 } 
 
 insert sca
-{ gbar_sca = 0.45423528 } 
+{ gbar_sca = 0.0045423528 } 
 
-insert kca
-{ gbar_kca = 6.15058501 }
+// insert kca
+// { gbar_kca = 6.15058501 }
 // { ek = -80 }
 
 // eca = 140
@@ -69,6 +69,10 @@ objref Soma_ca
 objref Soma_cao
 { Soma_cao = new Vector() }
 { Soma_cao.record(&Soma.cao(0.5))} 
+
+objref Soma_ica
+{ Soma_ica = new Vector() }
+{ Soma_ica.record(&Soma.ica(0.5))} 
 
 
 objref GraphWin_0
@@ -128,6 +132,14 @@ for i=0, Soma_cao.size()-1 {
    f_cao.printf("%f\t%f\n", v_time.x[i]/1000, Soma_cao.x[i])
 }
 { f_cao.close() }
+
+objref f_ica
+f_ica = new File()
+{ f_ica.wopen("ica.dat") }
+for i=0, Soma_ica.size()-1 {
+   f_ica.printf("%f\t%f\n", v_time.x[i]/1000, Soma_ica.x[i])
+}
+{ f_ica.close() }
 
 if (usegui==1) {
     //   This code pops up a simple Run Control

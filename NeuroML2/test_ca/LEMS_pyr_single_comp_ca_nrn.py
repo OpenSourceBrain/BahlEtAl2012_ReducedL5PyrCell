@@ -13,7 +13,7 @@ Components:
     null (Type: notes)
     kca (Type: ionChannelHH:  conductance=1.0E-11 (SI conductance))
     pyr_cell (Type: cell)
-    pg (Type: pulseGenerator:  delay=0.1 (SI time) duration=0.5 (SI time) amplitude=4.0000000000000007E-10 (SI current))
+    pg (Type: pulseGenerator:  delay=0.1 (SI time) duration=0.5 (SI time) amplitude=1.0000000000000002E-10 (SI current))
     single_pyr_cell_network (Type: networkWithTemperature:  temperature=310.15 (SI temperature))
     pyr_single_comp_ca (Type: Simulation:  length=0.7000000000000001 (SI time) step=5.0E-6 (SI time))
 
@@ -62,9 +62,9 @@ class NeuronSimulation():
         # ######################   Population: pop0
         print("Population pop0 contains 1 instance(s) of component: pyr_cell of type: cell")
 
-        print("Setting the default initial concentrations for ca (used in pyr_cell) to 1.0E-4 mM (internal), 2.5 mM (external)")
+        print("Setting the default initial concentrations for ca (used in pyr_cell) to 1.0E-4 mM (internal), 2.0 mM (external)")
         h("cai0_ca_ion = 1.0E-4")
-        h("cao0_ca_ion = 2.5")
+        h("cao0_ca_ion = 2.0")
 
         h.load_file("pyr_cell.hoc")
         a_pop0 = []
@@ -100,12 +100,40 @@ class NeuronSimulation():
 
 
 
+        # ######################   File to save: pyr_single_comp_ca.sca_h.dat (sca_h)
+        # Column: pop0[0]/pyr_b_prop/membraneProperties/soma_sca/sca/h/q
+        h(' objectvar v_pop0_0__sca_h_sca_h ')
+        h(' { v_pop0_0__sca_h_sca_h = new Vector() } ')
+        h(' { v_pop0_0__sca_h_sca_h.record(&a_pop0[0].soma.h_q_sca(0.5)) } ')
+        h.v_pop0_0__sca_h_sca_h.resize((h.tstop * h.steps_per_ms) + 1)
+
+        # ######################   File to save: pyr_single_comp_ca.cai.dat (cai)
+        # Column: pop0[0]/caConc
+        h(' objectvar v_pop0_0__cai_cai ')
+        h(' { v_pop0_0__cai_cai = new Vector() } ')
+        h(' { v_pop0_0__cai_cai.record(&a_pop0[0].soma.cai(0.5)) } ')
+        h.v_pop0_0__cai_cai.resize((h.tstop * h.steps_per_ms) + 1)
+
+        # ######################   File to save: pyr_single_comp_ca.kca_n.dat (kca_n)
+        # Column: pop0[0]/pyr_b_prop/membraneProperties/soma_kca/kca/n/q
+        h(' objectvar v_pop0_0__kca_n_kca_n ')
+        h(' { v_pop0_0__kca_n_kca_n = new Vector() } ')
+        h(' { v_pop0_0__kca_n_kca_n.record(&a_pop0[0].soma.n_q_kca(0.5)) } ')
+        h.v_pop0_0__kca_n_kca_n.resize((h.tstop * h.steps_per_ms) + 1)
+
         # ######################   File to save: time.dat (time)
         # Column: time
         h(' objectvar v_time ')
         h(' { v_time = new Vector() } ')
         h(' { v_time.record(&t) } ')
         h.v_time.resize((h.tstop * h.steps_per_ms) + 1)
+
+        # ######################   File to save: pyr_single_comp_ca.sca_m.dat (sca_m)
+        # Column: pop0[0]/pyr_b_prop/membraneProperties/soma_sca/sca/m/q
+        h(' objectvar v_pop0_0__sca_m_sca_m ')
+        h(' { v_pop0_0__sca_m_sca_m = new Vector() } ')
+        h(' { v_pop0_0__sca_m_sca_m.record(&a_pop0[0].soma.m_q_sca(0.5)) } ')
+        h.v_pop0_0__sca_m_sca_m.resize((h.tstop * h.steps_per_ms) + 1)
 
         # ######################   File to save: pyr_single_comp_ca.dat (output0)
         # Column: pop0[0]/v
@@ -192,6 +220,50 @@ class NeuronSimulation():
             f_time_f2.write('%f'% py_v_time[i])  # Save in SI units...
         f_time_f2.close()
         print("Saved data to: time.dat")
+
+        # ######################   File to save: pyr_single_comp_ca.sca_h.dat (sca_h)
+        py_v_pop0_0__sca_h_sca_h = [ float(x ) for x in h.v_pop0_0__sca_h_sca_h.to_python() ]  # Convert to Python list for speed, variable has dim: none
+
+        f_sca_h_f2 = open('pyr_single_comp_ca.sca_h.dat', 'w')
+        num_points = len(py_v_time)  # Simulation may have been stopped before tstop...
+
+        for i in range(num_points):
+            f_sca_h_f2.write('%e\t%e\t\n' % (py_v_time[i], py_v_pop0_0__sca_h_sca_h[i], ))
+        f_sca_h_f2.close()
+        print("Saved data to: pyr_single_comp_ca.sca_h.dat")
+
+        # ######################   File to save: pyr_single_comp_ca.cai.dat (cai)
+        py_v_pop0_0__cai_cai = [ float(x ) for x in h.v_pop0_0__cai_cai.to_python() ]  # Convert to Python list for speed, variable has dim: concentration
+
+        f_cai_f2 = open('pyr_single_comp_ca.cai.dat', 'w')
+        num_points = len(py_v_time)  # Simulation may have been stopped before tstop...
+
+        for i in range(num_points):
+            f_cai_f2.write('%e\t%e\t\n' % (py_v_time[i], py_v_pop0_0__cai_cai[i], ))
+        f_cai_f2.close()
+        print("Saved data to: pyr_single_comp_ca.cai.dat")
+
+        # ######################   File to save: pyr_single_comp_ca.kca_n.dat (kca_n)
+        py_v_pop0_0__kca_n_kca_n = [ float(x ) for x in h.v_pop0_0__kca_n_kca_n.to_python() ]  # Convert to Python list for speed, variable has dim: none
+
+        f_kca_n_f2 = open('pyr_single_comp_ca.kca_n.dat', 'w')
+        num_points = len(py_v_time)  # Simulation may have been stopped before tstop...
+
+        for i in range(num_points):
+            f_kca_n_f2.write('%e\t%e\t\n' % (py_v_time[i], py_v_pop0_0__kca_n_kca_n[i], ))
+        f_kca_n_f2.close()
+        print("Saved data to: pyr_single_comp_ca.kca_n.dat")
+
+        # ######################   File to save: pyr_single_comp_ca.sca_m.dat (sca_m)
+        py_v_pop0_0__sca_m_sca_m = [ float(x ) for x in h.v_pop0_0__sca_m_sca_m.to_python() ]  # Convert to Python list for speed, variable has dim: none
+
+        f_sca_m_f2 = open('pyr_single_comp_ca.sca_m.dat', 'w')
+        num_points = len(py_v_time)  # Simulation may have been stopped before tstop...
+
+        for i in range(num_points):
+            f_sca_m_f2.write('%e\t%e\t\n' % (py_v_time[i], py_v_pop0_0__sca_m_sca_m[i], ))
+        f_sca_m_f2.close()
+        print("Saved data to: pyr_single_comp_ca.sca_m.dat")
 
         # ######################   File to save: pyr_single_comp_ca.dat (output0)
         py_v_pop0_0__v_output0 = [ float(x  / 1000.0) for x in h.v_pop0_0__v_output0.to_python() ]  # Convert to Python list for speed, variable has dim: voltage
