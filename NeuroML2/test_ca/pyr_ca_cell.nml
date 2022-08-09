@@ -15,7 +15,7 @@
         <biophysicalProperties id="pyr_b_prop">
             <membraneProperties>
                 <channelDensity id="pas_channels" ionChannel="pas" condDensity="0.485726 S_per_m2" erev="-80.3987 mV" ion="non_specific"/>
-                <channelDensityNernst id="soma_sca" ionChannel="sca" condDensity="0.00454235280 S_per_m2" ion="ca"/>
+                <channelDensity id="soma_sca" ionChannel="sca" condDensity="0.0045423528 S_per_m2" erev="140mV" ion="ca"/>
                 <spikeThresh value="-20mV"/>
                 <specificCapacitance value="2.23041 uF_per_cm2"/>
                 <initMembPotential value="-65mV"/>

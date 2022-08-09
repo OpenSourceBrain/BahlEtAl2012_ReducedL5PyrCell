@@ -7,7 +7,7 @@ usegui = 1
 create Soma
 access Soma
 { L = diam = 23.1453}
-celsius = 37
+celsius = 23
 
 
 forall Ra = 82
@@ -19,16 +19,16 @@ insert pas
 
 insert cad
 // { eca = 140 } 
+eca = 140
+ion_style("ca_ion",0,1,0,0,0)
 
 insert sca
 { gbar_sca = 0.0045423528 } 
+// { gbar_sca = 0}
 
 // insert kca
 // { gbar_kca = 6.15058501 }
 // { ek = -80 }
-
-// eca = 140
-// ion_style("ca_ion",0,1,0,0,0)
 
 proc initialiseValues0() {
 
@@ -98,13 +98,13 @@ if (usegui==1) {
         graphList[0].append(GraphWin_2)
     }
 
-    GraphWin_3 = new Graph(0)
-    {GraphWin_3.size(0, tstop,-100,100)}
-    {GraphWin_3.view(0, 70, tstop, 60, 80, 330, 330, 250)}
-    {
-        GraphWin_3.addexpr("eca", "eca", 1, 1, 0.8, 0.9, 2)
-        graphList[0].append(GraphWin_3)
-    }
+    // GraphWin_3 = new Graph(0)
+    // {GraphWin_3.size(0, tstop,-100,100)}
+    // {GraphWin_3.view(0, 70, tstop, 60, 80, 330, 330, 250)}
+    // {
+    //     GraphWin_3.addexpr("eca", "eca", 1, 1, 0.8, 0.9, 2)
+    //     graphList[0].append(GraphWin_3)
+    // }
 
     GraphWin_4 = new Graph(0)
     {GraphWin_4.size(0, tstop,-0.005,0.0)}

@@ -10,7 +10,7 @@
         
         <notes>NeuroML2 file automatically generated from NMODL file: ./NEURON/channels/SlowCa.mod</notes>
         
-
+        <q10ConductanceScaling q10Factor="2.3" experimentalTemp="23degC"/>
         <gate id="m" type="gateHHrates" instances="2">
             <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="23degC"/>
             <forwardRate type="HHExpLinearRate" rate="0.209per_ms" scale="3.8mV" midpoint="-27mV"/>

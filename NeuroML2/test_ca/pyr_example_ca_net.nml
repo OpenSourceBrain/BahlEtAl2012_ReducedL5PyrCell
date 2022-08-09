@@ -4,7 +4,7 @@
     <pulseGenerator id="pg" delay="100ms" duration="500ms" amplitude="0.1nA">
         <notes>Simple pulse generator</notes>
     </pulseGenerator>
-    <network id="single_pyr_cell_network" type="networkWithTemperature" temperature="37 degC">
+    <network id="single_pyr_cell_network" type="networkWithTemperature" temperature="23 degC">
         <population id="pop0" component="pyr_cell" size="1">
             <notes>A population for pyramidal cell</notes>
         </population>
