@@ -14,4 +14,4 @@ x86_64
 /NeuroML2/pyr.cell.nml
 /NeuroML2/test_ca/*.png
 *.nml
-# *.ipynb
+*.ipynb
