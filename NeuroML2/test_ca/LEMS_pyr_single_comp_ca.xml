@@ -47,6 +47,10 @@
             <OutputColumn id="pop0[0]_sca_h" quantity="pop0[0]/pyr_b_prop/membraneProperties/soma_sca/sca/h/q"/> 
         </OutputFile>
         
+        <OutputFile id="kca_n" fileName="pyr_single_comp_ca.kca_n.dat">
+            <OutputColumn id="pop0[0]_kca_n" quantity="pop0[0]/pyr_b_prop/membraneProperties/soma_kca/kca/n/q"/> 
+        </OutputFile>
+        
     </Simulation>
 
 </Lems>

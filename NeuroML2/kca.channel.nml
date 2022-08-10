@@ -27,7 +27,7 @@
         <Dynamics>
             <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
             <DerivedVariable name="ca_conc" dimension="none" value="caConc / CONC_SCALE"/>
-            <DerivedVariable name="r" exposure="r" dimension="per_time" value="(0.01*ca_conc) / TIME_SCALE"/>
+            <DerivedVariable name="r" exposure="r" dimension="per_time" value="(10000*ca_conc) / TIME_SCALE"/>
         </Dynamics>
 
     </ComponentType>
