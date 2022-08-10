@@ -72,6 +72,7 @@ objref Soma_ica
 { Soma_ica = new Vector() }
 { Soma_ica.record(&Soma.ica(0.5))} 
 
+objref f_Soma_v
 
 objref GraphWin_0
 objref GraphWin_2
@@ -124,6 +125,15 @@ if (usegui==1) {
 }
 
 {run()}
+
+
+objref f_Soma_si
+f_Soma_si = new File()
+{ f_Soma_si.wopen("Soma_ca.si.dat") }
+for i=0, Soma_v.size()-1 {
+   f_Soma_si.printf("%f\t%f\n", v_time.x[i]/1000, Soma_v.x[i]/1000)
+}
+{ f_Soma_si.close() }
 
 objref f_cai
 f_cai = new File()

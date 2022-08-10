@@ -1,0 +1,6 @@
+system: Testing a single compartment cell (soma) with ca dependent channels
+
+experiments:
+  Current clamp:
+    expected:
+      spike times: [122.462, 484.438]

@@ -13,5 +13,7 @@ x86_64
 /NeuroML2/LEMS_test_sca.xml
 /NeuroML2/pyr.cell.nml
 /NeuroML2/test_ca/*.png
+/NeuroML2/test_ca/*.mod
+/NeuroML2/test_ca/*.hoc
 *.nml
 *.ipynb
