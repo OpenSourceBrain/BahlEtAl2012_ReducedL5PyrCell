@@ -27,17 +27,17 @@
             <OutputColumn id="pop0[0]_v" quantity="pop0[0]/v"/> 
         </OutputFile>
         
-        <OutputFile id="cai" fileName="pyr_single_comp_ca.cai.dat">
+        <!-- <OutputFile id="cai" fileName="pyr_single_comp_ca.cai.dat">
             <OutputColumn id="pop0[0]_cai" quantity="pop0[0]/caConc"/> 
-        </OutputFile>
+        </OutputFile> -->
         
-        <OutputFile id="ica" fileName="pyr_single_comp_ca.ica.dat">
+        <!-- <OutputFile id="ica" fileName="pyr_single_comp_ca.ica.dat">
             <OutputColumn id="pop0[0]_ica" quantity="pop0[0]/iCa"/> 
-        </OutputFile>
+        </OutputFile> -->
         
-        <OutputFile id="sca_eca" fileName="pyr_single_comp_ca.sca_eca.dat">
+        <!-- <OutputFile id="sca_eca" fileName="pyr_single_comp_ca.sca_eca.dat">
             <OutputColumn id="pop0[0]_sca_eca" quantity="pop0[0]/pyr_b_prop/membraneProperties/soma_sca/erev"/> 
-        </OutputFile>
+        </OutputFile> -->
         
         <OutputFile id="sca_m" fileName="pyr_single_comp_ca.sca_m.dat">
             <OutputColumn id="pop0[0]_sca_m" quantity="pop0[0]/pyr_b_prop/membraneProperties/soma_sca/sca/m/q"/> 
