@@ -33,7 +33,9 @@ import sys
 
 import hashlib
 h = neuron.h
-h.load_file("nrngui.hoc")
+h.load_file("stdlib.hoc")
+
+h.load_file("stdgui.hoc")
 
 h("objref p")
 h("p = new PythonObject()")
@@ -107,13 +109,6 @@ class NeuronSimulation():
         h(' { v_pop0_0__sca_h_sca_h.record(&a_pop0[0].soma.h_q_sca(0.5)) } ')
         h.v_pop0_0__sca_h_sca_h.resize((h.tstop * h.steps_per_ms) + 1)
 
-        # ######################   File to save: pyr_single_comp_ca.cai.dat (cai)
-        # Column: pop0[0]/caConc
-        h(' objectvar v_pop0_0__cai_cai ')
-        h(' { v_pop0_0__cai_cai = new Vector() } ')
-        h(' { v_pop0_0__cai_cai.record(&a_pop0[0].soma.cai(0.5)) } ')
-        h.v_pop0_0__cai_cai.resize((h.tstop * h.steps_per_ms) + 1)
-
         # ######################   File to save: pyr_single_comp_ca.kca_n.dat (kca_n)
         # Column: pop0[0]/pyr_b_prop/membraneProperties/soma_kca/kca/n/q
         h(' objectvar v_pop0_0__kca_n_kca_n ')
@@ -150,9 +145,6 @@ class NeuronSimulation():
         self.setup_time = setup_end - self.setup_start
         print("Setting up the network to simulate took %f seconds"%(self.setup_time))
 
-        h.nrncontrolmenu()
-
-
     def run(self):
 
         self.initialized = True
@@ -163,7 +155,7 @@ class NeuronSimulation():
             h.run()
         except Exception as e:
             print("Exception running NEURON: %s" % (e))
-            return
+            quit()
 
 
         self.sim_end = time.time()
@@ -174,7 +166,7 @@ class NeuronSimulation():
             self.save_results()
         except Exception as e:
             print("Exception saving results of NEURON simulation: %s" % (e))
-            return
+            quit()
 
 
     def advance(self):
@@ -232,17 +224,6 @@ class NeuronSimulation():
         f_sca_h_f2.close()
         print("Saved data to: pyr_single_comp_ca.sca_h.dat")
 
-        # ######################   File to save: pyr_single_comp_ca.cai.dat (cai)
-        py_v_pop0_0__cai_cai = [ float(x ) for x in h.v_pop0_0__cai_cai.to_python() ]  # Convert to Python list for speed, variable has dim: concentration
-
-        f_cai_f2 = open('pyr_single_comp_ca.cai.dat', 'w')
-        num_points = len(py_v_time)  # Simulation may have been stopped before tstop...
-
-        for i in range(num_points):
-            f_cai_f2.write('%e\t%e\t\n' % (py_v_time[i], py_v_pop0_0__cai_cai[i], ))
-        f_cai_f2.close()
-        print("Saved data to: pyr_single_comp_ca.cai.dat")
-
         # ######################   File to save: pyr_single_comp_ca.kca_n.dat (kca_n)
         py_v_pop0_0__kca_n_kca_n = [ float(x ) for x in h.v_pop0_0__kca_n_kca_n.to_python() ]  # Convert to Python list for speed, variable has dim: none
 
@@ -281,6 +262,9 @@ class NeuronSimulation():
         print("Finished saving results in %f seconds"%(save_time))
 
         print("Done")
+
+        quit()
+
 
 if __name__ == '__main__':
 
