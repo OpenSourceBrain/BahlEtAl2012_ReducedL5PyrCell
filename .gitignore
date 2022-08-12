@@ -17,3 +17,4 @@ x86_64
 /NeuroML2/test_ca/*.hoc
 *.nml
 *.ipynb
+*_nrn.py
