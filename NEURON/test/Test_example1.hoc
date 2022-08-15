@@ -35,8 +35,8 @@ if (usegui==1) {
     {GraphWin_0.view(0, -110.0, tstop, 160.0, 80, 330, 330, 250)}
     {
         GraphWin_0.addexpr("soma.v", "soma.v(0.5)", 1, 1, 0.8, 0.9, 2)
-      //   GraphWin_0.addexpr("apical.v", "apical.v(0.5)", 2, 1, 0.8, 0.9, 2)
-      //   GraphWin_0.addexpr("tuft.v", "tuft.v(0.5)", 3, 1, 0.8, 0.9, 2)
+        GraphWin_0.addexpr("apical.v", "apical.v(0.5)", 2, 1, 0.8, 0.9, 2)
+        GraphWin_0.addexpr("tuft.v", "tuft.v(0.5)", 3, 1, 0.8, 0.9, 2)
         graphList[0].append(GraphWin_0)
     }
 }
