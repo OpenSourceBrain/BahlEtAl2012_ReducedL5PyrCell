@@ -15,7 +15,7 @@ x86_64
 /NeuroML2/test_ca/*.png
 /NeuroML2/test_ca/*.mod
 /NeuroML2/test_ca/*.hoc
-*.nml
 *.ipynb
 *_nrn.py
 *_netpyne.py
+NET_*.net.nml

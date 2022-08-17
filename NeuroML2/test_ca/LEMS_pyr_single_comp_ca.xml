@@ -14,7 +14,7 @@
     <Include file="Networks.xml"/>
     <Include file="Simulation.xml"/>
 
-    <Include file="pyr_example_ca_net.nml"/>
+    <Include file="pyr_example_ca.net.nml"/>
     <Include file="pyr_ca_cell.nml"/>
     <Include file="../pas.channel.nml"/>
     <Include file="../cad.nml"/>

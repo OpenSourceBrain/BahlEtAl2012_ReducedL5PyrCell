@@ -188,7 +188,7 @@ def create_network():
     """
     net_doc = NeuroMLDocument(id="network",
                               notes="Pyramidal cell network")
-    net_doc_fn = "pyr_example_net.nml"
+    net_doc_fn = "pyr_example.net.nml"
     net_doc.includes.append(IncludeType(href=create_cell()))
     # Create a population: convenient to create many cells of the same type
     pop = Population(id="pop0", notes="A population for pyramidal cell", component="pyr_cell", size=1)
