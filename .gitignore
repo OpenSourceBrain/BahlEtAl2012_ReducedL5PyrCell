@@ -18,3 +18,4 @@ x86_64
 *.nml
 *.ipynb
 *_nrn.py
+*_netpyne.py
