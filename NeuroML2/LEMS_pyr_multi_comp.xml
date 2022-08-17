@@ -17,6 +17,12 @@
     <Include file="pyr_multi_comp_net.nml"/>
     <Include file="pyr.cell.nml"/>
     <Include file="pas.channel.nml"/>
+    <Include file="nat.channel.nml"/>
+    <Include file="kfast.channel.nml"/>
+    <Include file="kslow.channel.nml"/>
+    <Include file="nap.channel.nml"/>
+    <Include file="IKM.channel.nml"/>
+    <Include file="ih.channel.nml"/>
    
     <Simulation id="pyr_multi_comp" length="700ms" step="0.005ms" target="single_pyr_cell_network" seed="123">  <!-- Note seed: ensures same random numbers used every run -->
         
@@ -30,6 +36,10 @@
         
         <OutputFile id="output2" fileName="pyr_multi_comp_tuft.dat">
             <OutputColumn id="pop0[0]_tuft_v" quantity="pop0/0/pyr/10/v"/> 
+        </OutputFile>
+        
+        <OutputFile id="ih_basal" fileName="pyr_multi_comp.ih_basal.dat">
+            <OutputColumn id="pop0[0]_ih_basal" quantity="pop0/0/pyr/2/biophys/membraneProperties/ih_basal/ih/qq/q"/> 
         </OutputFile>
         
     </Simulation>

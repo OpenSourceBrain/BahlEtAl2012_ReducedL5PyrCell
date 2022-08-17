@@ -1,6 +1,12 @@
 <neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2.3.xsd" id="cell">
     <notes>Layer 5 Pyramidal cell</notes>
     <include href="pas.channel.nml"/>
+    <include href="nat.channel.nml"/>
+    <include href="kfast.channel.nml"/>
+    <include href="kslow.channel.nml"/>
+    <include href="nap.channel.nml"/>
+    <include href="IKM.channel.nml"/>
+    <include href="ih.channel.nml"/>
     <cell id="pyr">
         <morphology id="morphology">
             <segment id="0" name="Seg0_soma">
@@ -132,6 +138,12 @@
             <membraneProperties>
                 <channelDensity id="axosomatic_gpas" ionChannel="pas" condDensity="0.485726 S_per_m2" erev="-80.3987 mV" segmentGroup="axosomatic_list" ion="non_specific"/>
                 <channelDensity id="apicaltree_gpas" ionChannel="pas" condDensity="0.381196 S_per_m2" erev="-80.3987 mV" segmentGroup="apicaltree_list" ion="non_specific"/>
+                <channelDensity id="nat_soma" ionChannel="nat" condDensity="236.616175 S_per_m2" erev="55mV" segmentGroup="soma_group" ion="na"/>
+                <channelDensity id="kfast_soma" ionChannel="kfast" condDensity="67.197508 S_per_m2" erev="-80mV" segmentGroup="soma_group" ion="k"/>
+                <channelDensity id="kslow_soma" ionChannel="kslow" condDensity="475.82 S_per_m2" erev="-80mV" segmentGroup="soma_group" ion="k"/>
+                <channelDensity id="nap_soma" ionChannel="nap" condDensity="1.44 S_per_m2" erev="55mV" segmentGroup="soma_group" ion="na"/>
+                <channelDensity id="km_soma" ionChannel="km" condDensity="10.459916 S_per_m2" erev="-80mV" segmentGroup="soma_group" ion="k"/>
+                <channelDensity id="ih_basal" ionChannel="ih" condDensity="11.04 S_per_m2" erev="-47mV" segmentGroup="basal_group" ion="hcn"/>
                 <spikeThresh value="-20mV"/>
                 <specificCapacitance value="2.23041 uF_per_cm2" segmentGroup="axosomatic_list"/>
                 <specificCapacitance value="1.750419 uF_per_cm2" segmentGroup="apicaltree_list"/>
