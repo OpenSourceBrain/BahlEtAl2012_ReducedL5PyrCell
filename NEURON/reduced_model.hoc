@@ -45,26 +45,26 @@ forall {
 	cm = 1.0
 }
 
-// forsec ih_list {
-// 	insert ih
-// 	ehd_ih = -47
-// }
+forsec ih_list {
+	insert ih
+	ehd_ih = -47
+}
 
-// forsec nat_list {
-// 	insert nat
-// 	ena = 55
-// 	vshift_nat = 10
-// }
+forsec nat_list {
+	insert nat
+	ena = 55
+	vshift_nat = 10
+}
 
-// forsec kfast_list {
-// 	insert kfast
-// 	ek = -80
-// }
+forsec kfast_list {
+	insert kfast
+	ek = -80
+}
 
-// forsec kslow_list {
-// 	insert kslow
-// 	ek = -80
-// }
+forsec kslow_list {
+	insert kslow
+	ek = -80
+}
 
 // tuft {
 // 	insert cad
@@ -75,8 +75,8 @@ forall {
 // 	ion_style("ca_ion",0,1,0,0,0)
 // }
 
-// soma insert nap
-// soma insert km
+soma insert nap
+soma insert km
 
 // Rm_axosomatic = 15000
 Rm_axosomatic = 20587.734598

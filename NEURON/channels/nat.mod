@@ -89,7 +89,7 @@ ASSIGNED {
 STATE { m h }
 
 INITIAL { 
-	trates(v-vshift-vshift2)
+	trates(v-vshift_nat-vshift2)
 	m = minf
 	h = hinf
 }
