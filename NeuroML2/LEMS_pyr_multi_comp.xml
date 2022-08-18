@@ -16,6 +16,9 @@
     
     <Include file="pyr_multi_comp_net.nml"/>
     <Include file="pyr.cell.nml"/>
+    <Include file="kca.channel.nml"/>
+    <Include file="sca.channel.nml"/>
+    <Include file="cad.nml"/>
     <Include file="nat.channel.nml"/>
     <Include file="pas.channel.nml"/>
     <Include file="kfast.channel.nml"/>
@@ -27,13 +30,9 @@
     <Simulation id="pyr_multi_comp" length="700ms" step="0.005ms" target="single_pyr_cell_network" seed="123">  <!-- Note seed: ensures same random numbers used every run -->
         
         <OutputFile id="output0" fileName="pyr_multi_comp.dat">
-            <OutputColumn id="pop0[0]_v" quantity="pop0[0]/v"/> 
-            <OutputColumn id="pop0[0]_apical_v" quantity="pop0/0/pyr/6/v"/> 
-            <OutputColumn id="pop0[0]_tuft_v" quantity="pop0/0/pyr/10/v"/> 
-        </OutputFile>
-        
-        <OutputFile id="output1" fileName="pyr_multi_comp.channels_q.dat">
-            <OutputColumn id="pop0[0]_ih_basal" quantity="pop0/0/pyr/2/biophys/membraneProperties/ih_basal/ih/qq/q"/> 
+            <OutputColumn id="pop0[0]_soma_v" quantity="pop0/0/pyr/0/v"/> 
+            <OutputColumn id="pop0[0]_apical_v" quantity="pop0/0/pyr/13/v"/> 
+            <OutputColumn id="pop0[0]_tuft_v" quantity="pop0/0/pyr/23/v"/> 
         </OutputFile>
         
     </Simulation>
