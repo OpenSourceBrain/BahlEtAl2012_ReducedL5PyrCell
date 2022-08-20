@@ -61,7 +61,7 @@
         <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
         <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
         <Requirement name="vShift" dimension="voltage"/>
-
+        
         <Dynamics>
             <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
             <DerivedVariable name="VT" dimension="none" value="(vShift / VOLT_SCALE)"/>

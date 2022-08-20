@@ -257,12 +257,12 @@
                 <channelDensity id="nap_soma" ionChannel="nap" condDensity="1.44 S_per_m2" erev="55mV" segmentGroup="soma_group" ion="na"/>
                 <channelDensity id="km_soma" ionChannel="km" condDensity="10.459916 S_per_m2" erev="-80mV" segmentGroup="soma_group" ion="k"/>
                 <channelDensity id="ih_basal" ionChannel="ih" condDensity="11.04 S_per_m2" erev="-47mV" segmentGroup="basal_group" ion="hcn"/>
-                <channelDensity id="tuft_sca" ionChannel="sca" condDensity="0.45423528 S_per_m2" erev="140mV" segmentGroup="tuft_group" ion="ca"/>
                 <channelDensity id="tuft_kca" ionChannel="kca" condDensity="6.15058501 S_per_m2" erev="-80mV" segmentGroup="tuft_group" ion="k"/>
                 <channelDensityVShift id="nat_soma" ionChannel="nat" condDensity="236.616175 S_per_m2" erev="55 mV" segmentGroup="soma_group" ion="na" vShift="10mV"/>
                 <channelDensityVShift id="nat_hillock" ionChannel="nat" condDensity="9512.289205 S_per_m2" erev="55 mV" segmentGroup="hillock_group" ion="na" vShift="10mV"/>
                 <channelDensityVShift id="nat_iseg" ionChannel="nat" condDensity="13326.766938 S_per_m2" erev="55 mV" segmentGroup="iseg_group" ion="na" vShift="-0.612583mV"/>
                 <channelDensityVShift id="nat_tuft" ionChannel="nat" condDensity="47.82 S_per_m2" erev="55 mV" segmentGroup="tuft_group" ion="na" vShift="10 mV"/>
+                <channelDensityVShift id="tuft_sca" ionChannel="sca" condDensity="0.45423528 S_per_m2" erev="140 mV" segmentGroup="tuft_group" ion="ca" vShift="7.19485311 mV"/>
                 <spikeThresh value="-20mV"/>
                 <specificCapacitance value="2.23041 uF_per_cm2" segmentGroup="axosomatic_list"/>
                 <specificCapacitance value="1.750419 uF_per_cm2" segmentGroup="apicaltree_list"/>
