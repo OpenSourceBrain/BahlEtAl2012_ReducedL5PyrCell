@@ -19,3 +19,5 @@ x86_64
 *_nrn.py
 *_netpyne.py
 NET_*.net.nml
+*.channel.nml
+

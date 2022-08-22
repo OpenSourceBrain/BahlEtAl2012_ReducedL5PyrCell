@@ -14,7 +14,7 @@
     <Include file="Networks.xml"/>
     <Include file="Simulation.xml"/>
     
-    <Include file="pyr_multi_comp_net.nml"/>
+    <Include file="pyr_multi_comp.net.nml"/>
     <Include file="pyr.cell.nml"/>
     <Include file="kca.channel.nml"/>
     <Include file="sca.channel.nml"/>
