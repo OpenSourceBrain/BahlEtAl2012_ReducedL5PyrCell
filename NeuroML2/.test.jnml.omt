@@ -14,4 +14,4 @@ experiments:
         spike detection:
           method: threshold
           threshold: -30
-        tolerance: 0.00204
+        tolerance: 0.0020328132466606546

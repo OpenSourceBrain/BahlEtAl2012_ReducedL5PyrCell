@@ -37,29 +37,29 @@ def main():
 
     # Recording information from the simulation
     simulation.create_output_file(id="output0", file_name=sim_id + ".dat")
-    simulation.add_column_to_output_file("output0", column_id="pop0[0]_v", quantity="pop0[0]/v")
+    simulation.add_column_to_output_file("output0", column_id="pop0_0_v", quantity="pop0[0]/v")
 
     # Recording information from the simulation
     simulation.create_output_file(id="na_m", file_name=sim_id + ".na_m.dat")
-    simulation.add_column_to_output_file("na_m", column_id="pop0[0]_na_m", quantity="pop0[0]/pyr_b_prop/membraneProperties/nat_channels/nat/m/q")
+    simulation.add_column_to_output_file("na_m", column_id="pop0_0_na_m", quantity="pop0[0]/pyr_b_prop/membraneProperties/nat_channels/nat/m/q")
 
     simulation.create_output_file(id="na_h", file_name=sim_id + ".na_h.dat")
-    simulation.add_column_to_output_file("na_h", column_id="pop0[0]_na_h", quantity="pop0[0]/pyr_b_prop/membraneProperties/nat_channels/nat/h/q")
+    simulation.add_column_to_output_file("na_h", column_id="pop0_0_na_h", quantity="pop0[0]/pyr_b_prop/membraneProperties/nat_channels/nat/h/q")
 
     simulation.create_output_file(id="kfast_n", file_name=sim_id + ".kfast_n.dat")
-    simulation.add_column_to_output_file("kfast_n", column_id="pop0[0]_kfast_n", quantity="pop0[0]/pyr_b_prop/membraneProperties/kfast_channels/kfast/n/q")
+    simulation.add_column_to_output_file("kfast_n", column_id="pop0_0_kfast_n", quantity="pop0[0]/pyr_b_prop/membraneProperties/kfast_channels/kfast/n/q")
 
     simulation.create_output_file(id="nap_m", file_name=sim_id + ".nap_m.dat")
-    simulation.add_column_to_output_file("nap_m", column_id="pop0[0]_nap_m", quantity="pop0[0]/pyr_b_prop/membraneProperties/nap_channels/nap/m/q")
+    simulation.add_column_to_output_file("nap_m", column_id="pop0_0_nap_m", quantity="pop0[0]/pyr_b_prop/membraneProperties/nap_channels/nap/m/q")
 
     simulation.create_output_file(id="kslow_a", file_name=sim_id + ".kslow_a.dat")
-    simulation.add_column_to_output_file("kslow_a", column_id="pop0[0]_kslow_a", quantity="pop0[0]/pyr_b_prop/membraneProperties/kslow_channels/kslow/a/q")
+    simulation.add_column_to_output_file("kslow_a", column_id="pop0_0_kslow_a", quantity="pop0[0]/pyr_b_prop/membraneProperties/kslow_channels/kslow/a/q")
 
     simulation.create_output_file(id="kslow_b", file_name=sim_id + ".kslow_b.dat")
-    simulation.add_column_to_output_file("kslow_b", column_id="pop0[0]_kslow_b", quantity="pop0[0]/pyr_b_prop/membraneProperties/kslow_channels/kslow/b/q")
+    simulation.add_column_to_output_file("kslow_b", column_id="pop0_0_kslow_b", quantity="pop0[0]/pyr_b_prop/membraneProperties/kslow_channels/kslow/b/q")
 
     simulation.create_output_file(id="ikm_m", file_name=sim_id + ".ikm_m.dat")
-    simulation.add_column_to_output_file("ikm_m", column_id="pop0[0]_ikm_m", quantity="pop0[0]/pyr_b_prop/membraneProperties/km_channels/km/m/q")
+    simulation.add_column_to_output_file("ikm_m", column_id="pop0_0_ikm_m", quantity="pop0[0]/pyr_b_prop/membraneProperties/km_channels/km/m/q")
 
     # Save LEMS simulation to file
     sim_file = simulation.save_to_file()
@@ -188,7 +188,7 @@ def create_network():
     """
     net_doc = NeuroMLDocument(id="network",
                               notes="Pyramidal cell network")
-    net_doc_fn = "pyr_example_net.nml"
+    net_doc_fn = "pyr_example.net.nml"
     net_doc.includes.append(IncludeType(href=create_cell()))
     # Create a population: convenient to create many cells of the same type
     pop = Population(id="pop0", notes="A population for pyramidal cell", component="pyr_cell", size=1)
