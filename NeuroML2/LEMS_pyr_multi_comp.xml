@@ -30,9 +30,9 @@
     <Simulation id="pyr_multi_comp" length="700ms" step="0.005ms" target="single_pyr_cell_network" seed="123">  <!-- Note seed: ensures same random numbers used every run -->
         
         <OutputFile id="output0" fileName="pyr_multi_comp.dat">
-            <OutputColumn id="pop0[0]_soma_v" quantity="pop0/0/pyr/0/v"/> 
-            <OutputColumn id="pop0[0]_apical_v" quantity="pop0/0/pyr/13/v"/> 
-            <OutputColumn id="pop0[0]_tuft_v" quantity="pop0/0/pyr/23/v"/> 
+            <OutputColumn id="pop0_0_soma_v" quantity="pop0/0/pyr/0/v"/> 
+            <OutputColumn id="pop0_0_apical_v" quantity="pop0/0/pyr/13/v"/> 
+            <OutputColumn id="pop0_0_tuft_v" quantity="pop0/0/pyr/23/v"/> 
         </OutputFile>
         
     </Simulation>
