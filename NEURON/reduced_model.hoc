@@ -18,22 +18,22 @@ kfast_list = new SectionList()
 ih_list = new SectionList()
 
 basal			ih_list.append()
-// apical			ih_list.append()
-// tuft			ih_list.append()
+apical			ih_list.append()
+tuft			ih_list.append()
 
 soma			nat_list.append()
-// hillock			nat_list.append()
-// iseg			nat_list.append()
-// apical			nat_list.append()
-// tuft 			nat_list.append()
+hillock			nat_list.append()
+iseg			nat_list.append()
+apical			nat_list.append()
+tuft 			nat_list.append()
 
 soma			kfast_list.append()
-// apical			kfast_list.append()
-// tuft			kfast_list.append()
+apical			kfast_list.append()
+tuft			kfast_list.append()
 
 soma			kslow_list.append()
-// apical			kslow_list.append()
-// tuft			kslow_list.append()
+apical			kslow_list.append()
+tuft			kslow_list.append()
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // Insert the Channels in the Correct Section and Set the Reversal Potentials
@@ -66,20 +66,20 @@ forsec kslow_list {
 	ek = -80
 }
 
-// tuft {
-// 	insert cad
-// 	insert sca
-// 	insert kca
+tuft {
+	insert cad
+	insert sca
+	insert kca
 
-// 	eca = 140
-// 	ion_style("ca_ion",0,1,0,0,0)
-// }
+	eca = 140
+	ion_style("ca_ion",0,1,0,0,0)
+}
 
 soma insert nap
 soma insert km
 
-// Rm_axosomatic = 15000
-Rm_axosomatic = 20587.734598
+Rm_axosomatic = 15000
+// Rm_axosomatic = 20587.734598
 spinefactor = 2.0
 
 decay_kfast = 50.0
@@ -92,23 +92,23 @@ proc recalculate_passive_properties() {
 	forsec apicaltree_list cm = soma.cm*spinefactor
 }
 
-// proc recalculate_channel_densities() {
+proc recalculate_channel_densities() {
 	
 // 	// See Keren et al. 2009
 	
-// 	soma distance()
+	soma distance()
 	
-// 	forsec apicaltree_list {
-// 	 for(x) gbar_kfast(x) = soma.gbar_kfast(0.5) * exp(-distance(x)/decay_kfast)
-// 	 for(x) gbar_kslow(x) = soma.gbar_kslow(0.5) * exp(-distance(x)/decay_kslow)
-// 	}
+	forsec apicaltree_list {
+	 for(x) gbar_kfast(x) = soma.gbar_kfast(0.5) * exp(-distance(x)/decay_kfast)
+	 for(x) gbar_kslow(x) = soma.gbar_kslow(0.5) * exp(-distance(x)/decay_kslow)
+	}
 	
-// 	tuft mih = gbar_ih/distance(0)
-// 	tuft mnat = (gbar_nat-soma.gbar_nat(0.5))/distance(0)
+	tuft mih = gbar_ih/distance(0)
+	tuft mnat = (gbar_nat-soma.gbar_nat(0.5))/distance(0)
 	
-// 	apical for(x) gbar_nat(x) = mnat*distance(x) + soma.gbar_nat(0.5)
-// 	apical for(x) gbar_ih(x) = mih*distance(x)
-// }
+	apical for(x) gbar_nat(x) = mnat*distance(x) + soma.gbar_nat(0.5)
+	apical for(x) gbar_ih(x) = mih*distance(x)
+}
 
 recalculate_passive_properties()
-// recalculate_channel_densities()
+recalculate_channel_densities()

@@ -226,6 +226,9 @@
             <segmentGroup id="apicaltree_list">
                 <include segmentGroup="apical"/>
                 <include segmentGroup="tuft"/>
+                <inhomogeneousParameter id="PathLengthOver_apicaltree_list" variable="p" metric="Path Length from root">
+                    <proximal translationStart="0.0"/>
+                </inhomogeneousParameter>
             </segmentGroup>
             <segmentGroup id="axon_list">
                 <include segmentGroup="hillock"/>
@@ -237,6 +240,9 @@
             </segmentGroup>
             <segmentGroup id="apical_group">
                 <include segmentGroup="apical"/>
+                <inhomogeneousParameter id="PathLengthOver_apical_group" variable="p" metric="Path Length from root">
+                    <proximal translationStart="0.0"/>
+                </inhomogeneousParameter>
             </segmentGroup>
             <segmentGroup id="tuft_group">
                 <include segmentGroup="tuft"/>
@@ -263,6 +269,26 @@
                 <channelDensityVShift id="nat_iseg" ionChannel="nat" condDensity="13326.766938 S_per_m2" erev="55 mV" segmentGroup="iseg_group" ion="na" vShift="-0.612583mV"/>
                 <channelDensityVShift id="nat_tuft" ionChannel="nat" condDensity="47.82 S_per_m2" erev="55 mV" segmentGroup="tuft_group" ion="na" vShift="10 mV"/>
                 <channelDensityVShift id="tuft_sca" ionChannel="sca" condDensity="0.45423528 S_per_m2" erev="140 mV" segmentGroup="tuft_group" ion="ca" vShift="7.19485311 mV"/>
+                <channelDensityNonUniform id="apicaltree_g_kfast" ionChannel="kfast" erev="-80 mV" ion="k">
+                    <variableParameter parameter="condDensity" segmentGroup="apicaltree_list">
+                        <inhomogeneousValue inhomogeneousParameter="PathLengthOver_apicaltree_list" value="67.197508*exp(-p/20.075497)"/>
+                    </variableParameter>
+                </channelDensityNonUniform>
+                <channelDensityNonUniform id="apicaltree_g_kslow" ionChannel="kslow" erev="-80mV" ion="k">
+                    <variableParameter parameter="condDensity" segmentGroup="apicaltree_list">
+                        <inhomogeneousValue inhomogeneousParameter="PathLengthOver_apicaltree_list" value="475.820646*exp(-p/37.711817)"/>
+                    </variableParameter>
+                </channelDensityNonUniform>
+                <channelDensityNonUniform id="apical_g_nat" ionChannel="nat" erev="55 mV" ion="na">
+                    <variableParameter parameter="condDensity" segmentGroup="apical_group">
+                        <inhomogeneousValue inhomogeneousParameter="PathLengthOver_apical_group" value="-0.377596668*p+236.616175"/>
+                    </variableParameter>
+                </channelDensityNonUniform>
+                <channelDensityNonUniform id="apical_g_ih" ionChannel="ih" erev="-47 mV" ion="hcn">
+                    <variableParameter parameter="condDensity" segmentGroup="apical_group">
+                        <inhomogeneousValue inhomogeneousParameter="PathLengthOver_apical_group" value="0.0323896*p"/>
+                    </variableParameter>
+                </channelDensityNonUniform>
                 <spikeThresh value="-20mV"/>
                 <specificCapacitance value="2.23041 uF_per_cm2" segmentGroup="axosomatic_list"/>
                 <specificCapacitance value="1.750419 uF_per_cm2" segmentGroup="apicaltree_list"/>
