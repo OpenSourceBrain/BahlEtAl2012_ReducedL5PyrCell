@@ -60,7 +60,7 @@ hillock			axosomatic_list.append()
 iseg			axosomatic_list.append()
 axon			axosomatic_list.append()
 
-// apical 			apicalshaftoblique_list.append()
+apical 			apicalshaftoblique_list.append()
 apical			apicaltree_list.append()
 tuft			apicaltree_list.append()
 

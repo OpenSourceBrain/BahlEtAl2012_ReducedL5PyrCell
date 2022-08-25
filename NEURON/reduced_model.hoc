@@ -79,7 +79,6 @@ soma insert nap
 soma insert km
 
 Rm_axosomatic = 15000
-// Rm_axosomatic = 20587.734598
 spinefactor = 2.0
 
 decay_kfast = 50.0
