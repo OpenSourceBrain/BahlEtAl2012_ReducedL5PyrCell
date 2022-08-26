@@ -93,7 +93,7 @@ proc recalculate_passive_properties() {
 
 proc recalculate_channel_densities() {
 	
-// 	// See Keren et al. 2009
+	// See Keren et al. 2009
 	
 	soma distance()
 	
