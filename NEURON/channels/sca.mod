@@ -1,6 +1,7 @@
 
 COMMENT
 
+Slow Ca
 changed from (AS Oct0899)
 ca.mod
 Uses fixed eca instead of GHK eqn

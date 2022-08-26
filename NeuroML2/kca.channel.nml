@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd" 
+         id="kca">
+
+    <notes>NeuroML file automatically generated from an NMODL file</notes>
+
+    <ionChannel id="kca" conductance="10pS" type="ionChannelHH" species="k">
+        
+        <notes>NeuroML2 file automatically generated from NMODL file: ./NEURON/channels/kca.mod</notes>
+        
+        <q10ConductanceScaling q10Factor="2.3" experimentalTemp="23degC"/> 
+        <gate id="n" type="gateHHrates" instances="1">
+            <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="23degC"/>
+            <forwardRate type="kca_n_alpha_rate"/>
+            <reverseRate type="kca_n_beta_rate"/>
+        </gate>
+        
+    </ionChannel>
+
+    <ComponentType name="kca_n_alpha_rate" extends="baseVoltageConcDepRate">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <Constant name="CONC_SCALE" dimension="concentration" value="1 mol_per_cm3"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="ca_conc" dimension="none" value="caConc / CONC_SCALE"/>
+            <DerivedVariable name="r" exposure="r" dimension="per_time" value="(10000*ca_conc) / TIME_SCALE"/>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType name="kca_n_beta_rate" extends="baseVoltageConcDepRate">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <Constant name="CONC_SCALE" dimension="concentration" value="1 mol_per_cm3"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="ca_conc" dimension="none" value="caConc / CONC_SCALE"/>
+            <DerivedVariable name="r" exposure="r" dimension="per_time" value="(0.02) / TIME_SCALE"/>
+        </Dynamics>
+
+    </ComponentType>
+    
+</neuroml>

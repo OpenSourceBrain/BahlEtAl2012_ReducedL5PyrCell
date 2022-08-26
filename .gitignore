@@ -3,10 +3,21 @@ x86_64
 /NEURON/test/*.dat
 /NEURON/channels/*.dat
 /NeuroML2/L5_model2.cell.png
-/NeuroML2/*_nrn.py
 /NeuroML2/*.mod
 /NeuroML2/*.hoc
 /NeuroML2/pyr_single_compartment_example_sim-v.png
+/NeuroML2/*.dat
+/NeuroML2/*png
 /NeuroML2/pyr_single_comp-v.png
-# *.ipynb
-*.xml
+/NeuroML2/init_model2.cell.nml
+/NeuroML2/LEMS_test_sca.xml
+/NeuroML2/pyr.cell.nml
+/NeuroML2/test_ca/*.png
+/NeuroML2/test_ca/*.mod
+/NeuroML2/test_ca/*.hoc
+*.ipynb
+*_nrn.py
+*_netpyne.py
+NET_*.net.nml
+*.channel.nml
+

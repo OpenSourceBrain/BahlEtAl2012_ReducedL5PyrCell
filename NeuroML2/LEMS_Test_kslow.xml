@@ -212,13 +212,18 @@
         <OutputFile id="a_tau_of1" fileName="kslow.a.tau.lems.dat">
             <OutputColumn id="a" quantity="rampCellPop0[0]/test/kslow/a/tau"/> 
         </OutputFile>
-        <!-- <OutputFile id="b_inf_of1" fileName="kslow.b.inf.lems.dat">
-            <OutputColumn id="b" quantity="rampCellPop0[0]/test/kslow/b/inf"/> 
+        <OutputFile id="b_inf_of1" fileName="kslow.b.inf.lems.dat">
+            <OutputColumn id="b" quantity="rampCellPop0[0]/test/kslow/b/bb/inf"/> 
         </OutputFile>
         <OutputFile id="b_tau_of1" fileName="kslow.b.tau.lems.dat">
-            <OutputColumn id="b" quantity="rampCellPop0[0]/test/kslow/b/tau"/> 
-        </OutputFile> -->
-
+            <OutputColumn id="b" quantity="rampCellPop0[0]/test/kslow/b/bb/tau"/> 
+        </OutputFile>
+        <OutputFile id="b1_inf_of1" fileName="kslow.b1.inf.lems.dat">
+            <OutputColumn id="b1" quantity="rampCellPop0[0]/test/kslow/b/bb1/inf"/> 
+        </OutputFile>
+        <OutputFile id="b1_tau_of1" fileName="kslow.b1.tau.lems.dat">
+            <OutputColumn id="b1" quantity="rampCellPop0[0]/test/kslow/b/bb1/tau"/> 
+        </OutputFile>
 
         <OutputFile id="rampCellV" fileName="kslow.rampV.lems.dat">
             <OutputColumn id="v" quantity="rampCellPop0[0]/v"/> 

@@ -96,7 +96,7 @@ PROCEDURE rates(cai(mM)) {
         tadj = q10^((celsius - temp)/10)
 
         ntau = 1/tadj/(a+b)
-	ninf = a/(a+b)
+		ninf = a/(a+b)
 
  
 :        tinc = -dt * tadj

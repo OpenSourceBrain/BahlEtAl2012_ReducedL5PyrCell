@@ -1,0 +1,30 @@
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2.3.xsd" id="cell">
+    <notes>Layer 5 Pyramidal cell</notes>
+    <include href="../pas.channel.nml"/>
+    <include href="../cad.nml"/>
+    <include href="../sca.channel.nml"/>
+    <include href="../kca.channel.nml"/>
+    <cell id="pyr_cell">
+        <notes>A single compartment Layer 5 Pyramidal cell</notes>
+        <morphology id="pyr_cell_morph">
+            <segment id="0" name="soma">
+                <proximal x="0.0" y="0.0" z="0.0" diameter="23.1453"/>
+                <distal x="0.0" y="23.1453" z="0.0" diameter="23.1453"/>
+            </segment>
+        </morphology>
+        <biophysicalProperties id="pyr_b_prop">
+            <membraneProperties>
+                <channelDensity id="pas_channels" ionChannel="pas" condDensity="0.485726 S_per_m2" erev="-80.3987 mV" ion="non_specific"/>
+                <channelDensity id="soma_sca" ionChannel="sca" condDensity="0.45423528 S_per_m2" erev="140mV" ion="ca"/>
+                <channelDensity id="soma_kca" ionChannel="kca" condDensity="6.15058501 S_per_m2" erev="-80mV" ion="k"/>
+                <spikeThresh value="-20mV"/>
+                <specificCapacitance value="2.23041 uF_per_cm2"/>
+                <initMembPotential value="-65mV"/>
+            </membraneProperties>
+            <intracellularProperties>
+                <species id="ca" concentrationModel="cad" ion="ca" initialConcentration="1e-4 mM" initialExtConcentration="2 mM"/>
+                <resistivity value="0.082 kohm_cm"/>
+            </intracellularProperties>
+        </biophysicalProperties>
+    </cell>
+</neuroml>

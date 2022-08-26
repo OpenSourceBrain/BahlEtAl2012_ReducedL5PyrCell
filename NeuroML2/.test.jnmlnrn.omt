@@ -1,0 +1,17 @@
+# Script for running automated tests on OSB using Travis-CI, see https://github.com/OpenSourceBrain/osb-model-validation
+
+target: LEMS_pyr_single_comp.xml
+engine: jNeuroML_NEURON
+mep: ../NEURON/test/.test.mep
+experiments:
+  Current clamp:
+    observables:
+      spike times:
+        file:
+          path: pyr_single_comp.dat
+          columns: [0,1]
+          scaling: [1000, 1000]
+        spike detection:
+          method: threshold
+          threshold: -30
+        tolerance: 0.001077087615767925

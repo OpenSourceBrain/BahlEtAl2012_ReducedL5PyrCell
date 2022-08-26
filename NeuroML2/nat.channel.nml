@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <neuroml xmlns="http://www.neuroml.org/schema/neuroml2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2beta4.xsd"
-         id="it">
+         id="nat">
 
     <notes>NeuroML file containing a single Channel description</notes>
 
@@ -31,16 +31,81 @@
 
         <gate id="m" type="gateHHrates" instances="3">
             <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="23degC"/>
-            <forwardRate type="HHExpLinearRate" rate="1.638per_ms" scale="9mV" midpoint="-28mV"/>
-            <reverseRate type="HHExpLinearRate" rate="1.116per_ms" scale="-9mV" midpoint="-28mV"/>
+            <forwardRate type="nat_m_alpha"/>
+            <reverseRate type="nat_m_beta"/>
         </gate>
 
         <gate id="h" type="gateHHratesInf" instances="1">
             <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="23degC"/>
-            <forwardRate type="HHExpLinearRate" rate="0.12per_ms" scale="5mV" midpoint="-50mV"/>
-            <reverseRate type="HHExpLinearRate" rate="0.0455per_ms" scale="-5mV" midpoint="-74mV"/>
-            <steadyState type="HHSigmoidVariable" rate="1" midpoint="-55mV" scale="-6.2mV"/>
+            <forwardRate type="nat_h_alpha"/>
+            <reverseRate type="nat_h_beta"/>
+            <steadyState type="nat_h_ssm"/>
         </gate>
 
     </ionChannel>
+
+    <ComponentType name="nat_m_alpha" extends="baseVoltageDepRate">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <Requirement name="vShift" dimension="voltage"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="VT" dimension="none" value="(vShift / VOLT_SCALE)"/>
+            <DerivedVariable name="r" exposure="r" dimension="per_time" value="(0.182 * ( (V - VT) + 28 ) / (-1* (exp (-1*( (V - VT) + 28 ) / 9)) + 1)) / TIME_SCALE"/>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType name="nat_m_beta" extends="baseVoltageDepRate">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <Requirement name="vShift" dimension="voltage"/>
+        
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="VT" dimension="none" value="(vShift / VOLT_SCALE)"/>
+            <DerivedVariable name="r" exposure="r" dimension="per_time" value="(0.124 * ( (V - VT) + 28 ) / ((exp (( (V - VT) + 28 ) / 9)) - 1)) / TIME_SCALE"/>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType name="nat_h_alpha" extends="baseVoltageDepRate">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <Requirement name="vShift" dimension="voltage"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="VT" dimension="none" value="(vShift / VOLT_SCALE)"/>
+            <DerivedVariable name="r" exposure="r" dimension="per_time" value="(0.024 * ( (V - VT) + 50 ) / (-1* (exp (-1*( (V - VT) + 50 ) / 5)) + 1)) / TIME_SCALE"/>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType name="nat_h_beta" extends="baseVoltageDepRate">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <Requirement name="vShift" dimension="voltage"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="VT" dimension="none" value="(vShift / VOLT_SCALE)"/>
+            <DerivedVariable name="r" exposure="r" dimension="per_time" value="(0.0091 * ( (V - VT) + 74 ) / ((exp (( (V - VT) + 74 ) / 5)) - 1)) / TIME_SCALE"/>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType name="nat_h_ssm" extends="baseVoltageDepVariable">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <Requirement name="vShift" dimension="voltage"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="VT" dimension="none" value="(vShift / VOLT_SCALE)"/>
+            <DerivedVariable name="x" exposure="x" dimension="none" value="1 / ( 1 + exp(( (V-VT) + 55) / 6.2))"/>
+        </Dynamics>
+
+    </ComponentType>
 </neuroml>
