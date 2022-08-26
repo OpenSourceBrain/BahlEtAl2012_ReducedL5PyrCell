@@ -1,0 +1,6 @@
+system: Testing a multi compartmental cell (soma, basal, apical, tuft, hillock, iseg, axon)
+
+experiments:
+  Current clamp:
+    expected:
+      spike times: [115.325, 120.225, 176.65, 235.025, 295.65000000000003, 357.725, 420.725, 484.35, 548.3249999999999]
