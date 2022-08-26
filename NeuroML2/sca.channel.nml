@@ -13,16 +13,67 @@
         <q10ConductanceScaling q10Factor="2.3" experimentalTemp="23degC"/>
         <gate id="m" type="gateHHrates" instances="2">
             <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="23degC"/>
-            <forwardRate type="HHExpLinearRate" rate="0.209per_ms" scale="3.8mV" midpoint="-27mV"/>
-            <reverseRate type="HHExpRate" rate="0.94per_ms" scale="-17mV" midpoint="-75mV"/>
+            <forwardRate type="sca_m_alpha"/>
+            <reverseRate type="sca_m_beta"/>
         </gate>
 
         <gate id="h" type="gateHHrates" instances="1">
             <q10Settings type="q10ExpTemp" q10Factor="2.3" experimentalTemp="23degC"/>
-            <forwardRate type="HHExpRate" rate="0.0001524per_ms" scale="-50mV" midpoint="-13mV"/>
-            <reverseRate type="HHSigmoidRate" rate="0.00217per_ms" scale="28mV" midpoint="-15mV"/>
+            <forwardRate type="sca_h_alpha"/>
+            <reverseRate type="sca_h_beta"/>
         </gate>
         
     </ionChannel>
     
+    <ComponentType name="sca_m_alpha" extends="baseVoltageDepRate">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <Requirement name="vShift" dimension="voltage"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="VT" dimension="none" value="(vShift / VOLT_SCALE)"/>
+            <DerivedVariable name="r" exposure="r" dimension="per_time" value="(0.055 * ( -(V - VT) -  27 ) / ( (exp (-1*( (V - VT) + 27 ) / 3.8)) - 1)) / TIME_SCALE"/>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType name="sca_m_beta" extends="baseVoltageDepRate">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <Requirement name="vShift" dimension="voltage"/>
+    
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="VT" dimension="none" value="(vShift / VOLT_SCALE)"/>
+            <DerivedVariable name="r" exposure="r" dimension="per_time" value="(0.94 * (exp (( -75 - (V - VT) ) / 17))) / TIME_SCALE"/>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType name="sca_h_alpha" extends="baseVoltageDepRate">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <Requirement name="vShift" dimension="voltage"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="VT" dimension="none" value="(vShift / VOLT_SCALE)"/>
+            <DerivedVariable name="r" exposure="r" dimension="per_time" value="(0.00015234 * (exp (( -13 - (V - VT) ) / 50))) / TIME_SCALE"/>
+        </Dynamics>
+
+    </ComponentType>
+
+    <ComponentType name="sca_h_beta" extends="baseVoltageDepRate">
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <Constant name="VOLT_SCALE" dimension="voltage" value="1 mV"/>
+        <Requirement name="vShift" dimension="voltage"/>
+
+        <Dynamics>
+            <DerivedVariable name="V" dimension="none" value="v / VOLT_SCALE"/>
+            <DerivedVariable name="VT" dimension="none" value="(vShift / VOLT_SCALE)"/>
+            <DerivedVariable name="r" exposure="r" dimension="per_time" value="(0.002167 / ((exp (( -(V - VT) - 15 ) / 28)) + 1)) / TIME_SCALE"/>
+        </Dynamics>
+
+    </ComponentType>
 </neuroml>
