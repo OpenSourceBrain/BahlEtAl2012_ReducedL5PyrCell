@@ -169,7 +169,7 @@
                 <member segment="26"/>
                 <include segmentGroup="axon_0"/>
                 <include segmentGroup="hillock_0"/>
-                <include segmentGroup="iseg"/>
+                <include segmentGroup="iseg_0"/>
             </segmentGroup>
             <segmentGroup neuroLexId="GO:0030425" id="dendrite_group">
                 <notes>Default dendrite segment group for the cell</notes>
@@ -204,7 +204,7 @@
                 <member segment="14"/>
                 <member segment="15"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="iseg">
+            <segmentGroup neuroLexId="sao864921383" id="iseg_0">
                 <property tag="numberInternalDivisions" value="5"/>
                 <member segment="16"/>
                 <member segment="17"/>
@@ -227,7 +227,7 @@
                 <include segmentGroup="soma_0"/>
                 <include segmentGroup="hillock_0"/>
                 <include segmentGroup="basal_0"/>
-                <include segmentGroup="iseg"/>
+                <include segmentGroup="iseg_0"/>
                 <include segmentGroup="axon_0"/>
             </segmentGroup>
             <segmentGroup id="apicaltree_list">
@@ -253,7 +253,7 @@
                 <include segmentGroup="hillock_0"/>
             </segmentGroup>
             <segmentGroup id="iseg_group">
-                <include segmentGroup="iseg"/>
+                <include segmentGroup="iseg_0"/>
             </segmentGroup>
         </morphology>
         <biophysicalProperties id="biophys">
