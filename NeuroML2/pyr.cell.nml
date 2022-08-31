@@ -168,7 +168,7 @@
                 <member segment="25"/>
                 <member segment="26"/>
                 <include segmentGroup="axon_0"/>
-                <include segmentGroup="hillock"/>
+                <include segmentGroup="hillock_0"/>
                 <include segmentGroup="iseg"/>
             </segmentGroup>
             <segmentGroup neuroLexId="GO:0030425" id="dendrite_group">
@@ -182,7 +182,7 @@
                 <member segment="0"/>
                 <member segment="1"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="hillock">
+            <segmentGroup neuroLexId="sao864921383" id="hillock_0">
                 <property tag="numberInternalDivisions" value="5"/>
                 <member segment="2"/>
                 <member segment="3"/>
@@ -225,7 +225,7 @@
             </segmentGroup>
             <segmentGroup id="axosomatic_list">
                 <include segmentGroup="soma_0"/>
-                <include segmentGroup="hillock"/>
+                <include segmentGroup="hillock_0"/>
                 <include segmentGroup="basal_0"/>
                 <include segmentGroup="iseg"/>
                 <include segmentGroup="axon_0"/>
@@ -250,7 +250,7 @@
                 <include segmentGroup="tuft_0"/>
             </segmentGroup>
             <segmentGroup id="hillock_group">
-                <include segmentGroup="hillock"/>
+                <include segmentGroup="hillock_0"/>
             </segmentGroup>
             <segmentGroup id="iseg_group">
                 <include segmentGroup="iseg"/>
