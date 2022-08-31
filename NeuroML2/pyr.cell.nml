@@ -164,11 +164,19 @@
             </segmentGroup>
             <segmentGroup neuroLexId="GO:0030424" id="axon_group">
                 <notes>Default axon segment group for the cell</notes>
+                <property tag="color" value="0 0.8 0"/>
                 <member segment="25"/>
                 <member segment="26"/>
+                <include segmentGroup="axon_0"/>
+                <include segmentGroup="hillock"/>
+                <include segmentGroup="iseg"/>
             </segmentGroup>
             <segmentGroup neuroLexId="GO:0030425" id="dendrite_group">
                 <notes>Default dendrite segment group for the cell</notes>
+                <property tag="color" value="0.8 0 0"/>
+                <include segmentGroup="basal_0"/>
+                <include segmentGroup="apical_0"/>
+                <include segmentGroup="tuft_0"/>
             </segmentGroup>
             <segmentGroup neuroLexId="sao864921383" id="soma_0">
                 <member segment="0"/>
@@ -183,11 +191,11 @@
                 <member segment="6"/>
                 <member segment="7"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="basal">
+            <segmentGroup neuroLexId="sao864921383" id="basal_0">
                 <member segment="8"/>
                 <member segment="9"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="apical">
+            <segmentGroup neuroLexId="sao864921383" id="apical_0">
                 <property tag="numberInternalDivisions" value="5"/>
                 <member segment="10"/>
                 <member segment="11"/>
@@ -205,7 +213,7 @@
                 <member segment="20"/>
                 <member segment="21"/>
             </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="tuft">
+            <segmentGroup neuroLexId="sao864921383" id="tuft_0">
                 <property tag="numberInternalDivisions" value="2"/>
                 <member segment="22"/>
                 <member segment="23"/>
@@ -216,36 +224,30 @@
                 <member segment="26"/>
             </segmentGroup>
             <segmentGroup id="axosomatic_list">
-                <property tag="color" value="0.8 0 0"/>
                 <include segmentGroup="soma_0"/>
                 <include segmentGroup="hillock"/>
-                <include segmentGroup="basal"/>
+                <include segmentGroup="basal_0"/>
                 <include segmentGroup="iseg"/>
                 <include segmentGroup="axon_0"/>
             </segmentGroup>
             <segmentGroup id="apicaltree_list">
-                <include segmentGroup="apical"/>
-                <include segmentGroup="tuft"/>
+                <include segmentGroup="apical_0"/>
+                <include segmentGroup="tuft_0"/>
                 <inhomogeneousParameter id="PathLengthOver_apicaltree_list" variable="p" metric="Path Length from root">
                     <proximal translationStart="0.0"/>
                 </inhomogeneousParameter>
             </segmentGroup>
-            <segmentGroup id="axon_list">
-                <include segmentGroup="hillock"/>
-                <include segmentGroup="iseg"/>
-                <include segmentGroup="axon_0"/>
-            </segmentGroup>
             <segmentGroup id="basal_group">
-                <include segmentGroup="basal"/>
+                <include segmentGroup="basal_0"/>
             </segmentGroup>
             <segmentGroup id="apical_group">
-                <include segmentGroup="apical"/>
+                <include segmentGroup="apical_0"/>
                 <inhomogeneousParameter id="PathLengthOver_apical_group" variable="p" metric="Path Length from root">
                     <proximal translationStart="0.0"/>
                 </inhomogeneousParameter>
             </segmentGroup>
             <segmentGroup id="tuft_group">
-                <include segmentGroup="tuft"/>
+                <include segmentGroup="tuft_0"/>
             </segmentGroup>
             <segmentGroup id="hillock_group">
                 <include segmentGroup="hillock"/>
@@ -297,7 +299,7 @@
             <intracellularProperties>
                 <species id="ca" concentrationModel="cad" ion="ca" initialConcentration="100e-6 mM" initialExtConcentration="2 mM" segmentGroup="tuft_group"/>
                 <resistivity value="0.082 kohm_cm" segmentGroup="soma_group"/>
-                <resistivity value="0.082 kohm_cm" segmentGroup="axon_list"/>
+                <resistivity value="0.082 kohm_cm" segmentGroup="axon_group"/>
                 <resistivity value="0.734 kohm_cm" segmentGroup="basal_group"/>
                 <resistivity value="0.527 kohm_cm" segmentGroup="tuft_group"/>
                 <resistivity value="0.3822 kohm_cm" segmentGroup="apical_group"/>
