@@ -223,20 +223,6 @@
                 <member segment="25"/>
                 <member segment="26"/>
             </segmentGroup>
-            <segmentGroup id="axosomatic_list">
-                <include segmentGroup="soma_0"/>
-                <include segmentGroup="hillock_0"/>
-                <include segmentGroup="basal_0"/>
-                <include segmentGroup="iseg_0"/>
-                <include segmentGroup="axon_0"/>
-            </segmentGroup>
-            <segmentGroup id="apicaltree_list">
-                <include segmentGroup="apical_0"/>
-                <include segmentGroup="tuft_0"/>
-                <inhomogeneousParameter id="PathLengthOver_apicaltree_list" variable="p" metric="Path Length from root">
-                    <proximal translationStart="0.0"/>
-                </inhomogeneousParameter>
-            </segmentGroup>
             <segmentGroup id="basal_group">
                 <include segmentGroup="basal_0"/>
             </segmentGroup>
@@ -254,6 +240,20 @@
             </segmentGroup>
             <segmentGroup id="iseg_group">
                 <include segmentGroup="iseg_0"/>
+            </segmentGroup>
+            <segmentGroup id="axosomatic_list">
+                <include segmentGroup="soma_0"/>
+                <include segmentGroup="hillock_0"/>
+                <include segmentGroup="basal_0"/>
+                <include segmentGroup="iseg_0"/>
+                <include segmentGroup="axon_0"/>
+            </segmentGroup>
+            <segmentGroup id="apicaltree_list">
+                <include segmentGroup="apical_0"/>
+                <include segmentGroup="tuft_0"/>
+                <inhomogeneousParameter id="PathLengthOver_apicaltree_list" variable="p" metric="Path Length from root">
+                    <proximal translationStart="0.0"/>
+                </inhomogeneousParameter>
             </segmentGroup>
         </morphology>
         <biophysicalProperties id="biophys">
