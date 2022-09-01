@@ -57,6 +57,15 @@ class BahlPyramidal():
         self.soma_gbar_kslow = "475.820646 S_per_m2"
         self.soma_gbar_nap = "1.443953 S_per_m2"
         self.soma_gbar_km = "10.459916 S_per_m2"
+        self.basal_gbar_ih = "11.039583 S_per_m2"
+        self.tuft_gbar_ih = "16.194815 S_per_m2"
+        self.tuft_gbar_nat = "47.817841 S_per_m2"
+        self.hillock_gbar_nat = "9512.289205 S_per_m2"
+        self.iseg_gbar_nat = "13326.766938 S_per_m2"
+
+        # Incorporating calcium dependent mechanisms to the respective segments
+        self.tuft_gbar_sca = "0.45423528 S_per_m2"
+        self.tuft_gbar_kca = "6.15058501 S_per_m2"
 
         # self.g_K  = g_K                              
         # """ Postassium (K) maximum conductances, in mS/cm^2 """
@@ -405,7 +414,7 @@ class BahlPyramidal():
 
 
         # nat_hillock
-        nat_hillock = ChannelDensityVShift(id="nat_hillock", cond_density="9512.289205 S_per_m2", erev="55 mV", v_shift="10mV", ion="na", ion_channel="nat",
+        nat_hillock = ChannelDensityVShift(id="nat_hillock", cond_density=self.hillock_gbar_nat, erev="55 mV", v_shift="10mV", ion="na", ion_channel="nat",
                                             segment_groups="hillock_group")
         cell.biophysical_properties.membrane_properties.channel_density_v_shifts.append(nat_hillock)
         
@@ -413,12 +422,12 @@ class BahlPyramidal():
         """ The original hoc files in ../NEURON/init_models_with_ca/ has vShift2 mentioned for the section iseg. Seeing the mod file for sca channel in
             ../NEURON/channels/sca.mod the v_shift used below is the equal to vShift + vShift2 and calculated as v_shift = 10 mV + (-10.612583 mV)
         """
-        nat_iseg = ChannelDensityVShift(id="nat_iseg", cond_density="13326.766938 S_per_m2", erev="55 mV", v_shift="-0.612583mV", ion="na", ion_channel="nat",
+        nat_iseg = ChannelDensityVShift(id="nat_iseg", cond_density=self.iseg_gbar_nat, erev="55 mV", v_shift="-0.612583mV", ion="na", ion_channel="nat",
                                             segment_groups="iseg_group")
         cell.biophysical_properties.membrane_properties.channel_density_v_shifts.append(nat_iseg)
 
         # nat_tuft
-        nat_tuft = ChannelDensityVShift(id="nat_tuft", cond_density="47.82 S_per_m2", erev="55 mV", v_shift="10 mV", ion="na", ion_channel="nat",
+        nat_tuft = ChannelDensityVShift(id="nat_tuft", cond_density=self.tuft_gbar_nat, erev="55 mV", v_shift="10 mV", ion="na", ion_channel="nat",
                                             segment_groups="tuft_group")
         cell.biophysical_properties.membrane_properties.channel_density_v_shifts.append(nat_tuft)
 
@@ -465,7 +474,7 @@ class BahlPyramidal():
         # ih_basal
         add_channel_density(cell, pyr_cell_doc,
                             cd_id="ih_basal",
-                            cond_density="11.04 S_per_m2",
+                            cond_density=self.basal_gbar_ih,
                             ion_channel="ih",
                             ion_chan_def_file="ih.channel.nml",
                             erev="-47mV",
@@ -473,12 +482,12 @@ class BahlPyramidal():
                             group="basal_group")
 
         # sca_tuft
-        sca_tuft = ChannelDensityVShift(id="tuft_sca", cond_density="0.45423528 S_per_m2", erev="140 mV", v_shift="7.19485311 mV", ion="ca", ion_channel="sca",
+        sca_tuft = ChannelDensityVShift(id="tuft_sca", cond_density=self.tuft_gbar_sca, erev="140 mV", v_shift="7.19485311 mV", ion="ca", ion_channel="sca",
                                         segment_groups="tuft_group")
         cell.biophysical_properties.membrane_properties.channel_density_v_shifts.append(sca_tuft)
 
         # kca_tuft
-        kca_tuft = ChannelDensity(id="tuft_kca", ion_channel="kca", cond_density="6.15058501 S_per_m2", segment_groups="tuft_group", ion="k", erev="-80mV")
+        kca_tuft = ChannelDensity(id="tuft_kca", ion_channel="kca", cond_density=self.tuft_gbar_kca, segment_groups="tuft_group", ion="k", erev="-80mV")
         cell.biophysical_properties.membrane_properties.channel_densities.append(kca_tuft)
 
         # Calculating the kfast conduction density using variable parameter for segment group apicaltree                           
