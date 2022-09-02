@@ -44,36 +44,53 @@ class BahlPyramidal():
     """ __init__ uses optional arguments """
     """ when no argument is passed default values are used """
     
-    def __init__(self):
+    def __init__(self, e_pas, soma_gbar_nat, soma_gbar_kfast, soma_gbar_kslow, soma_gbar_nap, soma_gbar_km,
+                basal_gbar_ih, tuft_gbar_ih, tuft_gbar_nat, hillock_gbar_nat, iseg_gbar_nat, iseg_vshift2_nat,
+                Rm_axosomatic, axosomatic_list_cm, spinefactor, decay_kfast, decay_kslow, Ra_apical,
+                tuft_gbar_sca, tuft_vshift_sca, tuft_gbar_kca):
     #  g_Na=120, g_K=36, g_L=0.3, E_Na=50, E_K=-77, E_L=-54.387, t_0=0, t_n=450, delta_t=0.01, I_inj_max=0, I_inj_width=0, I_inj_trans=0, vc_delay=10, vc_duration=30, vc_condVoltage=-63.77, vc_testVoltage=10, vc_returnVoltage=-63.77, runMode='iclamp'):
         
-        self.e_pas = "-80.398657 mV"                               
+        self.e_pas = str(e_pas)+" mV"                               
         """ membrane capacitance, in uF/cm^2 """
         
-        self.soma_gbar_nat = "236.616175 S_per_m2"                             
+        self.soma_gbar_nat = str(soma_gbar_nat)+" S_per_m2"                             
         """ Sodium (Na) maximum conductances, in S/m^2 """
         
-        self.soma_gbar_kfast = "67.197508 S_per_m2"
-        self.soma_gbar_kslow = "475.820646 S_per_m2"
-        self.soma_gbar_nap = "1.443953 S_per_m2"
-        self.soma_gbar_km = "10.459916 S_per_m2"
-        self.basal_gbar_ih = "11.039583 S_per_m2"
-        self.tuft_gbar_ih = "16.194815 S_per_m2"
-        self.tuft_gbar_nat = "47.817841 S_per_m2"
-        self.hillock_gbar_nat = "9512.289205 S_per_m2"
-        self.iseg_gbar_nat = "13326.766938 S_per_m2"
+        self.soma_gbar_kfast = str(soma_gbar_kfast)+" S_per_m2"
+        self.soma_gbar_kslow = str(soma_gbar_kslow)+" S_per_m2"
+        self.soma_gbar_nap = str(soma_gbar_nap)+" S_per_m2"
+        self.soma_gbar_km = str(soma_gbar_km)+" S_per_m2"
+        self.basal_gbar_ih = str(basal_gbar_ih)+" S_per_m2"
+        self.tuft_gbar_ih = str(tuft_gbar_ih)+" S_per_m2"
+        self.tuft_gbar_nat = str(tuft_gbar_nat)+" S_per_m2"
+        self.hillock_gbar_nat = str(hillock_gbar_nat)+" S_per_m2"
+        self.iseg_gbar_nat = str(iseg_gbar_nat)+" S_per_m2"
+
+        self.iseg_vshift2_nat = str(10+iseg_vshift2_nat)+" mV"
+        """ The original hoc files in ../NEURON/init_models_with_ca/ has vShift2 mentioned for the section iseg. Seeing the mod file for sca channel in
+            ../NEURON/channels/sca.mod the v_shift used below is the equal to vShift + vShift2 and calculated as v_shift = 10 mV + (-10.612583 mV)
+        """
+        self.axosomatic_gbar_pas = str((1/Rm_axosomatic)*1e4)+" S_per_m2"
+        self.apicaltree_gbar_pas = str(((1/Rm_axosomatic)*1e4)*spinefactor)+" S_per_m2"
+
+        self.axosomatic_list_cm = str(axosomatic_list_cm)+" uF_per_cm2"
+        self.apicaltree_list_cm = str(axosomatic_list_cm*spinefactor)+" uF_per_cm2"
+
+        # Defining variable parameter value for the respective channels
+        self.apicaltree_gbar_kfast_val = str(soma_gbar_kfast)+"*exp(-p/"+str(decay_kfast)+")"
+        self.apicaltree_gbar_kslow_val = str(soma_gbar_kslow)+"*exp(-p/"+str(decay_kslow)+")"
+
+        self.tuft_mih = tuft_gbar_ih/500
+        self.tuft_mnat = (tuft_gbar_nat - soma_gbar_nat)/500
+        self.apical_gbar_ih_val = str(self.tuft_mih)+"*p"
+        self.apical_gbar_nat_val = str(self.tuft_mnat)+"*p + "+str(soma_gbar_nat)
 
         # Incorporating calcium dependent mechanisms to the respective segments
-        self.tuft_gbar_sca = "0.45423528 S_per_m2"
-        self.tuft_gbar_kca = "6.15058501 S_per_m2"
+        self.Ra_apical = str(Ra_apical/1000)+" kohm_cm"
+        self.tuft_gbar_sca = str(tuft_gbar_sca)+" S_per_m2"
+        self.tuft_vshift_sca = str(tuft_vshift_sca)+" mV"
+        self.tuft_gbar_kca = str(tuft_gbar_kca)+" S_per_m2"
 
-        # self.g_K  = g_K                              
-        # """ Postassium (K) maximum conductances, in mS/cm^2 """
-        
-        # self.g_L  = g_L                              
-        # """ Leak maximum conductances, in mS/cm^2 """
-        
-        # self.E_Na = E_Na     
 
     def create_pyr_cell(self):
         pyr_cell_doc = NeuroMLDocument(id='cell', notes="Layer 5 Pyramidal cell")
@@ -381,7 +398,7 @@ class BahlPyramidal():
         # leak_axosomatic_list
         add_channel_density(cell, pyr_cell_doc,
                             cd_id="axosomatic_gpas",
-                            cond_density="0.485726 S_per_m2",
+                            cond_density=self.axosomatic_gbar_pas,
                             ion_channel="pas",
                             ion_chan_def_file="pas.channel.nml",
                             erev=self.e_pas,
@@ -391,7 +408,7 @@ class BahlPyramidal():
         # leak_apicaltree_list
         add_channel_density(cell, pyr_cell_doc,
                         cd_id="apicaltree_gpas",
-                        cond_density="0.381196 S_per_m2",
+                        cond_density=self.apicaltree_gbar_pas,
                         ion_channel="pas",
                         ion_chan_def_file="pas.channel.nml",
                         erev=self.e_pas,
@@ -422,7 +439,7 @@ class BahlPyramidal():
         """ The original hoc files in ../NEURON/init_models_with_ca/ has vShift2 mentioned for the section iseg. Seeing the mod file for sca channel in
             ../NEURON/channels/sca.mod the v_shift used below is the equal to vShift + vShift2 and calculated as v_shift = 10 mV + (-10.612583 mV)
         """
-        nat_iseg = ChannelDensityVShift(id="nat_iseg", cond_density=self.iseg_gbar_nat, erev="55 mV", v_shift="-0.612583mV", ion="na", ion_channel="nat",
+        nat_iseg = ChannelDensityVShift(id="nat_iseg", cond_density=self.iseg_gbar_nat, erev="55 mV", v_shift=self.iseg_vshift2_nat, ion="na", ion_channel="nat",
                                             segment_groups="iseg_group")
         cell.biophysical_properties.membrane_properties.channel_density_v_shifts.append(nat_iseg)
 
@@ -482,7 +499,7 @@ class BahlPyramidal():
                             group="basal_group")
 
         # sca_tuft
-        sca_tuft = ChannelDensityVShift(id="tuft_sca", cond_density=self.tuft_gbar_sca, erev="140 mV", v_shift="7.19485311 mV", ion="ca", ion_channel="sca",
+        sca_tuft = ChannelDensityVShift(id="tuft_sca", cond_density=self.tuft_gbar_sca, erev="140 mV", v_shift=self.tuft_vshift_sca, ion="ca", ion_channel="sca",
                                         segment_groups="tuft_group")
         cell.biophysical_properties.membrane_properties.channel_density_v_shifts.append(sca_tuft)
 
@@ -494,7 +511,7 @@ class BahlPyramidal():
         gbar_kfast_apicaltree = VariableParameter(parameter="condDensity",
                                                 segment_groups="apicaltree_list",
                                                 inhomogeneous_value=InhomogeneousValue(inhomogeneous_parameters="PathLengthOver_apicaltree_list",
-                                                value="67.197508*exp(-p/20.075497)"))
+                                                value=self.apicaltree_gbar_kfast_val))
         kfast_apicaltree_list = ChannelDensityNonUniform(id="apicaltree_g_kfast", ion_channel="kfast", erev="-80 mV", ion="k")
         kfast_apicaltree_list.variable_parameters.append(gbar_kfast_apicaltree)
 
@@ -502,7 +519,7 @@ class BahlPyramidal():
         gbar_kslow_apicaltree = VariableParameter(parameter="condDensity",
                                                 segment_groups="apicaltree_list",
                                                 inhomogeneous_value=InhomogeneousValue(inhomogeneous_parameters="PathLengthOver_apicaltree_list",
-                                                value="475.820646*exp(-p/37.711817)"))
+                                                value=self.apicaltree_gbar_kslow_val))
         kslow_apicaltree_list = ChannelDensityNonUniform(id="apicaltree_g_kslow", ion_channel="kslow", erev="-80mV", ion="k")
         kslow_apicaltree_list.variable_parameters.append(gbar_kslow_apicaltree)
 
@@ -510,7 +527,7 @@ class BahlPyramidal():
         gbar_nat_apical = VariableParameter(parameter="condDensity",
                                             segment_groups="apical_group",
                                             inhomogeneous_value=InhomogeneousValue(inhomogeneous_parameters="PathLengthOver_apical_group",
-                                            value="-0.377596668*p+236.616175"))
+                                            value=self.apical_gbar_nat_val))
         nat_apical = ChannelDensityNonUniform(id="apical_g_nat", ion_channel="nat", erev="55 mV", ion="na")
         nat_apical.variable_parameters.append(gbar_nat_apical)
 
@@ -518,7 +535,7 @@ class BahlPyramidal():
         gbar_ih_apical = VariableParameter(parameter="condDensity",
                                             segment_groups="apical_group",
                                             inhomogeneous_value=InhomogeneousValue(inhomogeneous_parameters="PathLengthOver_apical_group",
-                                            value="0.0323896*p"))
+                                            value=self.apical_gbar_ih_val))
         ih_apical = ChannelDensityNonUniform(id="apical_g_ih", ion_channel="ih", erev="-47 mV", ion="hcn")
         ih_apical.variable_parameters.append(gbar_ih_apical)
 
@@ -528,8 +545,8 @@ class BahlPyramidal():
         cell.biophysical_properties.membrane_properties.channel_density_non_uniforms.append(ih_apical)
 
         # Other cell properties
-        set_specific_capacitance(cell, "2.23041 uF_per_cm2", group="axosomatic_list")
-        set_specific_capacitance(cell, "1.750419 uF_per_cm2", group="apicaltree_list")
+        set_specific_capacitance(cell, self.axosomatic_list_cm, group="axosomatic_list")
+        set_specific_capacitance(cell, self.apicaltree_list_cm, group="apicaltree_list")
         cell.biophysical_properties.membrane_properties.spike_threshes.append(SpikeThresh(value="-20mV"))
         # set_specific_capacitance(cell, "2.23041 uF_per_cm2", group="soma_group")
         set_init_memb_potential(cell, "-67mV")
@@ -538,7 +555,7 @@ class BahlPyramidal():
         set_resistivity(cell, "0.082 kohm_cm", "axon_group")
         set_resistivity(cell, "0.734 kohm_cm", "basal_group")
         set_resistivity(cell, "0.527 kohm_cm", "tuft_group")
-        set_resistivity(cell, "0.3822 kohm_cm", "apical_group")
+        set_resistivity(cell, self.Ra_apical, "apical_group")
 
         cell.biophysical_properties.intracellular_properties.species.append(Species(id="ca", concentration_model="cad", ion="ca", initial_concentration="100e-6 mM",
                                 initial_ext_concentration="2 mM", segment_groups="tuft_group"))
