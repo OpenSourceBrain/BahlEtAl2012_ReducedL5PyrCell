@@ -324,23 +324,6 @@ class BahlPyramidal():
                 else:
                     continue
 
-        # Adding the segments to axon_group, dendrite_group, soma_group to help in visualization
-        soma_seg_group = get_seg_group_by_id("soma_group", cell)
-        soma_seg_group.includes.append(Include(segment_groups="soma_0"))
-        soma_seg_group.properties.append(Property(tag="color", value="0 0 0.8"))
-
-        ax_seg_group = get_seg_group_by_id("axon_group", cell)
-        ax_seg_group.includes.append(Include(segment_groups="axon_0"))
-        ax_seg_group.includes.append(Include(segment_groups="hillock_0"))
-        ax_seg_group.includes.append(Include(segment_groups="iseg_0"))
-        ax_seg_group.properties.append(Property(tag="color", value="0 0.8 0"))
-
-        den_seg_group = get_seg_group_by_id("dendrite_group", cell)
-        den_seg_group.includes.append(Include(segment_groups="basal_0"))
-        den_seg_group.includes.append(Include(segment_groups="apical_0"))
-        den_seg_group.includes.append(Include(segment_groups="tuft_0"))
-        den_seg_group.properties.append(Property(tag="color", value="0.8 0 0"))
-
         # Creating additional segment groups which are necessary to add the density mechanisms
         basal_seg_group = SegmentGroup(neuro_lex_id=None, id="basal_group")
         basal_seg_group.includes.append(Include(segment_groups="basal_0"))
@@ -362,6 +345,23 @@ class BahlPyramidal():
         cell.morphology.segment_groups.append(tuft_seg_group)
         cell.morphology.segment_groups.append(hillock_seg_group)
         cell.morphology.segment_groups.append(iseg_seg_group)
+
+        # Adding the segments to axon_group, dendrite_group, soma_group to help in visualization
+        soma_seg_group = get_seg_group_by_id("soma_group", cell)
+        soma_seg_group.includes.append(Include(segment_groups="soma_0"))
+        soma_seg_group.properties.append(Property(tag="color", value="0 0 0.8"))
+
+        ax_seg_group = get_seg_group_by_id("axon_group", cell)
+        ax_seg_group.includes.append(Include(segment_groups="axon_0"))
+        ax_seg_group.includes.append(Include(segment_groups="hillock_0"))
+        ax_seg_group.includes.append(Include(segment_groups="iseg_0"))
+        ax_seg_group.properties.append(Property(tag="color", value="0 0.8 0"))
+
+        den_seg_group = get_seg_group_by_id("dendrite_group", cell)
+        den_seg_group.includes.append(Include(segment_groups="basal_0"))
+        den_seg_group.includes.append(Include(segment_groups="apical_0"))
+        den_seg_group.includes.append(Include(segment_groups="tuft_0"))
+        den_seg_group.properties.append(Property(tag="color", value="0.8 0 0"))
 
         # Adding two additional segments namely axosomatic and apicaltree 
         axosomatic = SegmentGroup(neuro_lex_id=None, id="axosomatic_list")
@@ -592,8 +592,8 @@ class BahlPyramidal():
         pynml.write_neuroml2_file(nml2_doc=net_doc, nml2_file_name=net_doc_fn, validate=True)
         return net_doc_fn
 
-    def regenerate_and_run_model(self):
-        """Main function
+    def run_simulation(self):
+        """Run the simulation using the neuroml file generated for the cell
 
         Include the NeuroML model into a LEMS simulation file, run it, plot some
         data.
@@ -623,3 +623,11 @@ class BahlPyramidal():
 
         # For multicompartmental cell model run the lems using JNML NEURON
         pynml.run_lems_with_jneuroml_neuron(sim_file, max_memory="2G", nogui=True, plot=False)
+
+# def regenerate_and_run_model():
+#     sim_id = "pyr_multi_comp"
+#     pyr = BahlPyramidal(e_pas, soma_gbar_nat, soma_gbar_kfast, soma_gbar_kslow, soma_gbar_nap, soma_gbar_km,
+#                     basal_gbar_ih, tuft_gbar_ih, tuft_gbar_nat, hillock_gbar_nat, iseg_gbar_nat, iseg_vshift2_nat,
+#                     Rm_axosomatic, axosomatic_list_cm, spinefactor, decay_kfast, decay_kslow, Ra_apical,
+#                     tuft_gbar_sca, tuft_vshift_sca, tuft_gbar_kca)
+#     pyr.run_simulation()  
