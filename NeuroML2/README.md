@@ -10,4 +10,8 @@ python export_nml2.py
 ### Notebook to create multicompartmental cell [here](multicomp_pyr_cell.ipynb)
 
 ### After running the multicompartmental cell [LEMS file](LEMS_pyr_multi_comp.xml):
-<img src="pyr_multi_comp-v.png" alt="screenshot" width="550" height="405">
+<img src="./plots/pyr_multi_comp-v.png" alt="Membrane potential for 0.4nA pulse for a duration of 500ms with a delay of 100ms" width="550" height="405">
+
+### Optimization of the dendritic calcium dynamics and somato-dendritic coupling for varying current injections into the soma and the dendrite
+#### (c) A somatic current pulse elicits a single somatic spike that back-propagates into the dendrite without crossing the threshold for the initiation of dendritic calcium APs.
+<img src="./plots/output_c.png" alt="Somatic current = 1nA, Pulse duration = 5ms" width="550" height="405">
