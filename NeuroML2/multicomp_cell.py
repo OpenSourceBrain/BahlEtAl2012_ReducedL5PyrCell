@@ -20,7 +20,7 @@ from pyneuroml.lems import LEMSSimulation
 from CellBuilder import (create_cell, add_segment, add_channel_density, set_init_memb_potential, set_resistivity, set_specific_capacitance, get_seg_group_by_id)
 import typing
 
-def plot_data(sim_id):
+def plot_data(sim_id, start, end):
     """Plot the sim data.
 
     Load the data from the file and plot the graph for the membrane potential
@@ -35,8 +35,8 @@ def plot_data(sim_id):
     #                      [data_array[:, 1]], "Membrane potential", show_plot_already=False, save_figure_to=sim_id + "-v.png", xaxis="time (s)", yaxis="membrane potential Soma(V)")
 
     #  For multi compartmental cell model:
-    pynml.generate_plot([data_array[:, 0], data_array[:, 0], data_array[:, 0]],
-                         [data_array[:, 1], data_array[:, 2], data_array[:, 3]], "Membrane potential", ["Soma", "Apical", "Tuft"], show_plot_already=False, save_figure_to=sim_id + "-v.png", xaxis="time (s)", yaxis="membrane potential (V)")
+    pynml.generate_plot([data_array[start:end, 0], data_array[start:end, 0], data_array[start:end, 0]],
+                         [data_array[start:end, 1], data_array[start:end, 2], data_array[start:end, 3]], "Membrane potential", ["Soma", "Apical", "Tuft"], show_plot_already=False, xaxis="time (s)", yaxis="membrane potential (V)")
 
 class BahlPyramidal():
     """Full Hodgkin-Huxley Model implemented in Python"""
@@ -47,7 +47,7 @@ class BahlPyramidal():
     def __init__(self, e_pas, soma_gbar_nat, soma_gbar_kfast, soma_gbar_kslow, soma_gbar_nap, soma_gbar_km,
                 basal_gbar_ih, tuft_gbar_ih, tuft_gbar_nat, hillock_gbar_nat, iseg_gbar_nat, iseg_vshift2_nat,
                 Rm_axosomatic, axosomatic_list_cm, spinefactor, decay_kfast, decay_kslow, Ra_apical,
-                tuft_gbar_sca, tuft_vshift_sca, tuft_gbar_kca):
+                tuft_gbar_sca, tuft_vshift_sca, tuft_gbar_kca, amplitude_soma_pulse, duration_soma_pulse):
     #  g_Na=120, g_K=36, g_L=0.3, E_Na=50, E_K=-77, E_L=-54.387, t_0=0, t_n=450, delta_t=0.01, I_inj_max=0, I_inj_width=0, I_inj_trans=0, vc_delay=10, vc_duration=30, vc_condVoltage=-63.77, vc_testVoltage=10, vc_returnVoltage=-63.77, runMode='iclamp'):
         
         self.e_pas = str(e_pas)+" mV"                               
@@ -90,6 +90,11 @@ class BahlPyramidal():
         self.tuft_gbar_sca = str(tuft_gbar_sca)+" S_per_m2"
         self.tuft_vshift_sca = str(tuft_vshift_sca)+" mV"
         self.tuft_gbar_kca = str(tuft_gbar_kca)+" S_per_m2"
+
+        # Input to cell ( somatic pulse and dendritic EPSP)
+        self.amplitude_soma_pulse = amplitude_soma_pulse
+        self.duration_soma_pulse = duration_soma_pulse
+
 
 
     def create_pyr_cell(self):
@@ -576,7 +581,10 @@ class BahlPyramidal():
         # Create a population: convenient to create many cells of the same type
         pop = Population(id="pop0", notes="A population for pyramidal cell", component="pyr", size=1)
         # Input
-        pulsegen = PulseGenerator(id="pg", notes="Simple pulse generator", delay="100ms", duration="500ms", amplitude="0.4nA")
+        pulsegen = PulseGenerator(id="pg", notes="Simple pulse generator",
+                                  delay="100ms",
+                                  duration=self.duration_soma_pulse,
+                                  amplitude=self.amplitude_soma_pulse)
 
         exp_input = ExplicitInput(target="pop0[0]", input="pg")
 
