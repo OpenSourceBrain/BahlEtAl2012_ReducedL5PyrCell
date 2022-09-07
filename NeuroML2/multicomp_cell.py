@@ -12,7 +12,7 @@ from neuroml import IntracellularProperties, Species
 from neuroml import Resistivity
 from neuroml import Morphology, Segment, Point3DWithDiam, SegmentGroup
 from neuroml import Network, Population, InhomogeneousParameter, ProximalDetails
-from neuroml import PulseGenerator, ExplicitInput
+from neuroml import PulseGenerator, ExplicitInput, Input, InputList
 from neuroml import InhomogeneousParameter, InhomogeneousValue, VariableParameter
 from pyneuroml import pynml
 import numpy as np
@@ -554,7 +554,7 @@ class BahlPyramidal():
         set_specific_capacitance(cell, self.apicaltree_list_cm, group="apicaltree_list")
         cell.biophysical_properties.membrane_properties.spike_threshes.append(SpikeThresh(value="-20mV"))
         # set_specific_capacitance(cell, "2.23041 uF_per_cm2", group="soma_group")
-        set_init_memb_potential(cell, "-67mV")
+        set_init_memb_potential(cell, "-70mV")
         # set_resistivity(cell, "0.082 kohm_cm")
         set_resistivity(cell, "0.082 kohm_cm", "soma_group")
         set_resistivity(cell, "0.082 kohm_cm", "axon_group")
@@ -578,6 +578,7 @@ class BahlPyramidal():
                                 notes="Pyramidal cell network")
         net_doc_fn = "pyr_multi_comp.net.nml"
         net_doc.includes.append(IncludeType(href=self.create_pyr_cell()))
+        net_doc.includes.append(IncludeType("epsp_tuft.nml"))
         # Create a population: convenient to create many cells of the same type
         pop = Population(id="pop0", notes="A population for pyramidal cell", component="pyr", size=1)
         # Input
@@ -585,8 +586,12 @@ class BahlPyramidal():
                                   delay="100ms",
                                   duration=self.duration_soma_pulse,
                                   amplitude=self.amplitude_soma_pulse)
-
         exp_input = ExplicitInput(target="pop0[0]", input="pg")
+
+        # EPSP shaped current injected to the dendritic tuft
+        epsp_current = Input(id="0", target="pop0/0/pyr", segment_id="23", destination="synapses")
+        dend_input = InputList(id="i1", component="epsp_tuft", populations="pop0")
+        dend_input.input.append(epsp_current)
 
         net = Network(id="single_pyr_cell_network",
                     type="networkWithTemperature",
@@ -594,6 +599,7 @@ class BahlPyramidal():
                     note="A network with a single population")
         net_doc.pulse_generators.append(pulsegen)
         net.explicit_inputs.append(exp_input)
+        net.input_lists.append(dend_input)
         net.populations.append(pop)
         net_doc.networks.append(net)
 
