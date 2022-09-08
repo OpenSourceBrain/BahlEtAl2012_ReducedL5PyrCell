@@ -14,6 +14,7 @@
     <Include file="Networks.xml"/>
     <Include file="Simulation.xml"/>
     
+    <Include file="epsp_tuft.xml"/>
     <Include file="pyr_multi_comp.net.nml"/>
     <Include file="pyr.cell.nml"/>
     <Include file="kca.channel.nml"/>

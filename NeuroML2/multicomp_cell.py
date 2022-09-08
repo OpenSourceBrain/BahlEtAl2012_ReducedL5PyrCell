@@ -19,8 +19,9 @@ import numpy as np
 from pyneuroml.lems import LEMSSimulation
 from CellBuilder import (create_cell, add_segment, add_channel_density, set_init_memb_potential, set_resistivity, set_specific_capacitance, get_seg_group_by_id)
 import typing
+import xml.etree.ElementTree as ET
 
-def plot_data(sim_id, start, end):
+def plot_data(sim_id, start, end, title):
     """Plot the sim data.
 
     Load the data from the file and plot the graph for the membrane potential
@@ -31,24 +32,22 @@ def plot_data(sim_id, start, end):
     """
     #  Generate plot, for single compartmental cell model
     data_array = np.loadtxt(sim_id + ".dat")
-    # pynml.generate_plot([data_array[:, 0]],
-    #                      [data_array[:, 1]], "Membrane potential", show_plot_already=False, save_figure_to=sim_id + "-v.png", xaxis="time (s)", yaxis="membrane potential Soma(V)")
-
+    
     #  For multi compartmental cell model:
     pynml.generate_plot([data_array[start:end, 0], data_array[start:end, 0], data_array[start:end, 0]],
-                         [data_array[start:end, 1], data_array[start:end, 2], data_array[start:end, 3]], "Membrane potential", ["Soma", "Apical", "Tuft"], show_plot_already=False, xaxis="time (s)", yaxis="membrane potential (V)")
+                         [data_array[start:end, 1], data_array[start:end, 2], data_array[start:end, 3]], title, ["Soma", "Apical", "Tuft"], show_plot_already=False,
+                          xaxis="time (s)", yaxis="membrane potential (V)", title_above_plot=True)
 
 class BahlPyramidal():
     """Full Hodgkin-Huxley Model implemented in Python"""
 
     """ __init__ uses optional arguments """
     """ when no argument is passed default values are used """
-    
-    def __init__(self, e_pas, soma_gbar_nat, soma_gbar_kfast, soma_gbar_kslow, soma_gbar_nap, soma_gbar_km,
-                basal_gbar_ih, tuft_gbar_ih, tuft_gbar_nat, hillock_gbar_nat, iseg_gbar_nat, iseg_vshift2_nat,
-                Rm_axosomatic, axosomatic_list_cm, spinefactor, decay_kfast, decay_kslow, Ra_apical,
-                tuft_gbar_sca, tuft_vshift_sca, tuft_gbar_kca, amplitude_soma_pulse, duration_soma_pulse):
-    #  g_Na=120, g_K=36, g_L=0.3, E_Na=50, E_K=-77, E_L=-54.387, t_0=0, t_n=450, delta_t=0.01, I_inj_max=0, I_inj_width=0, I_inj_trans=0, vc_delay=10, vc_duration=30, vc_condVoltage=-63.77, vc_testVoltage=10, vc_returnVoltage=-63.77, runMode='iclamp'):
+
+    def __init__(self, e_pas, Rm_axosomatic, axosomatic_list_cm, spinefactor, soma_gbar_nat, soma_gbar_kfast,
+                soma_gbar_kslow, soma_gbar_nap, soma_gbar_km, basal_gbar_ih, tuft_gbar_ih, tuft_gbar_nat,
+                decay_kfast, decay_kslow, hillock_gbar_nat, iseg_gbar_nat, iseg_vshift2_nat, Ra_apical,
+                tuft_gbar_sca, tuft_vshift_sca, tuft_gbar_kca, amplitude_soma_pulse, duration_soma_pulse, amplitude_dendritic_pulse):
         
         self.e_pas = str(e_pas)+" mV"                               
         """ membrane capacitance, in uF/cm^2 """
@@ -94,6 +93,7 @@ class BahlPyramidal():
         # Input to cell ( somatic pulse and dendritic EPSP)
         self.amplitude_soma_pulse = amplitude_soma_pulse
         self.duration_soma_pulse = duration_soma_pulse
+        self.amplitude_dendritic_pulse = str(amplitude_dendritic_pulse)
 
 
 
@@ -554,7 +554,7 @@ class BahlPyramidal():
         set_specific_capacitance(cell, self.apicaltree_list_cm, group="apicaltree_list")
         cell.biophysical_properties.membrane_properties.spike_threshes.append(SpikeThresh(value="-20mV"))
         # set_specific_capacitance(cell, "2.23041 uF_per_cm2", group="soma_group")
-        set_init_memb_potential(cell, "-70mV")
+        set_init_memb_potential(cell, "-67mV")
         # set_resistivity(cell, "0.082 kohm_cm")
         set_resistivity(cell, "0.082 kohm_cm", "soma_group")
         set_resistivity(cell, "0.082 kohm_cm", "axon_group")
@@ -569,6 +569,14 @@ class BahlPyramidal():
         pynml.write_neuroml2_file(nml2_doc=pyr_cell_doc, nml2_file_name=nml_cell_file, validate=True)
         return nml_cell_file 
 
+    def set_dendritic_ampltide(self):
+        # parsing directly.
+        tree = ET.parse('epsp_tuft.xml')
+        root = tree.getroot()
+        for epsp in root.iter('epsp_input'):
+            epsp.set('startAmplitude', self.amplitude_dendritic_pulse)
+        tree.write('epsp_tuft.xml')
+
     def create_pyr_network(self):
         """Create the network
 
@@ -578,7 +586,7 @@ class BahlPyramidal():
                                 notes="Pyramidal cell network")
         net_doc_fn = "pyr_multi_comp.net.nml"
         net_doc.includes.append(IncludeType(href=self.create_pyr_cell()))
-        net_doc.includes.append(IncludeType("epsp_tuft.nml"))
+
         # Create a population: convenient to create many cells of the same type
         pop = Population(id="pop0", notes="A population for pyramidal cell", component="pyr", size=1)
         # Input
@@ -617,8 +625,11 @@ class BahlPyramidal():
         sim_id = "pyr_multi_comp"
         simulation = LEMSSimulation(sim_id=sim_id, duration=700, dt=0.005, simulation_seed=123)
 
+        self.set_dendritic_ampltide()
+        simulation.include_lems_file("epsp_tuft.xml")
         # Include the NeuroML model file
         simulation.include_neuroml2_file(self.create_pyr_network())
+
         # Assign target for the simulation
         simulation.assign_simulation_target("single_pyr_cell_network")
 
