@@ -1,16 +1,16 @@
 <neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2.3.xsd" id="network">
     <notes>Pyramidal cell network</notes>
-    <include href="pyr.cell.nml"/>
+    <include href="pyr_model2.cell.nml"/>
     <pulseGenerator id="pg" delay="100ms" duration="5ms" amplitude="0nA">
         <notes>Simple pulse generator</notes>
     </pulseGenerator>
     <network id="single_pyr_cell_network" type="networkWithTemperature" temperature="37 degC">
-        <population id="pop0" component="pyr" size="1">
+        <population id="pop0" component="pyr_model2" size="1">
             <notes>A population for pyramidal cell</notes>
         </population>
         <explicitInput target="pop0[0]" input="pg"/>
         <inputList id="i1" population="pop0" component="epsp_tuft">
-            <input id="0" target="pop0/0/pyr" destination="synapses" segmentId="23"/>
+            <input id="0" target="pop0/0/pyr_model2" destination="synapses" segmentId="23"/>
         </inputList>
     </network>
 </neuroml>

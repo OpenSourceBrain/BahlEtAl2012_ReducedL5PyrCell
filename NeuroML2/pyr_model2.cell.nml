@@ -10,7 +10,7 @@
     <include href="nap.channel.nml"/>
     <include href="IKM.channel.nml"/>
     <include href="ih.channel.nml"/>
-    <cell id="pyr">
+    <cell id="pyr_model2">
         <morphology id="morphology">
             <segment id="0" name="Seg0_soma">
                 <proximal x="0.0" y="0.0" z="0.0" diameter="23.1453"/>

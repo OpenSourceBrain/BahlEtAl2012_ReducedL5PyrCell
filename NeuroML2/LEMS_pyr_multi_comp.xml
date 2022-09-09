@@ -16,7 +16,7 @@
     
     <Include file="epsp_tuft.xml"/>
     <Include file="pyr_multi_comp.net.nml"/>
-    <Include file="pyr.cell.nml"/>
+    <Include file="pyr_model2.cell.nml"/>
     <Include file="kca.channel.nml"/>
     <Include file="sca.channel.nml"/>
     <Include file="cad.nml"/>
@@ -31,9 +31,9 @@
     <Simulation id="pyr_multi_comp" length="700ms" step="0.005ms" target="single_pyr_cell_network" seed="123">  <!-- Note seed: ensures same random numbers used every run -->
         
         <OutputFile id="output0" fileName="pyr_multi_comp.dat">
-            <OutputColumn id="pop0_0_soma_v" quantity="pop0/0/pyr/0/v"/> 
-            <OutputColumn id="pop0_0_apical_v" quantity="pop0/0/pyr/13/v"/> 
-            <OutputColumn id="pop0_0_tuft_v" quantity="pop0/0/pyr/23/v"/> 
+            <OutputColumn id="pop0_0_soma_v" quantity="pop0/0/pyr_model2/0/v"/> 
+            <OutputColumn id="pop0_0_apical_v" quantity="pop0/0/pyr_model2/13/v"/> 
+            <OutputColumn id="pop0_0_tuft_v" quantity="pop0/0/pyr_model2/23/v"/> 
         </OutputFile>
         
     </Simulation>

@@ -32,7 +32,7 @@ def plot_data(sim_id, start, end, title):
     """
     #  Generate plot, for single compartmental cell model
     data_array = np.loadtxt(sim_id + ".dat")
-    
+
     #  For multi compartmental cell model:
     pynml.generate_plot([data_array[start:end, 0], data_array[start:end, 0], data_array[start:end, 0]],
                          [data_array[start:end, 1], data_array[start:end, 2], data_array[start:end, 3]], title, ["Soma", "Apical", "Tuft"], show_plot_already=False,
@@ -47,7 +47,8 @@ class BahlPyramidal():
     def __init__(self, e_pas, Rm_axosomatic, axosomatic_list_cm, spinefactor, soma_gbar_nat, soma_gbar_kfast,
                 soma_gbar_kslow, soma_gbar_nap, soma_gbar_km, basal_gbar_ih, tuft_gbar_ih, tuft_gbar_nat,
                 decay_kfast, decay_kslow, hillock_gbar_nat, iseg_gbar_nat, iseg_vshift2_nat, Ra_apical,
-                tuft_gbar_sca, tuft_vshift_sca, tuft_gbar_kca, amplitude_soma_pulse, duration_soma_pulse, amplitude_dendritic_pulse):
+                tuft_gbar_sca, tuft_vshift_sca, tuft_gbar_kca,
+                amplitude_soma_pulse, duration_soma_pulse, amplitude_dendritic_pulse, modelname):
         
         self.e_pas = str(e_pas)+" mV"                               
         """ membrane capacitance, in uF/cm^2 """
@@ -94,12 +95,13 @@ class BahlPyramidal():
         self.amplitude_soma_pulse = amplitude_soma_pulse
         self.duration_soma_pulse = duration_soma_pulse
         self.amplitude_dendritic_pulse = str(amplitude_dendritic_pulse)
+        self.modelname = str(modelname)
 
 
 
     def create_pyr_cell(self):
         pyr_cell_doc = NeuroMLDocument(id='cell', notes="Layer 5 Pyramidal cell")
-        cell = create_cell("pyr")
+        cell = create_cell("pyr"+"_"+self.modelname)
         nml_cell_file = cell.id + ".cell.nml"
 
         pyr_cell_doc.includes.append(IncludeType("kca.channel.nml"))
@@ -588,7 +590,8 @@ class BahlPyramidal():
         net_doc.includes.append(IncludeType(href=self.create_pyr_cell()))
 
         # Create a population: convenient to create many cells of the same type
-        pop = Population(id="pop0", notes="A population for pyramidal cell", component="pyr", size=1)
+        pop = Population(id="pop0", notes="A population for pyramidal cell",
+                         component="pyr"+"_"+self.modelname, size=1)
         # Input
         pulsegen = PulseGenerator(id="pg", notes="Simple pulse generator",
                                   delay="100ms",
@@ -597,7 +600,7 @@ class BahlPyramidal():
         exp_input = ExplicitInput(target="pop0[0]", input="pg")
 
         # EPSP shaped current injected to the dendritic tuft
-        epsp_current = Input(id="0", target="pop0/0/pyr", segment_id="23", destination="synapses")
+        epsp_current = Input(id="0", target="pop0/0/pyr"+"_"+self.modelname, segment_id="23", destination="synapses")
         dend_input = InputList(id="i1", component="epsp_tuft", populations="pop0")
         dend_input.input.append(epsp_current)
 
@@ -635,10 +638,10 @@ class BahlPyramidal():
 
         # Recording information from the simulation
         simulation.create_output_file(id="output0", file_name=sim_id + ".dat")
-        simulation.add_column_to_output_file("output0", column_id="pop0_0_soma_v", quantity="pop0/0/pyr/0/v")
+        simulation.add_column_to_output_file("output0", column_id="pop0_0_soma_v", quantity="pop0/0/pyr"+"_"+self.modelname+"/0/v")
         # Add other segments to the output file of membrane potential i.e. apical and tuft
-        simulation.add_column_to_output_file("output0", column_id="pop0_0_apical_v", quantity="pop0/0/pyr/13/v")
-        simulation.add_column_to_output_file("output0", column_id="pop0_0_tuft_v", quantity="pop0/0/pyr/23/v")
+        simulation.add_column_to_output_file("output0", column_id="pop0_0_apical_v", quantity="pop0/0/pyr"+"_"+self.modelname+"/13/v")
+        simulation.add_column_to_output_file("output0", column_id="pop0_0_tuft_v", quantity="pop0/0/pyr"+"_"+self.modelname+"/23/v")
 
         # Save LEMS simulation to file
         sim_file = simulation.save_to_file()
