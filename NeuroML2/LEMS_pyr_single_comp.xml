@@ -14,8 +14,8 @@
     <Include file="Networks.xml"/>
     <Include file="Simulation.xml"/>
     
-    <Include file="soma_pyr.net.nml"/>
-    <Include file="soma_pyr_cell.nml"/>
+    <Include file="pyr_soma.net.nml"/>
+    <Include file="pyr_soma_cell.nml"/>
     <Include file="kfast.channel.nml"/>
     <Include file="pas.channel.nml"/>
     <Include file="kslow.channel.nml"/>
