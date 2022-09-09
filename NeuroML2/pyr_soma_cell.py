@@ -105,7 +105,7 @@ def plot_data(sim_id):
 # %%
 def create_cell():
     pyr_cell_doc = NeuroMLDocument(id='cell', notes="Layer 5 Pyramidal cell")
-    pyr_cell_fn = "soma_pyr_cell.nml"
+    pyr_cell_fn = "pyr_soma_cell.nml"
     # print(os.getcwd())
     pyr_cell_doc.includes.append(IncludeType("kfast.channel.nml"))
     pyr_cell_doc.includes.append(IncludeType("pas.channel.nml"))
@@ -188,7 +188,7 @@ def create_network():
     """
     net_doc = NeuroMLDocument(id="network",
                               notes="Pyramidal cell network")
-    net_doc_fn = "soma_pyr.net.nml"
+    net_doc_fn = "pyr_soma.net.nml"
     net_doc.includes.append(IncludeType(href=create_cell()))
     # Create a population: convenient to create many cells of the same type
     pop = Population(id="pop0", notes="A population for pyramidal cell", component="pyr_cell", size=1)
