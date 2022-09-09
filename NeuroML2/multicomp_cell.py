@@ -600,7 +600,7 @@ class BahlPyramidal():
         exp_input = ExplicitInput(target="pop0[0]", input="pg")
 
         # EPSP shaped current injected to the dendritic tuft
-        epsp_current = Input(id="0", target="pop0/0/pyr"+"_"+self.modelname, segment_id="23", destination="synapses")
+        epsp_current = Input(id="0", target="pop0/0/pyr"+"_"+self.modelname, segment_id="23", destination="synapses", fraction_along=0.5)
         dend_input = InputList(id="i1", component="epsp_tuft", populations="pop0")
         dend_input.input.append(epsp_current)
 

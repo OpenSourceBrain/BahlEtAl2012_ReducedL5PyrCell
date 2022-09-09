@@ -1,0 +1,40 @@
+<Lems>
+    
+    <!-- 
+
+        This LEMS file has been automatically generated using PyNeuroML v0.7.1 (libNeuroML v0.4.0)
+
+     -->
+    
+    <!-- Specify which component to run -->
+    <Target component="pyr_multi_comp"/>
+
+    <!-- Include core NeuroML2 ComponentType definitions -->
+    <Include file="Cells.xml"/>
+    <Include file="Networks.xml"/>
+    <Include file="Simulation.xml"/>
+    
+    <Include file="pyr_multi_comp_original.net.nml"/>
+    <Include file="pyr.cell.nml"/>
+    <Include file="kca.channel.nml"/>
+    <Include file="sca.channel.nml"/>
+    <Include file="cad.nml"/>
+    <Include file="nat.channel.nml"/>
+    <Include file="pas.channel.nml"/>
+    <Include file="kfast.channel.nml"/>
+    <Include file="kslow.channel.nml"/>
+    <Include file="nap.channel.nml"/>
+    <Include file="IKM.channel.nml"/>
+    <Include file="ih.channel.nml"/>
+   
+    <Simulation id="pyr_multi_comp" length="700ms" step="0.005ms" target="single_pyr_cell_network" seed="123">  <!-- Note seed: ensures same random numbers used every run -->
+        
+        <OutputFile id="output0" fileName="pyr_multi_comp.dat">
+            <OutputColumn id="pop0_0_soma_v" quantity="pop0/0/pyr/0/v"/> 
+            <OutputColumn id="pop0_0_apical_v" quantity="pop0/0/pyr/13/v"/> 
+            <OutputColumn id="pop0_0_tuft_v" quantity="pop0/0/pyr/23/v"/> 
+        </OutputFile>
+        
+    </Simulation>
+
+</Lems>
