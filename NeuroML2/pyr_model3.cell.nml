@@ -10,7 +10,7 @@
     <include href="nap.channel.nml"/>
     <include href="IKM.channel.nml"/>
     <include href="ih.channel.nml"/>
-    <cell id="pyr">
+    <cell id="pyr_model3">
         <morphology id="morphology">
             <segment id="0" name="Seg0_soma">
                 <proximal x="0.0" y="0.0" z="0.0" diameter="23.1453"/>
@@ -258,42 +258,42 @@
         </morphology>
         <biophysicalProperties id="biophys">
             <membraneProperties>
-                <channelDensity id="axosomatic_gpas" ionChannel="pas" condDensity="0.485726 S_per_m2" erev="-80.3987 mV" segmentGroup="axosomatic_list" ion="non_specific"/>
-                <channelDensity id="apicaltree_gpas" ionChannel="pas" condDensity="0.381196 S_per_m2" erev="-80.3987 mV" segmentGroup="apicaltree_list" ion="non_specific"/>
-                <channelDensity id="kfast_soma" ionChannel="kfast" condDensity="67.197508 S_per_m2" erev="-80mV" segmentGroup="soma_group" ion="k"/>
-                <channelDensity id="kslow_soma" ionChannel="kslow" condDensity="475.82 S_per_m2" erev="-80mV" segmentGroup="soma_group" ion="k"/>
-                <channelDensity id="nap_soma" ionChannel="nap" condDensity="1.44 S_per_m2" erev="55mV" segmentGroup="soma_group" ion="na"/>
-                <channelDensity id="km_soma" ionChannel="km" condDensity="10.459916 S_per_m2" erev="-80mV" segmentGroup="soma_group" ion="k"/>
-                <channelDensity id="ih_basal" ionChannel="ih" condDensity="11.04 S_per_m2" erev="-47mV" segmentGroup="basal_group" ion="hcn"/>
-                <channelDensity id="tuft_kca" ionChannel="kca" condDensity="6.15058501 S_per_m2" erev="-80mV" segmentGroup="tuft_group" ion="k"/>
-                <channelDensityVShift id="nat_soma" ionChannel="nat" condDensity="236.616175 S_per_m2" erev="55 mV" segmentGroup="soma_group" ion="na" vShift="10mV"/>
-                <channelDensityVShift id="nat_hillock" ionChannel="nat" condDensity="9512.289205 S_per_m2" erev="55 mV" segmentGroup="hillock_group" ion="na" vShift="10mV"/>
-                <channelDensityVShift id="nat_iseg" ionChannel="nat" condDensity="13326.766938 S_per_m2" erev="55 mV" segmentGroup="iseg_group" ion="na" vShift="-0.612583mV"/>
-                <channelDensityVShift id="nat_tuft" ionChannel="nat" condDensity="47.82 S_per_m2" erev="55 mV" segmentGroup="tuft_group" ion="na" vShift="10 mV"/>
-                <channelDensityVShift id="tuft_sca" ionChannel="sca" condDensity="0.45423528 S_per_m2" erev="140 mV" segmentGroup="tuft_group" ion="ca" vShift="7.19485311 mV"/>
+                <channelDensity id="axosomatic_gpas" ionChannel="pas" condDensity="0.4874755774290887 S_per_m2" erev="-80.495767 mV" segmentGroup="axosomatic_list" ion="non_specific"/>
+                <channelDensity id="apicaltree_gpas" ionChannel="pas" condDensity="0.3372195177713884 S_per_m2" erev="-80.495767 mV" segmentGroup="apicaltree_list" ion="non_specific"/>
+                <channelDensity id="kfast_soma" ionChannel="kfast" condDensity="59.256783 S_per_m2" erev="-80mV" segmentGroup="soma_group" ion="k"/>
+                <channelDensity id="kslow_soma" ionChannel="kslow" condDensity="433.798677 S_per_m2" erev="-80mV" segmentGroup="soma_group" ion="k"/>
+                <channelDensity id="nap_soma" ionChannel="nap" condDensity="1.479049 S_per_m2" erev="55mV" segmentGroup="soma_group" ion="na"/>
+                <channelDensity id="km_soma" ionChannel="km" condDensity="11.118662 S_per_m2" erev="-80mV" segmentGroup="soma_group" ion="k"/>
+                <channelDensity id="ih_basal" ionChannel="ih" condDensity="10.720289 S_per_m2" erev="-47mV" segmentGroup="basal_group" ion="hcn"/>
+                <channelDensity id="tuft_kca" ionChannel="kca" condDensity="8.22978203 S_per_m2" erev="-80mV" segmentGroup="tuft_group" ion="k"/>
+                <channelDensityVShift id="nat_soma" ionChannel="nat" condDensity="238.879842 S_per_m2" erev="55 mV" segmentGroup="soma_group" ion="na" vShift="10mV"/>
+                <channelDensityVShift id="nat_hillock" ionChannel="nat" condDensity="8302.875131 S_per_m2" erev="55 mV" segmentGroup="hillock_group" ion="na" vShift="10mV"/>
+                <channelDensityVShift id="nat_iseg" ionChannel="nat" condDensity="17623.525167 S_per_m2" erev="55 mV" segmentGroup="iseg_group" ion="na" vShift="0.43230199999999996 mV"/>
+                <channelDensityVShift id="nat_tuft" ionChannel="nat" condDensity="29.006481 S_per_m2" erev="55 mV" segmentGroup="tuft_group" ion="na" vShift="10 mV"/>
+                <channelDensityVShift id="tuft_sca" ionChannel="sca" condDensity="2.12343632 S_per_m2" erev="140 mV" segmentGroup="tuft_group" ion="ca" vShift="8.34639038 mV"/>
                 <channelDensityNonUniform id="apicaltree_g_kfast" ionChannel="kfast" erev="-80 mV" ion="k">
                     <variableParameter parameter="condDensity" segmentGroup="apicaltree_list">
-                        <inhomogeneousValue inhomogeneousParameter="PathLengthOver_apicaltree_list" value="67.197508*exp(-p/20.075497)"/>
+                        <inhomogeneousValue inhomogeneousParameter="PathLengthOver_apicaltree_list" value="59.256783*exp(-p/55.581656)"/>
                     </variableParameter>
                 </channelDensityNonUniform>
                 <channelDensityNonUniform id="apicaltree_g_kslow" ionChannel="kslow" erev="-80mV" ion="k">
                     <variableParameter parameter="condDensity" segmentGroup="apicaltree_list">
-                        <inhomogeneousValue inhomogeneousParameter="PathLengthOver_apicaltree_list" value="475.820646*exp(-p/37.711817)"/>
+                        <inhomogeneousValue inhomogeneousParameter="PathLengthOver_apicaltree_list" value="433.798677*exp(-p/88.716317)"/>
                     </variableParameter>
                 </channelDensityNonUniform>
                 <channelDensityNonUniform id="apical_g_nat" ionChannel="nat" erev="55 mV" ion="na">
                     <variableParameter parameter="condDensity" segmentGroup="apical_group">
-                        <inhomogeneousValue inhomogeneousParameter="PathLengthOver_apical_group" value="-0.377596668*p+236.616175"/>
+                        <inhomogeneousValue inhomogeneousParameter="PathLengthOver_apical_group" value="-0.41974672199999996*p + 238.879842"/>
                     </variableParameter>
                 </channelDensityNonUniform>
                 <channelDensityNonUniform id="apical_g_ih" ionChannel="ih" erev="-47 mV" ion="hcn">
                     <variableParameter parameter="condDensity" segmentGroup="apical_group">
-                        <inhomogeneousValue inhomogeneousParameter="PathLengthOver_apical_group" value="0.0323896*p"/>
+                        <inhomogeneousValue inhomogeneousParameter="PathLengthOver_apical_group" value="0.035592149999999996*p"/>
                     </variableParameter>
                 </channelDensityNonUniform>
                 <spikeThresh value="-20mV"/>
-                <specificCapacitance value="2.23041 uF_per_cm2" segmentGroup="axosomatic_list"/>
-                <specificCapacitance value="1.750419 uF_per_cm2" segmentGroup="apicaltree_list"/>
+                <specificCapacitance value="2.41107 uF_per_cm2" segmentGroup="axosomatic_list"/>
+                <specificCapacitance value="1.6678986606900001 uF_per_cm2" segmentGroup="apicaltree_list"/>
                 <initMembPotential value="-67mV"/>
             </membraneProperties>
             <intracellularProperties>
@@ -302,7 +302,7 @@
                 <resistivity value="0.082 kohm_cm" segmentGroup="axon_group"/>
                 <resistivity value="0.734 kohm_cm" segmentGroup="basal_group"/>
                 <resistivity value="0.527 kohm_cm" segmentGroup="tuft_group"/>
-                <resistivity value="0.3822 kohm_cm" segmentGroup="apical_group"/>
+                <resistivity value="0.44413050299999995 kohm_cm" segmentGroup="apical_group"/>
             </intracellularProperties>
         </biophysicalProperties>
     </cell>

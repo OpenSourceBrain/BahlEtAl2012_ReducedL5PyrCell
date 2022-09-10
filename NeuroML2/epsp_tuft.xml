@@ -1,0 +1,7 @@
+<Lems>
+      
+    <Include file="epsp_input.xml" />
+    <epsp_input id="epsp_tuft" delay="106 ms" startAmplitude="1nA" baselineAmplitude="0 nA">
+        <notes>A custom made epsp-shaped current to use with Bahl et al 2012</notes>
+    </epsp_input>
+</Lems>

@@ -1,0 +1,49 @@
+<Lems xmlns="http://www.neuroml.org/lems/0.7.6"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.neuroml.org/lems/0.7.6 ../../LEMS/Schemas/LEMS/LEMS_v0.7.6.xsd"
+      description="A ComponentType for providing epsp shaped current to the dendritic tuft (e.g. epsp_input )">
+
+
+    <Include file="NeuroMLCoreDimensions.xml"/>
+    
+    <ComponentType name="epsp_input" extends="basePointCurrent"
+                   description="Generates a ramping current after a time _delay. During this time the current steadily changes from _startAmplitude to 0. Scaled by _weight, if set">
+
+        <!-- <Property name="weight" dimension="none" defaultValue="1"/> -->
+        <Constant name="weight" dimension="none" value="1"/>
+        <Constant name="TIME_SCALE" dimension="time" value="1 ms"/>
+        <!-- <Constant name="tau_rise" dimension="time" value="2ms"/>
+        <Constant name="tau_decay" dimension="time" value="8ms"/> -->
+
+        <Parameter name="delay" dimension="time" description="Delay before change in current. Current is baselineAmplitude prior to this."/>
+        <Parameter name="startAmplitude" dimension="current" description="Amplitude of linearly varying current at time delay"/>
+        <Parameter name="baselineAmplitude" dimension="current" description="Amplitude of current before time delay"/>
+        <!-- <Parameter name="tau_rise" dimension="time" description="Time course of the increasing section of the injected current"/>
+        <Parameter name="tau_decay" dimension="time" description="Time course of the decreasing section of the injected current"/> -->
+
+        <EventPort name="in" direction="in"/>
+
+        <Dynamics>
+            <DerivedVariable name="T" dimension="none" value="(t-delay) / TIME_SCALE"/>
+            <StateVariable name="i" exposure="i" dimension="current"/>
+
+            <OnStart>
+                <StateAssignment variable="i" value="baselineAmplitude"/>
+            </OnStart>
+
+            <OnEvent port="in"><!--TODO: remove-->
+            </OnEvent>
+
+
+            <OnCondition test="t .lt. delay">
+                <StateAssignment variable="i" value="weight * baselineAmplitude"/>
+            </OnCondition>
+
+            <OnCondition test="t .geq. delay">
+                <StateAssignment variable="i" value="weight * startAmplitude * exp(-T/8) * (1 - exp(-T/2))"/>
+            </OnCondition>
+
+        </Dynamics>
+    </ComponentType>
+
+</Lems>
