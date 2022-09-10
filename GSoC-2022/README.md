@@ -47,6 +47,35 @@ The community bonding period was mainly for getting to know more about the other
     - OMV tests were added for LEMS and hoc code which ran on three simulation engines namely : jNeuroML, jNeuroML_NEURON, jNeuroML_NetPyNE
 - Created a test file for example 1 which was able to record from 3 different locations of the cell namely Soma, Apical, Tuft. 
 - Morphology of the multi compartmental cell is exported from the hoc format to neuroml using export_nml2.py on the test file created above.
+- parse_mod_file.py : Adding the necessary information related to the conversion of the channel ( parameters and procedures) as comments to the converted neuroml file. This extra information can be deleted afterwards. 
+    - Moved the script along with the mod files to improve and test to the repository NEURONShowcase 
+    - Added the tutorial notebook showing how to use the utility method to parse mod files to nml
 
 ## Week 9-13
+
+- vShift in the channels:
+    - Incorporated the vShift in channels like nat, sca using the channeldensityVShift to their respective segments as in the original NEURON code
+    - For the vShift2 defined for nat in the iseg, there was no other easy way than to add it to vShift. Lets say, we have vShift = 10 mV and vShift2 = -10.612 mV then the updated vShift = 10mV + -10.612mV to be used as above.
+- Biophysical properties of the cell added to the NeuroML code and validated:
+    - Homogeneous channels were activated one by one in both NEURON and NeuroML codes.
+        - jNeuroML does not support multicompartmental cell models instead used pyneuroml to run the simulation on NEURON. 
+        - Using the membrane potential plots for the segments soma, apical and tuft we were able to replicate the results of the NEURON code.
+    - For the Nonhomogeneous channels gmax was variable along the segments and were calculated on the basis of distance from the soma. Utilised the following strategy to check on the gmax values being set:
+        - For the hoc code: Utilised the neuron gui model view option to view the gmax along the segments
+        - For the neuroml code: Added print statements inside biophys_inhomogeneous() inside the neuroml generated neuron file
+        - Worked with Ankur and improved the pyneuroml.neuron utils module to give information for the mechanisms on segment level
+    - Added axonal, dendritic segments to the segment groups axon_group and dendrite_group respectively. This helps us to better visualise the neuroml cell on OpenSourceBrain
+    - Added OMV tests on the multicompartmental cell for both NEURON as well as for the LEMS file generated from the NeuroML code. Currently the tests are failing for NEURON 8 and above and being looked into in a separate branch.
+- Created an python script with BahlPyramidal cell class and methods to plot the simulated results 
+    - Class constitutes the __init__ module majorly to:
+        - add units to the parameters being passed as arguments.
+        - variable parameters value are initialised as a string element 
+    - Other methods include create_pyr_cell(), create_pyr_network(), run_simulation() with their name revealing their functionalities.
+- Epsp shaped dendritic input current
+    - Defined a new component type in epsp_input.xml. As the amplitude for epsp current is reset the epsp_tuft.xml is redefined with the new value.
+    - The *.xml file is included in the LEMSSimulation using include_lems_file module.
+- An interactive notebook to work with variations in input current to the multicompartmental cell as in the paper / issue:
+    - Notebook has utility methods that helped parse the hoc files parameter and initialise them as variables to be further passed as argument to BahlPyramidal cell class.
+    - Four variations were tried combining the somatic pulse amplitude and dendritic amplitude referenced from the paper.
+        - Readme is updated with the plots with parameters from the model2 for each of the cases.
 
