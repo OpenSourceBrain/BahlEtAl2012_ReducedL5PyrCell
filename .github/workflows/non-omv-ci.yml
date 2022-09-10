@@ -28,7 +28,7 @@ jobs:
       run: |
         pip install pyneuroml
         cd NeuroML2
-        python cell.py
+        python pyr_soma_cell.py
         ls -alt
 
     - name: Final version info
