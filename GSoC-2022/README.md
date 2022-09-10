@@ -35,27 +35,29 @@ The community bonding period was mainly for getting to know more about the other
     - Inferential study of the characteristics of the channels involved 
     - Created [mep file](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/blob/master/NEURON/test/.test.mep) and added OMV tests for the LEMS and NEURON files in their respective directories.
 
+Some of my commits in these weeks can be found linked to this [issue.](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/issues/12)
 ## Week 5 - 8
 - Converted the ca dependent mechanisms namely (cad, sca, kca) to NeuroML
     - Understood the dynamics from their mod files and referenced some of the previous works that involved conversion of such mechanisms
     - Compared the LEMS and mod file for sca channel and added the plots to the compare_nml2_mods directory
-- Validated the ca dependent channels on single compartmental cell
-    - Created a NEURON hoc file including the three mechanisms and a leak channel. Recorded the cai,(internal ca conc.), cao (outer ca conc.) and ica (ca current)
-    - Similarly, created a neuroml cell with soma including leak, sca and kca as channel densities and adding the cad as intracellular properties. The notebook included plots as above.
+- Tested the ca dependent channels on single compartmental cell
+    - Created a [Test_ca_soma.hoc](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/blob/master/NEURON/channels/Test_ca_soma.hoc) file including the three mechanisms and a leak channel. [Recorded](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/blob/70ab1e87dda5fd983c6c47a2af87027f647952b4/NEURON/channels/Test_ca_soma.hoc#L97) the cai,(internal ca conc.), cao (outer ca conc.) and ica (ca current)
+    - Similarly, created a [pyr_ca_cell.nml](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/blob/master/NeuroML2/test_ca/pyr_ca_cell.nml) with soma including leak, sca and kca as channel densities and adding the cad as intracellular properties. The [notebook](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/blob/master/NeuroML2/test_ca/soma_ca.ipynb) included plots as above.
     - To debug the discrepancies in the plots, set the conductance for sca, kca to 0 then increased conductance of the mechanisms involved one by one and saw how eca and ica changed for both NEURON as well as NeuroML code.
     - ECA (ca reversal potential) used was not being calculated using the nernst / ghk equation instead was fixed at 140.
-    - OMV tests were added for LEMS and hoc files which ran on three simulation engines : jNeuroML, jNeuroML_NEURON, jNeuroML_NetPyNE
-- Created a test file for example 1 which was able to record from 3 different locations of the cell namely Soma, Apical, Tuft. 
+    - OMV tests were added for LEMS and hoc files which ran on three simulation engines : [jNeuroML](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/blob/master/NeuroML2/test_ca/.test_ca_soma.jnml.omt), [jNeuroML_NEURON](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/blob/master/NeuroML2/test_ca/.test_ca_soma.jnmlnrn.omt), [jNeuroML_NetPyNE](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/blob/master/NeuroML2/test_ca/.test_ca_soma.jnmlnetpyne.omt)
+- Created a [Test_example1.hoc](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/blob/master/NEURON/test/Test_example1.hoc) for example 1 which was able to record from 3 different locations of the cell namely Soma, Apical, Tuft. 
 - Morphology of the multi compartmental cell 
-    - Exported from the test file created above to NeuroML using export_nml2.py
-    - Used cellBuilder.py to add the different components to the neuroml cell effeciently
-    
-- parse_mod_file.py : 
+    - Exported from the test file created above to NeuroML using [export_nml2.py](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/blob/master/NeuroML2/export_nml2.py)
+    - Used [CellBuilder.py](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/blob/master/NeuroML2/CellBuilder.py) to add the different components to the neuroml cell effeciently 
+- parse_mod_file.py : [Link to PR](https://github.com/OpenSourceBrain/NEURONShowcase/pull/3)
     - Added the necessary information (parameters and procedures) as comments to the converted neuroml file which can be deleted afterwards.
-    - Improved and moved the script along with the mod files to test to the repository NEURONShowcase 
+    - Improved and moved the script along with the mod files to test to the repository [OpenSourceBrain/NEURONShowcase](https://github.com/OpenSourceBrain/NEURONShowcase) 
     - Added the tutorial notebook showing how to use the utility method to parse mod files to NeuroML
 
-## Week 9-13
+Some of my commits in these weeks can be found linked to this [merged PR#33](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/pull/33) and [issue#13.](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/issues/13)
+
+## Week 9 - 13
 
 - Incorporate vShift in the channels to NeuroML:
     - Incorporated the vShift in channels like nat, sca using the channeldensityVShift to their respective segments
@@ -67,10 +69,13 @@ The community bonding period was mainly for getting to know more about the other
     - For the nonhomogeneous channels gmax was variable along the segments and were calculated on the basis of distance from the soma. Utilised the following strategy to check on the gmax values being set:
         - For the hoc code: Utilised the neuron gui model view option to view the gmax
         - For the neuroml code: Added print statements inside biophys_inhomogeneous() of neuroml generated neuron file
-        - Worked with Ankur and improved the pyneuroml.neuron utils module to give information for the mechanisms on segment level
+        - Worked with Ankur and improved the pyneuroml.neuron utils module to give information for the mechanisms on segment level [PR](https://github.com/NeuroML/pyNeuroML/pull/184)
     - Added axonal, dendritic segments to the segment groups axon_group and dendrite_group respectively for better visualisation on OpenSourceBrain.
     - Added OMV tests on the multicompartmental cell for both NEURON and the LEMS file.
-- Created an python script with BahlPyramidal cell class and methods to plot the simulated data
+
+Some of my commits of the work mentioned above can be reference to this [merged PR#42](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/pull/42)
+
+- Created multicomp_cell.py with BahlPyramidal cell class and methods to plot the simulated data
     - The class __init__ module:
         - added units to the parameters being passed to it
         - initialised variable parameters value as a string element 
@@ -82,3 +87,4 @@ The community bonding period was mainly for getting to know more about the other
     - Four variations combining the somatic pulse amplitude and dendritic amplitude were replicated
         - Readme is updated with the plots for that with parameters from the model2 for each of the cases.
 
+Some of my commits of the work mentioned above can be reference to this [open PR#45](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/pull/45)
