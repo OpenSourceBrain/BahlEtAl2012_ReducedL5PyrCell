@@ -33,14 +33,14 @@ The community bonding period was mainly for getting to know more about the other
     - [compare_nml2_mods.py](compare_nml2_mods.py) - Updates the readme, comparing steady state and time course plots of each channel gates for LEMS and mod files inside the [directory](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/tree/nrn_tests/NeuroML2/compare_nml2_mods) 
 - NeuroML implementation of the single compartmental cell (soma) adding each channel one by one
     - Understand the change on activation / inactivation variables (gates) with variable pulse inputs
-    - Inferential study of the characteristics of the channels involved 
+    - [Inferential](https://neuronaldynamics.epfl.ch/online/Ch2.S3.html) study of the characteristics of the channels involved 
     - Created [mep file](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/blob/master/NEURON/test/.test.mep) and added OMV tests for the LEMS and NEURON files in their respective directories.
 
 Some of my commits in these weeks can be found linked to this [issue.](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/issues/12)
 ## Week 5 - 8
 - Converted the ca dependent mechanisms namely (cad, sca, kca) to NeuroML
     - Understood the dynamics from their mod files and referenced some of the previous works that involved conversion of such mechanisms
-    - Compared the LEMS and mod file for sca channel and added the plots to the compare_nml2_mods directory
+    - Compared the LEMS and mod file for sca channel and added the plots to the [compare_nml2_mods](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/tree/master/NeuroML2/compare_nml2_mods) directory
 - Tested the ca dependent channels on single compartmental cell
     - Created a [Test_ca_soma.hoc](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/blob/master/NEURON/channels/Test_ca_soma.hoc) file including the three mechanisms and a leak channel. [Recorded](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/blob/70ab1e87dda5fd983c6c47a2af87027f647952b4/NEURON/channels/Test_ca_soma.hoc#L97) the cai,(internal ca conc.), cao (outer ca conc.) and ica (ca current)
     - Similarly, created a [pyr_ca_cell.nml](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/blob/master/NeuroML2/test_ca/pyr_ca_cell.nml) with soma including leak, sca and kca as channel densities and adding the cad as intracellular properties. The [notebook](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/blob/master/NeuroML2/test_ca/soma_ca.ipynb) included plots as above.
