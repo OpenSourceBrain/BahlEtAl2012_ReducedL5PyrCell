@@ -1,27 +1,31 @@
-# Google Summer of Code 2022
-
 <img src="../NeuroML2/plots/osb.png" alt="Somatic current = 0.8nA, Pulse duration = 5ms">
 
+# Google Summer of Code 2022
+
+
+
 ## General Information:
-- Mentor information:
-    - Padraig Gleeson (p.gleeson@ucl.ac.uk) (he/him/his)
-    - Ankur Sinha (ankur.sinha@ucl.ac.uk) (he/him/his)
-- GSoC timeline: https://developers.google.com/open-source/gsoc/timeline
+- Mentors:
+    - [Padraig Gleeson](https://github.com/pgleeson)
+    - [Ankur Sinha](https://github.com/sanjayankur31)
+- Contributor: [Shayan Shafquat](https://github.com/shayan823)
 - General links:
-    - NeuroML documentation: https://docs.neuroml.org
-    - Open Source Brain documentation: https://docs.opensourcebrain.org
-    - OSBv1: https://opensourcebrain.org
-    - OSBv2: https://v2.opensourcebrain.org
+    - [NeuroML documentation](https://docs.neuroml.org) 
+    - [Open Source Brain documentation](https://docs.opensourcebrain.org)
+    - [OSBv1](https://opensourcebrain.org)
+    - [OSBv2](https://v2.opensourcebrain.org)
+- Main Repository: [BahlEtAl2012_ReducedL5PyrCell](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell)
 
-## Project Information:
-- [Project Proposal](https://docs.google.com/document/d/1GBoi9apEY3H_MndKfPCxUw29VjSLbJN6fgwAEDZXoGw/edit)
-- [Project Description](https://summerofcode.withgoogle.com/programs/2022/projects/gXt6Wgk5)
-
+## Contributions:
+- [Pulled request opened during GSoC](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/pulls?q=is%3Apr+author%3Ashayan823)
+- [Issues opened during GSoC](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/issues?q=is%3Aissue+author%3Ashayan823)
+- [Commit history](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/commits?author=shayan823)
 
 ## Community bonding period
 The community bonding period was mainly for getting to know more about the other cortical pyramidal cell models on OSB which have been converted to NeuroML. They had same or similar mod files which eased the conversion of those used in this model. Moving forward I started with writing a python script for the single compartmental cell i.e. soma with all the density mechanisms and was able to successfully run a simulation on it. Other than that, in this period I was involved with running simulations on NEURON. Since I was not much accustomed to the NEURON GUI tools I went through some of the NEURON tutorial videos and also got myself added to their discussion group.
 
-## Week 1 - 4
+## Coding period
+### Week 1 - 4
 - Created the [Test_soma.hoc](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/blob/master/NEURON/channels/Test_soma.hoc) file to test the neuroml single compartmental (soma) cell 
     - Added [plots](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/blob/70ab1e87dda5fd983c6c47a2af87027f647952b4/NEURON/channels/Test_soma.hoc#L101) of the activation / inactivation variables for all the channels 
 - Added the summary plots of the channels converted to neuroml to a directory
@@ -37,7 +41,7 @@ The community bonding period was mainly for getting to know more about the other
     - Created [mep file](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/blob/master/NEURON/test/.test.mep) and added OMV tests for the LEMS and NEURON files in their respective directories.
 
 Some of my commits in these weeks can be found linked to this [issue.](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/issues/12)
-## Week 5 - 8
+### Week 5 - 8
 - Converted the ca dependent mechanisms namely (cad, sca, kca) to NeuroML
     - Understood the dynamics from their mod files and referenced some of the previous works that involved conversion of such mechanisms
     - Compared the LEMS and mod file for sca channel and added the plots to the [compare_nml2_mods](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/tree/master/NeuroML2/compare_nml2_mods) directory
@@ -58,7 +62,7 @@ Some of my commits in these weeks can be found linked to this [issue.](https://g
 
 Some of my commits in these weeks can be found linked to this [merged PR#33](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/pull/33) and [issue#13.](https://github.com/OpenSourceBrain/BahlEtAl2012_ReducedL5PyrCell/issues/13)
 
-## Week 9 - 13
+### Week 9 - 13
 
 - Incorporate vShift in the channels to NeuroML:
     - Incorporated the vShift in channels like nat, sca using the channeldensityVShift to their respective segments
