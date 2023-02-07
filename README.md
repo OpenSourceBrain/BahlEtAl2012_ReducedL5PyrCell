@@ -13,3 +13,5 @@ The original code for this model was obtained from ModelDB ([146026](https://sen
 The conversion to NeuroML of this model can be found [here](NeuroML2).
 
 See also https://github.com/OpenSourceBrain/Contribute/issues/15 for issue related to this.
+
+Much of the work to convert this model to NeuroML wascarried out by [Shayan Shafquat](https://github.com/shayan823) as part of Google Summer of Code 2023. 
