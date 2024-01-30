@@ -45,6 +45,7 @@ jobs:
         omv install NEURON
         cd NEURON/test
         nrnivmodl ../channels
+        ls -alt
 
     - name: Run OMV tests on engine ${{ matrix.engine }}
       run: |
