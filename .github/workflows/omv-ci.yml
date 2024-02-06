@@ -43,7 +43,7 @@ jobs:
     - name: Compile some mod files
       if: ${{ contains( matrix.engine, 'NEURON' ) }}
       run: |
-        omv install NEURON
+        omv install ${{ matrix.engine }}
         cd NEURON/test
         nrnivmodl ../channels
         ls -alt
