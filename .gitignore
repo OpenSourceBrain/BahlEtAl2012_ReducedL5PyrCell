@@ -21,3 +21,5 @@ x86_64
 NET_*.net.nml
 *.channel.nml
 arm64
+/NeuroML2/.ipynb_checkpoints
+/NeuroML2/__pycache__
