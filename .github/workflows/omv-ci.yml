@@ -9,12 +9,13 @@ on:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+  
+    runs-on: ${{ matrix.runs-on }}
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ 3.8, 3.9, "3.10" ]
+        python-version: [ 3.9, "3.10" ]
+        runs-on: [ubuntu-latest, macos-latest]
         engine: 
           - jNeuroML_validate
           # - "NEURON:7.8.2"  # slightly different spike times...
