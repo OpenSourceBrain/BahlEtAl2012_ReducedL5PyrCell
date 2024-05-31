@@ -15,7 +15,6 @@ jobs:
       fail-fast: false
       matrix:
         python-version: [ 3.9, "3.10" ]
-        runs-on: [ubuntu-latest, macos-latest]
         engine: 
           - jNeuroML_validate
           # - "NEURON:7.8.2"  # slightly different spike times...
@@ -26,6 +25,7 @@ jobs:
           - jNeuroML
           - jNeuroML_NEURON
           - jNeuroML_NetPyNE
+        runs-on: [ubuntu-latest, macos-latest]
 
     steps:
     - uses: actions/checkout@v4
@@ -35,6 +35,11 @@ jobs:
       with:
         python-version:  ${{ matrix.python-version }}
 
+    - name: Install HDF5 for pytables on macos-latest
+      if: ${{ matrix.runs-on == 'macos-latest' }}
+      run: |
+        brew install hdf5
+        
     - name: Install OMV
       run: |
         pip install git+https://github.com/OpenSourceBrain/osb-model-validation
